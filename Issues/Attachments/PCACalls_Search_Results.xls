@@ -1,0 +1,25 @@
+<div>
+	<table class="table table-hover table-striped" cellspacing="0" rules="all" border="1" id="MainContent_GridView1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">Call ID</th><th align="center" scope="col">Date Submitted</th><th align="center" scope="col">Call Date</th><th align="center" scope="col">Report Quarter</th><th align="center" scope="col">Report Year</th><th align="center" scope="col">PCA</th><th align="center" scope="col">Loan Analyst</th><th align="center" scope="col">Borrower Name</th><th align="center" scope="col">Borrower #</th><th class="hidden" align="center" scope="col">Recording Delivery Date</th><th class="hidden" align="center" scope="col">In/Out Bound</th><th class="hidden" align="center" scope="col">Call Type</th><th class="hidden" scope="col">Complaint?</th><th class="hidden" scope="col">Correct ID?</th><th class="hidden" scope="col">Mini-Miranda?</th><th class="hidden" scope="col">Accurate Info?</th><th class="hidden" scope="col">Accurate Notepad?</th><th class="hidden" scope="col">Prof Tone?</th><th class="hidden" scope="col">Responsive?</th><th class="hidden" align="center" scope="col">FSA Comments</th><th class="hidden" align="center" scope="col">PCA Comments</th><th class="hidden" align="center" scope="col">FSA Conclusions</th>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_0" href="CallReviewDetail.aspx?CallID=24">24</a>
+                </td><td>7/15/2014</td><td>7/8/2014</td><td>2</td><td>2014</td><td>Collection Technology</td><td>eric.vanburen</td><td>juju</td><td>1021051045</td><td class="hidden">7/7/2014</td><td class="hidden">Outbound</td><td class="hidden">3rd Party</td><td class="hidden">
+                    Yes
+                </td><td class="hidden">
+                    Yes
+                </td><td class="hidden">
+                    Yes
+                </td><td class="hidden">
+                    Yes
+                </td><td class="hidden">
+                    Yes
+                </td><td class="hidden">
+                    Yes
+                </td><td class="hidden">
+                    Yes
+                </td><td class="hidden">comments</td><td class="hidden">pca comments</td><td class="hidden">fuse conclusionz</td>
+		</tr>
+	</table>
+</div>

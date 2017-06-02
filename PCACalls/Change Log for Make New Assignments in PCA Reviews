@@ -1,0 +1,63 @@
+Change Log for Make New Assignments in PCA Reviews
+
+1) Add ReviewDate, ReportQuarter and ReportYear to table PCACalls.PCACalls_Assignments
+2) Update MakeAssignments.aspx and MakeAssignments.aspx.vb
+3) Update p_PCACalls_Assignments_Insert
+4) Update LAAssignments.aspx and LAAssignments.aspx.vb
+5) Update p_LAAssignments
+6) update p_PCAAssignment
+7) update p_PCAAssignment_update
+8) Add p_PCAAssignment_Delete
+9) Update MyNewAssignments.aspx
+10) Update MyNewAssignments.aspx.vb
+11) Update p_MyNewAssignments
+12) update NewRehabReview.aspx and NewRehabReview.aspx.vb
+13) update p_InsertNewRehabReview
+14) Add field ReviewDate to table RehabCalls
+15) Add field ReviewDate to table Calls
+16) update RehabCallReviewDetail.aspx and RehabCallReviewDetail.aspx.vb
+17) update p_RehabCallID
+18) Update NewReview.aspx and NewReview.aspx.vb
+19) update p_InsertNewCall
+20) update p_CallID
+21) update p_UpdateCallID
+22) update MyReviews.aspx
+23) update p_MyReviews
+24) update p_MyRehabReviews
+25) create p_DeleteRehabCallID
+26) update Search.aspx and Search.aspx.vb
+27) update p_Search
+28) update site.master with <asp:MenuItem NavigateUrl="~/PCACalls/MyNewAssignments.aspx" Text="PCA Reviews"/>
+
+
+Issues website update
+
+1) update MyIssues.aspx and MyIssues.aspx.vb
+2) create Issues.p_IssueDetail_Update_Comments
+3) update /Issues/site.master with <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Owner.aspx">Owner</a></li>
+
+ <asp:ListBox ID="ddlPCAID" runat="server" CssClass="inputBox" TabIndex="2" SelectionMode="Multiple">
+                 <asp:ListItem Text="" Value="" />
+                 <asp:ListItem Value="1" Text="Account Control Technology"></asp:ListItem>
+                 <asp:ListItem Value="2" Text="Allied Interstate"></asp:ListItem>
+                 <asp:ListItem Value="3" Text="CBE Group"></asp:ListItem>
+                 <asp:ListItem Value="4" Text="Coast Professional"></asp:ListItem>
+                 <asp:ListItem Value="5" Text="Collection Technology"></asp:ListItem>
+                 <asp:ListItem Value="6" Text="ConServe"></asp:ListItem>
+                 <asp:ListItem Value="7" Text="Delta Management Associates"></asp:ListItem>
+                 <asp:ListItem Value="8" Text="Diversified Collection Systems"></asp:ListItem>
+                 <asp:ListItem Value="9" Text="Enterprise Recovery Systems"></asp:ListItem>
+                 <asp:ListItem Value="10" Text="EOS-Collecto"></asp:ListItem>
+                 <asp:ListItem Value="11" Text="FAMS"></asp:ListItem>
+                 <asp:ListItem Value="12" Text="FMS"></asp:ListItem>
+                 <asp:ListItem Value="13" Text="GC Services"></asp:ListItem>
+                 <asp:ListItem Value="14" Text="Immediate Credit Recovery"></asp:ListItem>
+                 <asp:ListItem Value="15" Text="National Recoveries"></asp:ListItem>
+                 <asp:ListItem Value="16" Text="NCO Financial Systems"></asp:ListItem>
+                 <asp:ListItem Value="17" Text="Pioneer Credit Recovery"></asp:ListItem>
+                 <asp:ListItem Value="18" Text="Premiere Credit of North America"></asp:ListItem>
+                 <asp:ListItem Value="19" Text="Progressive Financial Services"></asp:ListItem>
+                 <asp:ListItem Value="20" Text="Van Ru Credit Corp"></asp:ListItem>
+                 <asp:ListItem Value="21" Text="West Asset Management"></asp:ListItem>
+                 <asp:ListItem Value="22" Text="Windham Professionals"></asp:ListItem>
+             </asp:ListBox>

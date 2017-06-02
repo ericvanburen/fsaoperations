@@ -1,0 +1,896 @@
+﻿TotalRows
+Total Borrower Account AR Logs: 883
+
+BorrowerAccountARMessageText_Value,AREventCreationDateTime_Value,BorrowerNumber_Value,ActionCodeShortValueText_Value,ResultCodeShortValueText_Value,UserSystemUserName_Value
+?Approved refund 2282.33 to borrower TOP after Consolidation.,3/29/2013,1010396581,BROFSArv,BROFSAap,gissenk
+APPROVE,4/4/2013,1003719173,BROFSArv,BROFSAap,ferrelb
+Approve : Refund AWG and TOP (total amt $302.62) to borrower for $115.22 trc#2051058 on 2/19/13 and a partial TOP for $187.40 trc# S90464218 on 2/13/13,3/7/2013,1003728854,BROFSArv,BROFSAap,ferrelb
+Approve ; REFUND $1169.09 PARTIAL TOP OP TO BORROWER,4/1/2013,1003735511,BROFSArv,BROFSAap,ferrelb
+Approve ; REFUND $120.63 (2) AWG OP TO BORROWER,4/1/2013,1003727605,BROFSArv,BROFSAap,ferrelb
+Approve ; REFUND $235.74 (1) AWG OP (1) PARTIAL TOP OP TO BORROWER,4/1/2013,1003788644,BROFSArv,BROFSAap,ferrelb
+Approve ; REFUND $24.36 PARTIAL TOP OP TO BORROWER,4/1/2013,1003916758,BROFSArv,BROFSAap,ferrelb
+Approve ; REFUND $313.94 (1) AWG OP (1) PARTIAL TOP OP TO BORROWER,4/1/2013,1009704307,BROFSArv,BROFSAap,ferrelb
+Approve ; REFUND $38.21 PARTIAL AWG OP TO BORROWER,4/1/2013,1003693668,BROFSArv,BROFSAap,ferrelb
+APPROVE ; REFUND $4446.00 TOP AFTER CONSOL TO BORROWER,4/1/2013,1009723187,BROFSArv,BROFSAap,ferrelb
+APPROVE ; REFUND $719.47 TOP AFTER COMP TO BORROWER,4/1/2013,1003728120,BROFSArv,BROFSAap,ferrelb
+"Approve 19 refunds totalling $6,302.21 to borr awg op. awise/r4",8/30/2012,1003781880,BROFSArv,BROFSAap,wisea
+Approve 2 refunds $256.65 09/11/12 $173.76 10/02/12 to borr op acct. awise/r4,10/23/2012,1003781880,BROFSArv,BROFSAap,wisea
+Approve 2 refunds $547.43 to borrower. awise/r4,4/15/2013,1003685837,BROFSArv,BROFSAap,wisea
+Approve 2 refunds for $219.30 to borrower. awise/r4,3/7/2013,1010535062,BROFSArv,BROFSAap,wisea
+Approve 2 refunds totaling $352.03 to borrower. awise/r4,4/15/2013,1003716297,BROFSArv,BROFSAap,wisea
+Approve 2 refunds totaling $861.88 to to borrower. awise/r4,1/10/2013,1003781880,BROFSArv,BROFSAap,wisea
+Approve 2 TOP payments totaling $693.00 to borrower acct was in repayment and was certified for TOP in error. awise/r4,3/29/2013,1010721079,BROFSArv,BROFSAap,wisea
+Approve 3 refunds totaling $137.98 to borrower AWG Overpymts. awise/r4,3/29/2013,1009856225,BROFSArv,BROFSAap,wisea
+APPROVE INTERNAL APPROVAL REFUND $43.95 CONSOL OP TO LENDER - DL MONTGOMERY,4/1/2013,1003725741,BROFSArv,BROFSAap,ferrelb
+Approve INTERNAL APPROVAL; REFUND $290.05 PARTIAL TOP OP TO BORROWER,4/1/2013,1003736742,BROFSArv,BROFSAap,ferrelb
+Approve refund  per 3/20/13 notation,4/8/2013,1010437449,BROFSArv,BROFSAap,tatarm
+"APPROVE REFUND $ 426.49 PARTIAL TOP OP AFTER COMP;
+COMP SET 02/04/2013 $4100.00 DUE 05/05/2013; COM",4/1/2013,1003784124,BROFSArv,BROFSAap,ferrelb
+"Approve refund $1,116.00 TOP to borrower TOP rec'd  after Comp. awise/r4",3/29/2013,1010620781,BROFSArv,BROFSAap,wisea
+"Approve refund $1,364.68 to borrower TOP OP. awise/r4",4/15/2013,1003706905,BROFSArv,BROFSAap,wisea
+"Approve refund $1,556.00 to borr due to bky7. awise/r4",3/29/2013,1010658831,BROFSArv,BROFSAap,wisea
+Approve Refund $146.53 AWG op to borr: $59.53 2/20/13 ; $87.00 3/5/13,4/3/2013,1011391421,BROFSArv,BROFSAap,tatarm
+Approve Refund $160.74 op to borr: $65.95 2/27/13; $94.79 3/5/13,4/4/2013,1009968223,BROFSArv,BROFSAap,tatarm
+Approve refund $183.19 to borrower. awise/r4,4/15/2013,1003686030,BROFSArv,BROFSAap,wisea
+"Approve REFUND $19.30 PARTIAL TOP OP TO BORROWER;
+ $19.30 02/25/2013",4/8/2013,1010818590,BROFSArv,BROFSAap,tatarm
+Approve refund $194.90 to borrower. awise/r4,3/29/2013,1010605760,BROFSArv,BROFSAap,wisea
+"Approve refund $2,055.00 to borrower for hardship. awise/r4",4/8/2013,1010100241,BROFSArv,BROFSAap,wisea
+"Approve refund $2,065.43 to borrower for hardship. awise/r4",4/10/2013,1009832899,BROFSArv,BROFSAap,wisea
+"Approve refund $2,065.43 to borrower for hardship. awise/r4",4/16/2013,1009832899,BROFSArv,BROFSAap,wisea
+"Approve refund $2,369.52 to borrower for hardship. awise/r4",4/16/2013,1010367008,BROFSArv,BROFSAap,wisea
+"Approve refund $2,432.69 to borrower for hardship. awise/r4",4/8/2013,1003739046,BROFSArv,BROFSAap,wisea
+"Approve REFUND $2042.24 TOP AFTER COMP SIF TO BORROWER;
+ $2042.24 03/13/2013",4/8/2013,1010741480,BROFSArv,BROFSAap,tatarm
+Approve Refund $2044.11 for comp op to borr: $1297.52 2/13/13; $252.97 2/22/13; $493.62 3/7/13 ,4/3/2013,1010471837,BROFSArv,BROFSAap,tatarm
+Approve refund $22.24 to borrower TOP OP. awise/r4,4/3/2013,1009744662,BROFSArv,BROFSAap,wisea
+Approve Refund $22.41 PARTIIAL TOP OP TO BORROWER,4/1/2013,1009907252,BROFSArv,BROFSAap,ferrelb
+Approve Refund $240.00 for closed school discharge approved on 3/20/13: $120.00 10/31/12 ; $120.00 11/1/12,4/8/2013,1010701064,BROFSArv,BROFSAap,tatarm
+Approve refund $250.59 to borrower. awise/r4,3/29/2013,1009938958,BROFSArv,BROFSAap,wisea
+Approve Refund $2529.00 1/16/13 tr#K89236493 and $689.00 1/3/13 tr#K89153319 for hsdhp approval per shumpet on 3/4/13 and  1/28/13 ,4/8/2013,1010433230,BROFSArv,BROFSAap,ferrelb
+Approve Refund $259.29 op to borr: $101.00 2/21/13; $158.29 3/1/13 additional refund; additional refund $160.59 3/13/2013 ,4/3/2013,1010592012,BROFSArv,BROFSAap,tatarm
+Approve refund $282.76 to borrower TOP rec'd after Comp. awise/r4,3/29/2013,1009900579,BROFSArv,BROFSAap,wisea
+Approve refund $298.23 to borrower TOP Overpymt from Comp. awise/r4,3/29/2013,1009876672,BROFSArv,BROFSAap,wisea
+"Approve refund $3,000.00 to borrower for hardship. awise/r4",4/16/2013,1010450316,BROFSArv,BROFSAap,wisea
+"Approve refund $3,434.73 to borrower for hardship. awise/r4",4/16/2013,1010568322,BROFSArv,BROFSAap,wisea
+"Approve refund $3,490.00 to borrower approve for hardship. awise/r4",4/10/2013,1011291804,BROFSArv,BROFSAap,wisea
+"Approve refund $3,490.00 to borrower for hardship. awise/r4",4/16/2013,1011291804,BROFSArv,BROFSAap,wisea
+"Approve refund $3,508.00 to borrower TOP rec'd after Rehab. awise/r4",4/3/2013,1003855851,BROFSArv,BROFSAap,wisea
+"Approve refund $3,779.54 to borrower for hardship. awise/r4",4/16/2013,1010036711,BROFSArv,BROFSAap,wisea
+"Approve refund $3,779.54 to borrowr for hardship. awise/r4",4/10/2013,1010036711,BROFSArv,BROFSAap,wisea
+Approve REFUND $30.21 PARTIAL TOP OP TO BORROWER;  $30.21 02/07/2013,4/8/2013,1011394193,BROFSArv,BROFSAap,tatarm
+Approve refund $300.00 03/18/13 to lender Nelnet. awise/r4,4/29/2013,1010422669,BROFSArv,BROFSAap,wisea
+Approve refund $3020.00 to borrower TOP after rehab. Notes on acct show borrower rehab was delayed. awise/r4,4/3/2013,1003944794,BROFSArv,BROFSAap,wisea
+Approve Refund $326.97 op to borr: $99.63 2/6/13 ; $227.34 2/19/13,4/4/2013,1009962740,BROFSArv,BROFSAap,tatarm
+Approve REFUND $35.00 VOL OP TO BORROWER;  $35.00 02/25/2013,4/8/2013,1015996057,BROFSArv,BROFSAap,tatarm
+Approve REFUND $352.25 (2) AWG OP (1) PARTIAL TOP OP TO BORROWER,4/1/2013,1003783340,BROFSArv,BROFSAap,ferrelb
+Approve refund $362.81 09/11/12 to borr for awg op. awise/r4,9/20/2012,1003781880,BROFSArv,BROFSAap,wisea
+Approve REFUND $390.15 TO BORROWER; TOP POSTED AFTER ACCOUNT PIF,4/8/2013,1010601259,BROFSArv,BROFSAap,tatarm
+"Approve refund $4,079.00 to borrower for hardship. awise/r4",4/8/2013,1010117498,BROFSArv,BROFSAap,wisea
+"Approve refund $4,460.00 to borrower for hardshp. awise/r4",4/8/2013,1010100564,BROFSArv,BROFSAap,wisea
+"Approve refund $4,489.00 to borrower TOP rec'd after Consol. awise/r4",3/29/2013,1010625526,BROFSArv,BROFSAap,wisea
+"Approve REFUND $465.42 (2) AWG OP (1) PARTIAL TOP OP TO BORROWER;
+ $326.19 03/19/2013; $94.98 03/05/2013; $44.25 02/27/2013",4/8/2013,1010777158,BROFSArv,BROFSAap,tatarm
+Approve refund $4739.00 to borrower TOP rec'd after Consol. awise/r4,3/29/2013,1010105295,BROFSArv,BROFSAap,wisea
+APPROVE REFUND $50.00 VOL AFTER REHAB TO LENDER - NELNET,4/4/2013,1003719173,BROFSArv,BROFSAap,ferrelb
+Approve refund $60.00 to Great Lakes. awise/r4,3/29/2013,1015238222,BROFSArv,BROFSAap,wisea
+Approve refund $75.08 to borrower. awise/r4,4/15/2013,1003689551,BROFSArv,BROFSAap,wisea
+"Approve REFUND $78.21 TOP AFTER ACCOUNT PIF TO BORROWER;
+ $78.21 03/13/2013",4/8/2013,1010662493,BROFSArv,BROFSAap,tatarm
+Approve refund $784.00 to borrower. awise/r4,4/3/2013,1003925735,BROFSArv,BROFSAap,wisea
+Approve REFUND $80.00 VOL POSTED AFTER REHAB TO LENDER - CSBL PERKINS; $80.00 08/15/2012,4/8/2013,1011791495,BROFSArv,BROFSAap,tatarm
+Approve REFUND $89.92 AWG AFTER COMP SIF TO BORROWER,4/3/2013,1011582939,BROFSArv,BROFSAap,tatarm
+APPROVE REFUND $93.00 VOL AFTER REHAB TO LENDER - NELNET,4/1/2013,1003689379,BROFSArv,BROFSAap,ferrelb
+Approve refund $943.30 to borrower TOP rec'd after comp. awise/r4,4/15/2013,1003696586,BROFSArv,BROFSAap,wisea
+Approve Refund additional AWG op to borr: $116.32 3/4/13,4/3/2013,1010535062,BROFSArv,BROFSAap,tatarm
+Approve Refund AWG op to borr: $109.56 2/27/13; additional refund $38.12 3/12/13,4/4/2013,1010019490,BROFSArv,BROFSAap,tatarm
+Approve Refund AWG op to borr: $139.86 2/19/13; $149.49 3/7/13,4/4/2013,1010072409,BROFSArv,BROFSAap,tatarm
+Approve Refund AWG op to borr: $21.87 2/25/13,4/4/2013,1010106097,BROFSArv,BROFSAap,tatarm
+Approve Refund AWG op to borr: $470.35 2/26/13,4/4/2013,1003770833,BROFSArv,BROFSAap,tatarm
+Approve Refund AWG op to borr: $52.28 3/4/13.  Additional refunds $139.41 3/8/2013; $110.66 4/1/2013,4/4/2013,1010363878,BROFSArv,BROFSAap,tatarm
+Approve Refund AWG op to borr: $81.69 3/4/13,4/4/2013,1010226098,BROFSArv,BROFSAap,tatarm
+Approve REFUND AWG OP TO BORROWER; $125.06 03/15/2013; additional refund $135.25 3/25/2013,4/8/2013,1010608183,BROFSArv,BROFSAap,tatarm
+"Approve Refund IPAC to lender DLCN Montgomery, AL for $85.90 on 3/12/13.",4/8/2013,1010567330,BROFSArv,BROFSAap,tatarm
+Approve refund noted 3/12/2013,4/4/2013,1009759948,BROFSArv,BROFSAap,tatarm
+Approve refund noted 3/21/13,4/8/2013,1010330823,BROFSArv,BROFSAap,tatarm
+Approve Refund op $236.40 to borr: $56.98 2/8/13; $91.42 2/19/13; $89.71 3/7/13,4/4/2013,1010285781,BROFSArv,BROFSAap,tatarm
+Approve Refund partial TOP for comp op to borr: $1937.46 3/1/13,4/3/2013,1010775411,BROFSArv,BROFSAap,tatarm
+Approve Refund partial TOP for comp op to borr: $296.85 2/7/13,4/4/2013,1010298527,BROFSArv,BROFSAap,tatarm
+Approve Refund partial TOP for comp op to borr: $463.01 2/12/13,4/4/2013,1009939954,BROFSArv,BROFSAap,tatarm
+Approve Refund partial TOP op to borr: $131.74 2/27/13; Additional refund $177.83 3/11/13; $179.17 3/25/13,4/4/2013,1010182063,BROFSArv,BROFSAap,tatarm
+Approve Refund partial TOP op to borr: $145.46 2/12/13,4/4/2013,1003769067,BROFSArv,BROFSAap,tatarm
+Approve Refund partial TOP op to borr: $33.50 2/21/13,4/3/2013,1010505511,BROFSArv,BROFSAap,tatarm
+"Approve REFUND PARTIAL TOP PER SHUMPET: $2500.00, T#S89895880, 2/7/13",4/8/2013,1010830882,BROFSArv,BROFSAap,ferrelb
+Approve refund per 3/13/13 notation,4/4/2013,1010287946,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/20/13 notation,4/8/2013,1010246454,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/20/2013 notation,4/8/2013,1010377291,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/10 notation,4/9/2013,1009931625,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13,4/11/2013,1009931395,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/8/2013,1010311594,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/8/2013,1010227021,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/9/2013,1010095752,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/9/2013,1009989037,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/9/2013,1009862210,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/9/2013,1009846000,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/9/2013,1009798510,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/10/2013,1003736482,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/8/2013,1010454830,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/8/2013,1010458980,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/8/2013,1010385957,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/15/2013,1010470212,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation,4/18/2013,1010346578,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation additional refund $142.674/1/13 ,4/9/2013,1010146223,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/13 notation.  Additional refund $125.46 3/20/13,4/18/2013,1010400622,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/2013 notation,4/9/2013,1010081329,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/21/2013 notation,4/9/2013,1010059933,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/22/13 notation,4/8/2013,1010308153,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/22/13 notation,4/8/2013,1010292742,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/22/13 notation,4/8/2013,1010240191,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/22/13 notation,4/8/2013,1010199003,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/22/13 notation,4/10/2013,1003768991,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/22/2013 notation,4/9/2013,1010012342,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/28/13 notation,4/8/2013,1003771493,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/29/13 notation,4/15/2013,1010234407,BROFSArv,BROFSAap,tatarm
+Approve refund per 3/29/13 notation,4/15/2013,1010234407,BROFSArv,BROFSAap,tatarm
+Approve refund per 4/11/13 notation,4/11/2013,1003777038,BROFSArv,BROFSAap,tatarm
+Approve refund per 4/9/13 notation,4/10/2013,1010001278,BROFSArv,BROFSAap,tatarm
+Approve refund per 4/9/13 notation,4/15/2013,1010001278,BROFSArv,BROFSAap,tatarm
+Approve refund per notation 3/13/2013,4/4/2013,1009907743,BROFSArv,BROFSAap,tatarm
+Approve refund per notation 3/21/13,4/9/2013,1010163956,BROFSArv,BROFSAap,tatarm
+Approve refund per notation 3/21/13,4/8/2013,1010600031,BROFSArv,BROFSAap,tatarm
+Approve refund per notation 3/21/2013,4/8/2013,1010694246,BROFSArv,BROFSAap,tatarm
+Approve Refund taken on 3/8/13:  Entire amt for $29.86 should go to TOP refund only.  No cc chargeback.,4/1/2013,1009747629,BROFSArv,BROFSAap,ferrelb
+Approve Refund TOP after comp met to borr: $2354.00 2/25/13,4/4/2013,1009743426,BROFSArv,BROFSAap,tatarm
+"Approve Refund TOP after comp to borrower for $2,420.99  on 3/11/13 (comp met for $2,212.00).",4/8/2013,1010509550,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP after consol to borr: $424.95 2/18/13,4/3/2013,1010462713,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP after TPD approval to borr: $115.00 2/21/13,4/4/2013,1010329382,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP due to bkry filed 2/11/13: $3985.08 2/26/13,4/4/2013,1010274757,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP for closed school discharge approval on 3/20/13: $3168.45 2/25/13,4/8/2013,1011351687,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP for comp op to borr: $1669.00 2/13/13,4/3/2013,1010403526,BROFSArv,BROFSAap,tatarm
+Approve REFUND TOP FOR HARDSHIP: 2-19-13 $3063.00 T#S90772 (REDO RQST),4/16/2013,1003701753,BROFSArv,BROFSAap,ferrelb
+Approve REFUND TOP FOR HARDSHIP: 2-19-13 $3063.00 T#S90772761,4/11/2013,1003701753,BROFSArv,BROFSAap,ferrelb
+Approve Refund TOP for hdshp per shumpet: $2583.29 2/13/13,4/3/2013,1010375914,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP to borr due to consol per sup: $2042.44 2/5/13,4/4/2013,1010167744,BROFSArv,BROFSAap,tatarm
+Approve Refund TOP to borr for FUNF discharge: $715.95 2/22/13,4/3/2013,1010587175,BROFSArv,BROFSAap,tatarm
+"Approve REFUND TOP TO BORR PER SHUMPET: $2592.00, T#S9117",4/8/2013,1009884241,BROFSArv,BROFSAap,ferrelb
+Approve Refund TOP to borrower for $755.25  on 2/13/13.,4/8/2013,1010579584,BROFSArv,BROFSAap,tatarm
+Approve Refund vol after rehab to Nelnet: $100.00 3/6/13,4/3/2013,1010437605,BROFSArv,BROFSAap,tatarm
+Approve Refund vols after rehab to Pheaa: $200.00 12/3/12; $200.00 12/31/12,4/3/2013,1010440832,BROFSArv,BROFSAap,tatarm
+"Approve refund: $1012.43 to borrower, additional AWG pymts posted after acct PIF",11/27/2012,1003781880,BROFSArv,BROFSAap,ferrelb
+Approve refund: INTERNAL APPROVAL; REFUND $90.81 (1) AWG OP (1) PARTIAL TOP OP TO BORROWER,4/1/2013,1003796480,BROFSArv,BROFSAap,ferrelb
+Approved additional refund totaling $746.73 AWG OPS to Borr - ($508.39 on 3/11/13 & $238.34 on 2/27/13).,4/11/2013,1003781880,BROFSArv,BROFSAap,halords
+APPROVED EFUND TO BORROWER,4/5/2013,1010195950,BROFSArv,BROFSAap,greshae
+"Approved FO refund to b/rehab
+",4/2/2013,1010839110,BROFSArv,BROFSAap,toomerc
+Approved refund  101.08 to Lender DLCN Montgomery AL.,4/5/2013,1015022668,BROFSArv,BROFSAap,gissenk
+Approved refund  to borrower1495.28 TOP after Comp paid.,3/29/2013,1010824507,BROFSArv,BROFSAap,gissenk
+Approved Refund $200.00 to borrower/PCA error on Vol payment**GCollins reg4,1/15/2013,1010161655,BROFSArv,BROFSAap,colling
+"Approved refund $300.00, 07/11/2012; $300.00, 08/14/2012 VO payments to Ed/Sallie Mae posted after account recall 
+",10/10/2012,1010753162,BROFSArv,BROFSAap,cumminm
+"Approved refund $33.53 AWG to borrower, AWG OP",3/7/2013,1003937226,BROFSArv,BROFSAap,marksp
+"Approved refund $88.90 2/19/13 AWG to borrower, AWG posted after Compromise ",3/7/2013,1011582939,BROFSArv,BROFSAap,marksp
+"Approved Refund $909.99 for additional AWG pymnts after pif: $176.51 12/28/12 tr#7504680; $475.35 1/14/13 tr#7504085; $258.13 
+1/25/13 tr#7501200",2/5/2013,1003781880,BROFSArv,BROFSAap,andrewr
+Approved refund 103.08 to borrower AWG OP.,4/8/2013,1011302993,BROFSArv,BROFSAap,gissenk
+Approved refund 104.36 to Lender DLCN Montgomery CONSOL OP.,4/8/2013,1010322972,BROFSArv,BROFSAap,gissenk
+Approved refund 1081.00 to borrower TOP OP.,4/12/2013,1010648309,BROFSArv,BROFSAap,gissenk
+Approved refund 109.00 to borrower TOP after COMP SIF.,4/5/2013,1011334328,BROFSArv,BROFSAap,gissenk
+Approved refund 1092.18 to borrower TOP OP.,4/12/2013,1010604482,BROFSArv,BROFSAap,gissenk
+Approved refund 1199.68 to borrower TOP Offset after Comp.,3/29/2013,1010646998,BROFSArv,BROFSAap,gissenk
+Approved refund 120.96 to borrower AWG OP.,4/12/2013,1010605489,BROFSArv,BROFSAap,gissenk
+Approved refund 124.03 to borrower after COMP.,4/9/2013,1010066172,BROFSArv,BROFSAap,gissenk
+Approved refund 126.13 CONSOL OP to Lender DL Montgomery.,4/9/2013,1010166509,BROFSArv,BROFSAap,gissenk
+Approved refund 1306.00 to borrower TOP OP.,4/11/2013,1011343772,BROFSArv,BROFSAap,gissenk
+Approved refund 131.00 to borrower TOP after Comp paid.,3/29/2013,1010687896,BROFSArv,BROFSAap,gissenk
+Approved refund 138.81 to borrower TOP OP.,4/12/2013,1010780781,BROFSArv,BROFSAap,gissenk
+Approved refund 143.15 to borrower IRS Tax Offset.,3/29/2013,1011298106,BROFSArv,BROFSAap,gissenk
+Approved refund 150.98 to borrower AWG after COMP.,4/9/2013,1009836955,BROFSArv,BROFSAap,gissenk
+Approved refund 154.00 to PHEAA VOL payment.,4/15/2013,1010443760,BROFSArv,BROFSAap,gissenk
+Approved refund 1560.00 to borrower TOP after TPD.,4/15/2013,1010694197,BROFSArv,BROFSAap,gissenk
+Approved refund 159.49 to borrower Partial TOP OP.,4/12/2013,1010637375,BROFSArv,BROFSAap,gissenk
+Approved refund 170.25 to borrower TOP after COMP.,4/15/2013,1010738708,BROFSArv,BROFSAap,gissenk
+Approved refund 1724.12 to borrower partial TOP after COMP paid to SIF ln.,3/29/2013,1011324200,BROFSArv,BROFSAap,gissenk
+Approved refund 1724.49 to borrower TOP after Comp.,4/15/2013,1010754729,BROFSArv,BROFSAap,gissenk
+Approved refund 1764.57 to Dept of ED/ PHEAA VOL after Rehab.,3/29/2013,1010408298,BROFSArv,BROFSAap,gissenk
+Approved refund 177.56 to borrower TOP after COMP.,4/8/2013,1010802305,BROFSArv,BROFSAap,gissenk
+Approved refund 183.00 to borrower TOP Offset after Comp.,3/29/2013,1010440198,BROFSArv,BROFSAap,gissenk
+Approved refund 187.00 to borrower TOP and AWG OP.,4/15/2013,1011354147,BROFSArv,BROFSAap,gissenk
+Approved refund 1960.17 to borrower TOP after CONSOL.,4/12/2013,1010661322,BROFSArv,BROFSAap,gissenk
+Approved refund 199.30 to borrower TOP after Comp paid.,3/29/2013,1010654956,BROFSArv,BROFSAap,gissenk
+Approved refund 1990.02 to borrower Partial TOP .,4/11/2013,1010585402,BROFSArv,BROFSAap,gissenk
+Approved refund 1990.02 to borrower Partial TOP. Previous request didn't process.,4/16/2013,1010585402,BROFSArv,BROFSAap,gissenk
+Approved refund 1990.10 to borrower VOL OP .,3/29/2013,1010295569,BROFSArv,BROFSAap,gissenk
+Approved refund 2028.57 to borrower TOP after CONSOL.,4/12/2013,1010793653,BROFSArv,BROFSAap,gissenk
+Approved refund 209.01 to Lender Great Lakes VOL OP,4/18/2013,1013050676,BROFSArv,BROFSAap,gissenk
+Approved refund 210.00 to AES PHEAA VOL after Rehab ,3/29/2013,1010221618,BROFSArv,BROFSAap,gissenk
+Approved refund 235.00 to borrowerVOL pmt after Comp paid.,3/29/2013,1015070559,BROFSArv,BROFSAap,gissenk
+Approved refund 2360.67 to lender DLCN Montgomery.,4/8/2013,1010540127,BROFSArv,BROFSAap,gissenk
+Approved refund 240.00 VOL after Rehab to CSB-Perkins/ACS INC.,3/29/2013,1010617529,BROFSArv,BROFSAap,gissenk
+Approved refund 2407.45 to borrower TOP OP.,3/29/2013,1010089613,BROFSArv,BROFSAap,gissenk
+Approved refund 245.03 to borrower TOP and AWG OP.,4/8/2013,1010641395,BROFSArv,BROFSAap,gissenk
+Approved refund 245.77 to borrower AWG OP.,4/15/2013,1010623030,BROFSArv,BROFSAap,gissenk
+Approved refund 260.00 to Lender Nelnet.,4/8/2013,1010401573,BROFSArv,BROFSAap,gissenk
+Approved refund 264.60 Partial TOP OP and AWG OP.,4/15/2013,1010840887,BROFSArv,BROFSAap,gissenk
+Approved refund 2670.44 to borrower Partial TOP hardship.,4/9/2013,1010098939,BROFSArv,BROFSAap,gissenk
+Approved refund 271.08 to borrower AWG OP.,4/8/2013,1010362655,BROFSArv,BROFSAap,gissenk
+Approved refund 273.56 to borrower TOP OP.,4/12/2013,1010762686,BROFSArv,BROFSAap,gissenk
+Approved refund 299.99 to Lender GREAT LAKES VOL after Rehab.,4/11/2013,1015286083,BROFSArv,BROFSAap,gissenk
+"Approved refund 302.98 to borrower, account FO after SIF.",5/7/2012,1003689671,BROFSArv,BROFSAap,toomerc
+Approved refund 303.72 to Lender DL Montgomery CONSOL OP.,4/8/2013,1010360094,BROFSArv,BROFSAap,gissenk
+Approved refund 3125.53 to borrower TOP after COMP.,4/8/2013,1010513702,BROFSArv,BROFSAap,gissenk
+Approved refund 317.14 to LENDER DL Montgomery AL VOL CONSOL OP,4/12/2013,1010724422,BROFSArv,BROFSAap,gissenk
+Approved refund 3177.00 to borrower TOP after Consoldiation,3/29/2013,1010080356,BROFSArv,BROFSAap,gissenk
+Approved refund 32.63 to borrower Partial TOP.,4/11/2013,1011287635,BROFSArv,BROFSAap,gissenk
+Approved refund 320.69 to borrower PARTIAL TOP.,4/8/2013,1010076752,BROFSArv,BROFSAap,gissenk
+Approved refund 3404.00 to borrower TOP Offset.,3/29/2013,1010618944,BROFSArv,BROFSAap,gissenk
+Approved refund 341.19 to borrower AWG OP.,4/8/2013,1010514133,BROFSArv,BROFSAap,gissenk
+Approved refund 3445.00 to borrower TOP HS.,4/5/2013,1011375385,BROFSArv,BROFSAap,gissenk
+Approved refund 346.25 to Lender DLCN Montgomery CONSOL OP.,4/8/2013,1010301868,BROFSArv,BROFSAap,gissenk
+Approved refund 35.00 to LENDER NELNET VOL after Rehab.,4/12/2013,1010742705,BROFSArv,BROFSAap,gissenk
+Approved refund 366.16 to LENDER DL-Montgomery AL. CON OP.,4/12/2013,1010690669,BROFSArv,BROFSAap,gissenk
+Approved refund 3706.93 to borrower TOP OP.,4/9/2013,1003732328,BROFSArv,BROFSAap,gissenk
+Approved refund 3866.74 to borrower PARTIAL TOP ,4/8/2013,1009831171,BROFSArv,BROFSAap,gissenk
+Approved refund 3875.31 to Lender DL Montgomery AL. CONSOL OP.,4/11/2013,1010838926,BROFSArv,BROFSAap,gissenk
+Approved refund 3926.54 to Lender DLCN Montgomery AL.,4/9/2013,1010079809,BROFSArv,BROFSAap,gissenk
+Approved refund 3973.49 to borrower TOP after Con.,4/9/2013,1009723194,BROFSArv,BROFSAap,gissenk
+Approved refund 4091.81 to borrower Partial TOP.,4/11/2013,1011277665,BROFSArv,BROFSAap,gissenk
+Approved refund 4091.81 to borrower Partial TOP. Previous request didn't process.,4/16/2013,1011277665,BROFSArv,BROFSAap,gissenk
+Approved refund 434.47 to borrower TOP offset after Comp.,3/29/2013,1010354578,BROFSArv,BROFSAap,gissenk
+Approved refund 434.65 to borrower AWG & TOP.,4/9/2013,1009832301,BROFSArv,BROFSAap,gissenk
+Approved refund 443.72to borrower AWG OP and 1 TOP.,3/29/2013,1010135639,BROFSArv,BROFSAap,gissenk
+Approved refund 445.96 to borrower TOP Offset after Comp. ,3/29/2013,1010716248,BROFSArv,BROFSAap,gissenk
+Approved refund 4593.00 to borrower TOP Hardship.,4/8/2013,1010821245,BROFSArv,BROFSAap,gissenk
+Approved refund 4626.39 to borrower TOP.,4/8/2013,1010450726,BROFSArv,BROFSAap,gissenk
+Approved refund 467.50 to borrower AWG OP.,3/29/2013,1010478230,BROFSArv,BROFSAap,gissenk
+Approved refund 490.00 to NELNET VOL after Rehab.,3/29/2013,1010420404,BROFSArv,BROFSAap,gissenk
+Approved refund 5 AWG OPs totaling $394.50 to Borr - $96.82 on 3/7/13; $59.14 on 3/1/13; $63.29 on 2/25/13; $59.14 on 2/15/13 & $116.11 on 2/13/13.,4/9/2013,1010273053,BROFSArv,BROFSAap,halords
+Approved refund 50.00 CSB PERKINS Utica NY VOL pmt.,4/5/2013,1011798526,BROFSArv,BROFSAap,gissenk
+Approved refund 50.73 to borrower AWG OP.,4/8/2013,1010176240,BROFSArv,BROFSAap,gissenk
+Approved refund 53.05 to borower AWG OP.,4/12/2013,1010769429,BROFSArv,BROFSAap,gissenk
+Approved refund 5543.00 to borrower TOP HS.,4/5/2013,1011375444,BROFSArv,BROFSAap,gissenk
+Approved refund 56.90 to borrower TOP VOL OP.,4/5/2013,1011322049,BROFSArv,BROFSAap,gissenk
+Approved refund 587.20 to borrower TOP after COMP SIF.,4/11/2013,1011319253,BROFSArv,BROFSAap,gissenk
+Approved refund 6.88 to borrower TOP OP.,4/8/2013,1010651862,BROFSArv,BROFSAap,gissenk
+Approved refund 600.00 to Dept of ED/Sallie Mae.,3/29/2013,1010753162,BROFSArv,BROFSAap,gissenk
+Approved refund 600.00 to NELNET VOL after Rehab.,3/29/2013,1010599779,BROFSArv,BROFSAap,gissenk
+Approved refund 61.93 to borrower TOP offset.,3/29/2013,1010742985,BROFSArv,BROFSAap,gissenk
+Approved refund 612.42 to Lender DLCN Montgomery CONSOL OP.,4/8/2013,1010322932,BROFSArv,BROFSAap,gissenk
+Approved refund 63.65 to borrower AWG.,4/9/2013,1010082308,BROFSArv,BROFSAap,gissenk
+Approved refund 639.59 to borrower TOP after Comp.,3/29/2013,1010534228,BROFSArv,BROFSAap,gissenk
+Approved refund 639.72 to DL Montgomery CONSOL OP.,4/9/2013,1003812850,BROFSArv,BROFSAap,gissenk
+Approved refund 647.69  to borower TOP O.P ,4/11/2013,1010849182,BROFSArv,BROFSAap,gissenk
+Approved refund 690.12 to borrower Partial TOP.,3/29/2013,1010288925,BROFSArv,BROFSAap,gissenk
+Approved refund 73.60 to DL Montgomery.,4/9/2013,1009757486,BROFSArv,BROFSAap,gissenk
+Approved refund 740.77 to borrower TOP after Comp paid,3/29/2013,1010791187,BROFSArv,BROFSAap,gissenk
+Approved refund 75.00 Dept of ED/PHEAA VOL after Rehab.,3/29/2013,1010435541,BROFSArv,BROFSAap,gissenk
+Approved refund 780.00 to Lender CSB Perkins/ACS INC.,3/29/2013,1015236195,BROFSArv,BROFSAap,gissenk
+Approved refund 80.00 to CSB PERKINS/ACS.INC VOL after Rehab.,4/5/2013,1012477287,BROFSArv,BROFSAap,gissenk
+Approved refund 840.00 to borrower TOP.,4/15/2013,1010730077,BROFSArv,BROFSAap,gissenk
+Approved refund 847.04 to borrower TOP after Comp SIF.,4/5/2013,1011341743,BROFSArv,BROFSAap,gissenk
+Approved refund 87.48 to borrower TOP OP.,4/9/2013,1003734586,BROFSArv,BROFSAap,gissenk
+Approved refund 92.28 to borrower TOP OP .,3/29/2013,1010690430,BROFSArv,BROFSAap,gissenk
+Approved refund amount $1315.92 for pymnts posted after comp met ....Bferrell,8/21/2012,1010103391,BROFSArv,BROFSAap,ferrelb
+Approved refund AWG OP for $270.98 on 3/11/13 to borr.,4/9/2013,1010549515,BROFSArv,BROFSAap,halords
+Approved refund for $111.02 TOP Ofst on 3/4/13 to - after Comp pd.,4/11/2013,1003872612,BROFSArv,BROFSAap,halords
+Approved refund for $124.16 TOP Ofst on 3/13/13 to Borr.,4/10/2013,1010092335,BROFSArv,BROFSAap,halords
+Approved refund for $128.97 for AWG OP on 4/1/13 to Borr.,4/11/2013,1009763972,BROFSArv,BROFSAap,halords
+Approved refund for $148.50 AWG pmt on 2/26/13 to Borr.,4/10/2013,1010118279,BROFSArv,BROFSAap,halords
+Approved refund for $148.84 for AWG OP on 3/7/13 to Borr.,4/11/2013,1003888639,BROFSArv,BROFSAap,halords
+Approved refund for $17.26 Partial TOP Ofst on 2/25/13 to Borr - Granted a TOP hardship.,4/10/2013,1010242348,BROFSArv,BROFSAap,halords
+"Approved refund for $2,000.00 TOP Ofst on 2/21/13 to Borr - Granted a TOP hardship.",4/16/2013,1010042565,BROFSArv,BROFSAap,halords
+"Approved refund for $2,086.00 TOP Ofst on 2/1/13 to Borr. ",4/11/2013,1009694450,BROFSArv,BROFSAap,halords
+"Approved refund for $2,100.00 TOP Ofst on 2/21/13 to Borr - Granted a TOP hardship.",4/10/2013,1010042565,BROFSArv,BROFSAap,halords
+"Approved refund for $2,234.65 on 2/6/13 TOP Ofst to borr - TOP agency code 40",4/9/2013,1010333118,BROFSArv,BROFSAap,halords
+"Approved refund for $2,839.50, 2/8/13 TOP Ofst to Borr - TOP agency code 40 per notes on 3/28/13.",4/9/2013,1010682006,BROFSArv,BROFSAap,halords
+"Approved refund for $2,992.00 TOP Ofst on 2/25/13 to Borr & wife - after VA Disb approved on 3/9/10.",4/10/2013,1010237805,BROFSArv,BROFSAap,halords
+Approved refund for $258.01 VOL OP to borr.,4/9/2013,1015944466,BROFSArv,BROFSAap,halords
+Approved refund for $282.41 for AWG pmt on 2/28/13 to Borr.,4/11/2013,1009827094,BROFSArv,BROFSAap,halords
+"Approved refund for $3,416.00 frm TOP Ofst on 2/6/13 to Borr.",4/11/2013,1009866970,BROFSArv,BROFSAap,halords
+"Approved refund for $3,500.00 TOP Ofst on 2/1/13 to Borr - Granted a TOP hardship.",4/10/2013,1010173688,BROFSArv,BROFSAap,halords
+"Approved refund for $3,821.00 TOP Ofst on 2/27/13 to Borr - Per notes on 3/15/13.",4/10/2013,1009949173,BROFSArv,BROFSAap,halords
+Approved refund for $372.00 on 3/4/13 frm VOL to - After COMP SIF.,4/9/2013,1010496565,BROFSArv,BROFSAap,halords
+"Approved refund for $391.51, 2/12/13 TOP Ofst to Borr(after met Comp for $4,190.00 & a TOP Ofst came in for $4,598.51 took difference-refer A/R event on 2/11/13). ",4/9/2013,1010690641,BROFSArv,BROFSAap,halords
+Approved refund for $396.58 partial TOP Ofst on 2/13/13 to Borr.,4/10/2013,1009718741,BROFSArv,BROFSAap,halords
+Approved refund for $396.58 partial TOP Ofst on 2/13/13 to Borr.,4/16/2013,1009718741,BROFSArv,BROFSAap,halords
+"Approved refund for $4,000.00 TOP Ofst on 2/12/13 to Borr.",4/10/2013,1010038600,BROFSArv,BROFSAap,halords
+"Approved refund for $4,000.00 TOP Ofst on 2/4/13 to Borr.",4/10/2013,1009967951,BROFSArv,BROFSAap,halords
+"Approved refund for $4,018.87 CONSOL OP to LENDER - DL MONTGOMERY.",4/9/2013,1010669015,BROFSArv,BROFSAap,halords
+"Approved refund for $487.63, 2/26/13 CONSOL OP TO LENDER - DL MONTGOMERY",4/9/2013,1010793649,BROFSArv,BROFSAap,halords
+"Approved refund for $5,389.16 IPAC OP on 2/22/13 to DL MONT.",4/10/2013,1010004215,BROFSArv,BROFSAap,halords
+"Approved refund for $5,536.00 TOP Ofst on 3/7/13 to Borr - after con was pd.",4/10/2013,1009956714,BROFSArv,BROFSAap,halords
+Approved refund for $50.93 a partial AWG OP on 3/14/13 to Borr.,4/11/2013,1003791235,BROFSArv,BROFSAap,halords
+"Approved refund for $513.66, 2/13/13 partial TOP Ofst to borr.",4/9/2013,1011331506,BROFSArv,BROFSAap,halords
+Approved refund for $55.00 VISA PMT to PHEAA - after rehab.,4/15/2013,1003779318,BROFSArv,BROFSAap,halords
+"Approved refund for $6,878.00  (18)  AWG OPS to Borr.",4/11/2013,1003804458,BROFSArv,BROFSAap,halords
+"Approved refund for $60.93, 2/13/13 TOP Ofst to borr ( comp met for $3,573.00 & a TOP Ofst came in for $3,650.93 - refer to A/R event on 2/12/13).",4/9/2013,1010561323,BROFSArv,BROFSAap,halords
+Approved refund for $732.82 TOP Ofst on 3/6/13 to Borr - after IPAC.,4/10/2013,1010219783,BROFSArv,BROFSAap,halords
+Approved refund for $8.47 frm partial TOP Ofst to Borr.,4/11/2013,1003854583,BROFSArv,BROFSAap,halords
+"Approved refund for $810.38, 2/21/13 TOP Ofst to Borr -  TOP agency code 40 per notes on 3/28/13.",4/9/2013,1010696294,BROFSArv,BROFSAap,halords
+Approved refund for $837.91 TOP Ofs on 2/22/13 to Borr - Agency Code 40 per notes on 4/8/13.,4/10/2013,1010164295,BROFSArv,BROFSAap,halords
+Approved refund for $837.91 TOP Ofst on 2/22/13 to Borr - Agency Code 40 per notes on 4/8/13.,4/16/2013,1010164295,BROFSArv,BROFSAap,halords
+"Approved refund for $87.63, 3/13/13 to Borr - comp met for $825.00 & TOP Ofst came in for $929.63 - refer to A/R event on 1/8/13. ",4/9/2013,1010586985,BROFSArv,BROFSAap,halords
+Approved refund for $968.20 partial TOP Ofst OP on 2/8/13 to Borr.,4/15/2013,1003744821,BROFSArv,BROFSAap,halords
+Approved refund for 3rd party refund notated on 4/2/13.,4/3/2013,1003709645,BROFSArv,BROFSAap,averyv
+Approved refund for AWG OP to borrower notated on 3/20/13.,4/12/2013,1003804458,BROFSArv,BROFSAap,averyv
+Approved refund for IPAC OP and Visa after CN to lender notated on 3/15/13.,4/8/2013,1010566824,BROFSArv,BROFSAap,averyv
+Approved refund for IPAC OP to lender notated on 3/18/13.,4/15/2013,1010713456,BROFSArv,BROFSAap,averyv
+Approved refund for IPAC OP to lender notated on 3/21/13.,4/11/2013,1010004215,BROFSArv,BROFSAap,averyv
+Approved refund for IPAC OP to lender notated on 3/21/13.,4/11/2013,1010004215,BROFSArv,BROFSAap,averyv
+Approved refund for IPAC to lender notated on 3/21/13.,4/10/2013,1009704606,BROFSArv,BROFSAap,averyv
+Approved refund for IPAC to lender notated on 3/21/13.,4/10/2013,1003752973,BROFSArv,BROFSAap,averyv
+Approved refund for joint TOP after CN to borrower notated on 3/12/13.,4/3/2013,1011387433,BROFSArv,BROFSAap,averyv
+Approved refund for joint TOP after CN to borrower notated on 3/22/13.,4/8/2013,1010576537,BROFSArv,BROFSAap,averyv
+Approved refund for TOP after CN to borrower notated on 3/18/13.,4/8/2013,1011349328,BROFSArv,BROFSAap,averyv
+Approved refund for TOP after CN to borrower notated on 3/20/13.,4/11/2013,1009956714,BROFSArv,BROFSAap,averyv
+Approved refund for TOP after CPR to borrower notated on 3/11/13.,4/15/2013,1011388745,BROFSArv,BROFSAap,averyv
+Approved refund for TOP after decertification to borrower notated on 3/15/13.,4/15/2013,1010796644,BROFSArv,BROFSAap,averyv
+Approved refund for TOP hardship to borrower notated on 4/5/13.,4/18/2013,1010575666,BROFSArv,BROFSAap,averyv
+Approved refund for TOP HS to borrower for notation on 3/18/13.,4/8/2013,1010671152,BROFSArv,BROFSAap,averyv
+Approved refund for TOP notated on 10/3/12.,10/12/2012,1003692685,BROFSArv,BROFSAap,averyv
+"Approved refund for TOP Ofst $385.55, 2/7/13 to borr - frm TOP hardship.",4/9/2013,1003800112,BROFSArv,BROFSAap,halords
+Approved refund for TOPs to borrower for notation on 3/21/13.,4/11/2013,1010128238,BROFSArv,BROFSAap,averyv
+Approved refund for VOL for underfunded CN to lender and TOP after CN to borrower notated on 3/15/13.,4/8/2013,1010426939,BROFSArv,BROFSAap,averyv
+APPROVED REFUND OF OVERPAYMENT TO CUSTOMER - ADERRICK,4/1/2013,1011799211,BROFSArv,BROFSAap,derrica
+Approved refund over $5000 to b & spouse/cn,4/4/2013,1010134821,BROFSArv,BROFSAap,toomerc
+Approved refund to b&spouse/hardship,4/4/2013,1010226019,BROFSArv,BROFSAap,toomerc
+APPROVED REFUND TO BORROWER,4/1/2013,1010084143,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/1/2013,1010069899,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/1/2013,1010051286,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/1/2013,1009763176,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/1/2013,1003798124,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/1/2013,1003826014,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/2/2013,1003728854,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010253540,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010177098,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010069174,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1009984108,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1009898885,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1009877577,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1009863446,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1009708129,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1003727615,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1003771896,BROFSArv,BROFSAap,greshae
+approved refund to borrower,4/5/2013,1003692685,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1003860889,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1003745292,BROFSArv,BROFSAap,greshae
+approved refund to borrower,4/8/2013,1003837268,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1003881559,BROFSArv,BROFSAap,greshae
+approved refund to borrower,4/8/2013,1003814065,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1010115490,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,3/21/2013,1010599011,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/1/2013,1010325941,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010597397,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010596592,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010574370,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010443797,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010427845,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010424753,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010408203,BROFSArv,BROFSAap,greshae
+approved refund to borrower,4/5/2013,1010360002,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010357028,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/5/2013,1010351278,BROFSArv,BROFSAap,greshae
+approved refund to borrower,4/5/2013,1010315481,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1011301528,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1011279017,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1010615472,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1011365158,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO BORROWER,4/8/2013,1011287135,BROFSArv,BROFSAap,greshae
+approved refund to borrower 2432.69/hardship,6/18/2013,1003739046,BROFSArv,BROFSAap,toomerc
+Approved refund to borrower 277.20 TOP offset after Comp.,3/29/2013,1010814638,BROFSArv,BROFSAap,gissenk
+Approved refund to borrower 344.70 TOP after COMP.,4/8/2013,1011278114,BROFSArv,BROFSAap,gissenk
+Approved refund to borrower 900.51 TOP OP.,3/29/2013,1010566708,BROFSArv,BROFSAap,gissenk
+"APPROVED REFUND TO BORROWER, ADDIDITIONAL REFUNDS DUE",3/20/2013,1010311594,BROFSArv,BROFSAap,greshae
+"APPROVED REFUND TO BORROWER, ADDITIONAL REFUND DUE",3/20/2013,1009931625,BROFSArv,BROFSAap,greshae
+"APPROVED REFUND TO BORROWER, ADDITIONAL REFUND DUE",4/5/2013,1009714956,BROFSArv,BROFSAap,greshae
+"APPROVED REFUND TO BORROWER, ADDITIONAL REFUND DUE",3/19/2013,1010515043,BROFSArv,BROFSAap,greshae
+"APPROVED REFUND TO BORROWER, ADDITIONAL REFUND DUE",4/5/2013,1010428771,BROFSArv,BROFSAap,greshae
+"APPROVED REFUND TO BORROWER, ADDITIONAL REFUNDS DUE",3/15/2013,1003781880,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO EMPLOYER - ADERRICK,5/21/2013,1003826014,BROFSArv,BROFSAap,derrica
+APPROVED REFUND TO LENDER,4/5/2013,1010299473,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/5/2013,1003832741,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/1/2013,1010408422,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/5/2013,1010526466,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/5/2013,1010422398,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/8/2013,1011991075,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/8/2013,1011667936,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TO LENDER,4/8/2013,1010736638,BROFSArv,BROFSAap,greshae
+APPROVED REFUND TOBORROWER,1/17/2013,1003692685,BROFSArv,BROFSAap,greshae
+"Approved refund TOP OFst for $1,000.00 on 2/1/13 to Borr - Per SHUMPET.",4/9/2013,1010259192,BROFSArv,BROFSAap,halords
+Approved refund totaling  $367.79(4 AWG pmts & TOP) to borr $97.41 on 3/7/13; $67.60 on 2/25/13; $53.35 on 2/19/13; $45.85 on 2/11/13 & a partial TOP for $103.49 on 2/8/13.,4/9/2013,1010550117,BROFSArv,BROFSAap,halords
+"Approved refund totaling $1,852.80 (10) TOP Ofst OP to Borr.",4/15/2013,1003684636,BROFSArv,BROFSAap,halords
+Approved refund Totaling $123.97 AWG PMTS ($29.57 on 2/28/13; $47.20 on 3/7/13 & $47.20 on 3/13/13) to Borr.,4/10/2013,1009973293,BROFSArv,BROFSAap,halords
+Approved refund totaling $148.66 for AWG OPMS to Borr - $70.16 on 2/19/13 & $78.50 on 2/27/13.,4/11/2013,1003870863,BROFSArv,BROFSAap,halords
+Approved refund totaling $200.00 frm VISA pmts($100.00 on 2/20/13 & $100.00 on 1/25/13) to Great Lakes - after Rehab.,4/11/2013,1009794385,BROFSArv,BROFSAap,halords
+Approved refund totaling $300.00 VOL pmts($225.00 on 3/13/13 & $75.00 on 2/1/13) to NELNET - after Rehab.,4/10/2013,1010220698,BROFSArv,BROFSAap,halords
+Approved refund totaling $355.32(TOP Ofst & AWG PMTS) to Borr - $65.45 on 3/6/13 difference frm TOP ofst; $97.49 on 3/7/13; $98.64 on 3/13/13; $93.74 on 3/20/13.,4/11/2013,1003935868,BROFSArv,BROFSAap,halords
+"Approved refund totaling $385.99 (2 AWG pmts & partial TOP Ofst)to Borr - $135.30, 2/27/13 & $137.68, 2/11/13 & $113.01, 2/5/13. ",4/9/2013,1010642443,BROFSArv,BROFSAap,halords
+"Approved refund totaling $4,143.50 (2)TOP Ofst to Borr - $360.00 on 2/21/13 & difference  of $3,783.50 on 2/13/13 - Granted a TOP hardship.",4/10/2013,1010256352,BROFSArv,BROFSAap,halords
+Approved refund totaling $480.00 VOL PMTS to NELNET - after Rehab.,4/10/2013,1010182001,BROFSArv,BROFSAap,halords
+"Approved refund totaling $5,547.48 TOP Ofst ($4,589.00 on 2/15/13 & $958.48 on 2/8/13) to Borr - Per notes on 3/15/13.",4/10/2013,1010128238,BROFSArv,BROFSAap,halords
+Approved refund totaling $535.76 for 1 AWG OP- $170.70 on 5/29/12 & the differene frm TOP Ofst $365.06 on 5/18/12 to Borr.,4/11/2013,1003824066,BROFSArv,BROFSAap,halords
+APPROVED REFUND.,6/12/2012,1003692685,BROFSArv,BROFSAap,dennisw
+Approved refund.,3/6/2013,1009957307,BROFSArv,BROFSAap,dennisw
+APPROVED REFUNDS TO BORROWER,4/1/2013,1003857913,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/5/2013,1010147375,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/5/2013,1003776533,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/5/2013,1003803771,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/8/2013,1003761168,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,2/15/2013,1010433230,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/5/2013,1010438389,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/5/2013,1010399359,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO BORROWER,4/8/2013,1010485449,BROFSArv,BROFSAap,greshae
+"APPROVED REFUNDS TO BORROWER, ADDITIONAL PAYMENTS DUE",3/15/2013,1003870863,BROFSArv,BROFSAap,greshae
+"APPROVED REFUNDS TO BORROWER, AN ADDITIONAL REFUND IS DUE",4/8/2013,1003733152,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO LENDER,4/5/2013,1010384046,BROFSArv,BROFSAap,greshae
+APPROVED REFUNDS TO LENDER,4/8/2013,1010566824,BROFSArv,BROFSAap,greshae
+"APPROVED TOP REFUND TO BORROWER, ADDITIONAL PAYMENT ALSO DUE.",3/15/2013,1003888639,BROFSArv,BROFSAap,greshae
+"APPROVRD REFUND TO NORROWER, ADDITIONAL REFUND DUE",4/1/2013,1009821012,BROFSArv,BROFSAap,greshae
+"Apprvd refund for $1,816.58 (2/10/13) to borr for top hrdshp.    MTBryant/R4",4/22/2013,1010125101,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $121.47 (2/21/13) to borr for AWG ovrpymt.    MTBryant/R4,4/22/2013,1010150117,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $124.00 (4/1/13) to borr for AWG ovrpymt.     MTBryant/R4,4/22/2013,1009744054,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $158.25 (4/3/13) to borr for top recd after tpd.    MTBryant/R4,4/22/2013,1009871045,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $179.24 (3/7/13) to borr for AWG ovrpymt.   MTBryant/R4,4/22/2013,1009957307,BROFSArv,BROFSAap,bryantm
+"Apprvd refund for $2,454.00 (2/13/13) to borr/sps for top hrdshp.    MTBryant/R4",4/22/2013,1010337743,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $236.00 (4/4/13) to borr for AWG pymt recd after consold.   MTBryant/R4,4/22/2013,1009909014,BROFSArv,BROFSAap,bryantm
+"Apprvd refund for $3,481.22 (3/20/13) to borr for top pymt recd after consold.   MTBryant/R4",4/22/2013,1009992004,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $306.44 (2/13/13) to borr for top ovrpymt.   MTBryant/R4,4/22/2013,1009975982,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $31.66 (3/25/13) to borr/sps for top ovrpymt.    MTBryant/R4,4/22/2013,1003790179,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $392.44 (4/8/13) to borr for AWG ovrpymt.    MTBryant/R4,4/22/2013,1010091352,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $424.23 (4/10/13) to borr for offset recd after comp met.   MTBryant/R4,4/22/2013,1010843513,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $447.00 (2/27/13) to Nelnet for vol pymt recd after rehab.    MTBryant/R4,4/22/2013,1010114906,BROFSArv,BROFSAap,bryantm
+Apprvd refund for $50.00 x 2 (3/4/13 & 3/29/13) to borr for vol ovrpymt.   MTBryant/R4,4/22/2013,1009835427,BROFSArv,BROFSAap,bryantm
+"Apprvd refund for $8,619.00 (3/6/13) to sps for offset recd after borr's death.   MTBryant/R4",4/23/2013,1009733236,BROFSArv,BROFSAap,bryantm
+Apprvd refunds for $130.00 x 2 (3/4/13 & 3/19/13) to Great Lakes for vol pymts recd after rehab.           MTBryant/R4,4/22/2013,1010115361,BROFSArv,BROFSAap,bryantm
+Apprvd refunds for $486.86 (3/5/13) to borr/sps for top ovrpymt & $159.10 (3/18/13) to borr for AWG ovrpymt.    MTBryant/R4,4/22/2013,1010026760,BROFSArv,BROFSAap,bryantm
+No message entered.,6/17/2013,1003744821,BROFSArv,BROFSAap,lained
+QC: Approved $296.85 (TOP) refund to bwr/spouse,8/26/2013,1010298527,BROFSArv,BROFSAap,fordi
+REFUND APPROVED,4/25/2012,1003832741,BROFSArv,BROFSAap,greshae
+REFUND APPROVED,7/23/2012,1003768991,BROFSArv,BROFSAap,greshae
+Refund approved,5/3/2013,1010141148,BROFSArv,BROFSAap,lained
+Refund approved,5/16/2013,1009952887,BROFSArv,BROFSAap,lained
+Refund approved,5/3/2013,1010435158,BROFSArv,BROFSAap,lained
+"Refund AWG pmt: $216.74, 03/18/13, Additional refunds $263.56 3/25/13; $223.95 4/1/13; $215.51 4/8/13",4/9/2013,1009880869,BROFSArv,BROFSAap,tatarm
+Refund of $ approved.,4/22/2013,1010288632,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010197900,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010161655,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009922879,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003783747,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010103391,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009903457,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009819378,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009929871,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003804804,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003712877,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003703015,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010065087,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010084572,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010155441,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010274462,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010267289,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010152311,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010121724,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010101681,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009998550,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009996222,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009751806,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009742184,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009752070,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003775617,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009717776,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003876727,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010036711,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010310330,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010292350,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010266436,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010226143,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010226697,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010181966,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010131930,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010109905,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010082999,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010072386,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009976101,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009978523,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009977097,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009935722,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009848868,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009773351,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009751834,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009736359,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009690936,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003809062,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003727454,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/2/2013,1010324240,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/2/2013,1010324240,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003792978,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003814397,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003832210,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003812952,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010150117,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010125101,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010115361,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010114906,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010091352,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010026760,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009992004,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009975982,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009957307,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009909014,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009871045,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009835427,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1009744054,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003790179,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1003719627,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010318399,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010311099,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009885073,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003803065,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003864029,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010182427,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009868511,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010095363,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003757625,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009795672,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009795672,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003866759,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003937226,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003799215,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010307162,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009829824,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010256353,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009715498,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003917170,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009773781,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010122568,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010122568,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010229923,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010133362,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003703548,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009883652,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009750782,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003741932,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009821012,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010280974,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003683793,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009793924,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003700761,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003749102,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1009810033,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010249720,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010231744,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1003767840,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010128238,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010004215,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009956714,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003804458,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009704606,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003752973,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010116516,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009952887,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009936517,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009874869,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003709645,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010226019,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010134821,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010275433,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003706199,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010264014,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003926799,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010130352,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010075711,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010025159,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010003453,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009979273,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009897788,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009871718,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009863856,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009767515,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003834633,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010302270,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010298621,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010270104,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009870159,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010162534,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003717897,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003766383,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003823013,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003775400,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1009733236,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1003867539,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010319640,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010278259,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010256741,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010214419,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010138335,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1009979010,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1003727348,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010076908,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1010121591,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1003744598,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1009710925,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1009716447,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1009803944,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1010015198,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1009726408,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1009842266,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1010019490,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1010151218,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1009758957,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1010214309,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009693635,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010272747,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010304663,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010309263,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010066781,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010087395,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009942930,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003767958,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003783533,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010220497,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003729386,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009715340,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010196500,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010287541,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010037157,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010279796,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010023940,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009759465,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010196201,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010183556,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010079587,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010033225,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009966279,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009859696,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009843933,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009830133,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003689671,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003840304,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003823307,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003727605,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1003810797,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010278029,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010257411,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010214762,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010036078,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010003563,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1009954702,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010031453,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/6/2013,1010125101,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/6/2013,1010095363,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/6/2013,1010079809,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/6/2013,1010231744,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010210466,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1009859108,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010061826,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010317001,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1009904618,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1009937862,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1003794409,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1003708812,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1003741772,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1009996355,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1003790271,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010255260,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/18/2013,1003712877,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/21/2013,1010078125,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/21/2013,1009768211,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/21/2013,1009942930,BROFSArv,BROFSAap,lained
+Refund of $ approved.,7/12/2013,1003857913,BROFSArv,BROFSAap,lained
+Refund of $ approved.,7/12/2013,1003857913,BROFSArv,BROFSAap,lained
+Refund of $ approved.,7/18/2013,1003857913,BROFSArv,BROFSAap,lained
+Refund of $ approved.,8/14/2013,1009842266,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1011799211,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1011355025,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010845556,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010644189,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010520450,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010395569,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010323402,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010313290,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010358815,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010441524,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010323833,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010322582,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1011291804,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010715498,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010618314,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010588624,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010591471,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010366761,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010364658,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010843513,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010337743,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010668068,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1011383000,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1011274139,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010852722,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010737040,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010721946,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010561411,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010460566,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010450965,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010429412,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010366555,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010323087,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1011373968,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1015073423,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010612443,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/22/2013,1010539582,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010357682,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010815944,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010434331,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010794599,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010313214,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010476665,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010357727,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010405525,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010457247,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010491497,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010491988,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010617398,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010428151,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010408278,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010527464,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1011393897,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1010600756,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/23/2013,1011312227,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010575666,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010576537,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1011349328,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010671152,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010579995,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010796644,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010713456,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010426939,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010566824,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010399992,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1011387433,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1011388745,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1011306393,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010839110,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010731582,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010495100,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010624716,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010501015,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010482864,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/24/2013,1010342722,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010454279,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010428203,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010353641,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010343659,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010323123,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010324786,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1015040978,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1011516398,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1011277152,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1011371900,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1011342600,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1011273580,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/25/2013,1010802743,BROFSArv,BROFSAap,lained
+Refund of $ approved.,4/27/2013,1010384468,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010367621,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1011316782,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010422669,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010457268,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010423648,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010459753,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010527964,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1011354621,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010413976,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010462701,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010689038,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1015895008,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010379235,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010483080,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010536645,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010394895,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010700189,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010451530,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010375990,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010322541,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010845940,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010808944,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010794919,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010787290,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010587455,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010708337,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1011345569,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010492970,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1011342349,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010485926,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010844924,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010460574,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010460574,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010460574,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010610415,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010693291,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/1/2013,1010639012,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/2/2013,1010496565,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/2/2013,1010508186,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/6/2013,1011278114,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010599011,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010328813,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010733567,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/15/2013,1010809681,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/16/2013,1010400783,BROFSArv,BROFSAap,lained
+Refund of $ approved.,5/18/2013,1010428771,BROFSArv,BROFSAap,lained
+Refund of $ approved.,7/12/2013,1010384046,BROFSArv,BROFSAap,lained
+Refund of $ approved.,8/14/2013,1010737040,BROFSArv,BROFSAap,lained
+"Refund of $$    1,696.00  approved.",7/1/2013,1003781880,BROFSArv,BROFSAap,lained
+Refund of $$                       85.62  approved.,7/1/2013,1003729386,BROFSArv,BROFSAap,lained
+Refund of $$                       85.62  approved.,7/2/2013,1003729386,BROFSArv,BROFSAap,lained
+Refund of $101.95 approved.,5/2/2013,1010376453,BROFSArv,BROFSAap,lained
+Refund of $101.95 approved.,5/7/2013,1010376453,BROFSArv,BROFSAap,lained
+Refund of $102.32 approved.,5/20/2013,1010561411,BROFSArv,BROFSAap,lained
+Refund of $103.69 approved.,6/18/2013,1011316782,BROFSArv,BROFSAap,lained
+Refund of $103.69 approved.,6/24/2013,1011316782,BROFSArv,BROFSAap,lained
+Refund of $1037.8 approved.,6/12/2013,1010591471,BROFSArv,BROFSAap,lained
+Refund of $1138 approved.,5/2/2013,1010078125,BROFSArv,BROFSAap,lained
+Refund of $119.63 approved.,8/13/2013,1003823307,BROFSArv,BROFSAap,lained
+Refund of $123 approved.,5/2/2013,1010093075,BROFSArv,BROFSAap,lained
+Refund of $125.46 approved.,5/7/2013,1010400622,BROFSArv,BROFSAap,lained
+Refund of $1254 approved.,5/2/2013,1010643560,BROFSArv,BROFSAap,lained
+Refund of $1254 approved.,5/7/2013,1010643560,BROFSArv,BROFSAap,lained
+Refund of $126.14 approved.,6/17/2013,1010240191,BROFSArv,BROFSAap,lained
+Refund of $135.25 approved.,5/7/2013,1010608183,BROFSArv,BROFSAap,lained
+Refund of $146.93 approved.,9/3/2013,1003776533,BROFSArv,BROFSAap,lained
+Refund of $160.59 approved.,5/7/2013,1010592012,BROFSArv,BROFSAap,lained
+Refund of $1638 approved.,4/2/2013,1003726130,BROFSArv,BROFSAap,lained
+Refund of $175.66 approved.,5/2/2013,1010523268,BROFSArv,BROFSAap,lained
+Refund of $175.66 approved.,5/7/2013,1010523268,BROFSArv,BROFSAap,lained
+Refund of $18.35 approved.,6/7/2013,1010462713,BROFSArv,BROFSAap,lained
+Refund of $185 approved.,5/2/2013,1010328892,BROFSArv,BROFSAap,lained
+Refund of $185 approved.,5/7/2013,1010328892,BROFSArv,BROFSAap,lained
+Refund of $187.66 approved.,8/2/2013,1010226143,BROFSArv,BROFSAap,lained
+Refund of $2028.57 approved.,6/26/2013,1010793653,BROFSArv,BROFSAap,lained
+Refund of $206 approved.,8/27/2013,1010451530,BROFSArv,BROFSAap,lained
+Refund of $211.72 approved.,4/2/2013,1003735717,BROFSArv,BROFSAap,lained
+Refund of $224 approved.,7/2/2013,1010066781,BROFSArv,BROFSAap,lained
+Refund of $225 approved.,5/2/2013,1010125978,BROFSArv,BROFSAap,lained
+Refund of $225 approved.,5/7/2013,1010125978,BROFSArv,BROFSAap,lained
+Refund of $2275 approved.,5/2/2013,1010793645,BROFSArv,BROFSAap,lained
+Refund of $2275 approved.,5/7/2013,1010793645,BROFSArv,BROFSAap,lained
+Refund of $243.08 approved.,6/10/2013,1010617398,BROFSArv,BROFSAap,lained
+Refund of $2505.17 approved.,5/2/2013,1010175469,BROFSArv,BROFSAap,lained
+Refund of $2505.17 approved.,5/7/2013,1010175469,BROFSArv,BROFSAap,lained
+Refund of $257.53 approved.,5/7/2013,1003733152,BROFSArv,BROFSAap,lained
+Refund of $26.42 approved.,4/2/2013,1009785928,BROFSArv,BROFSAap,lained
+Refund of $27.43 approved.,5/2/2013,1009903169,BROFSArv,BROFSAap,lained
+Refund of $270.61 approved.,5/29/2013,1010044822,BROFSArv,BROFSAap,burrene
+Refund of $2850 approved.,6/12/2013,1010164295,BROFSArv,BROFSAap,lained
+Refund of $300 approved.,8/16/2013,1010422669,BROFSArv,BROFSAap,lained
+Refund of $3026.58 approved.,6/25/2013,1010125101,BROFSArv,BROFSAap,lained
+Refund of $3027.52 approved.,5/2/2013,1010288652,BROFSArv,BROFSAap,lained
+Refund of $3027.52 approved.,5/7/2013,1010288652,BROFSArv,BROFSAap,lained
+Refund of $306.29 approved.,7/26/2013,1011345569,BROFSArv,BROFSAap,lained
+Refund of $334.45 approved.,5/22/2013,1010523268,BROFSArv,BROFSAap,lained
+Refund of $366.66 approved.,5/2/2013,1010250821,BROFSArv,BROFSAap,lained
+Refund of $366.66 approved.,5/7/2013,1010250821,BROFSArv,BROFSAap,lained
+Refund of $373.5 approved.,7/16/2013,1010821245,BROFSArv,BROFSAap,lained
+Refund of $3806.34 approved.,6/7/2013,1011334328,BROFSArv,BROFSAap,lained
+Refund of $382.47 approved.,5/2/2013,1010321181,BROFSArv,BROFSAap,lained
+Refund of $382.47 approved.,5/7/2013,1010321181,BROFSArv,BROFSAap,lained
+Refund of $4223.31 approved.,6/3/2013,1011287135,BROFSArv,BROFSAap,burrene
+Refund of $429.6 approved.,5/2/2013,1010360249,BROFSArv,BROFSAap,lained
+Refund of $429.6 approved.,5/7/2013,1010360249,BROFSArv,BROFSAap,lained
+Refund of $438.99 approved.,6/17/2013,1010210466,BROFSArv,BROFSAap,lained
+Refund of $447.81 approved.,5/22/2013,1003781880,BROFSArv,BROFSAap,lained
+Refund of $45 approved.,5/10/2013,1003866759,BROFSArv,BROFSAap,lained
+Refund of $5026 approved.,6/3/2013,1010323402,BROFSArv,BROFSAap,lained
+Refund of $53.5 approved.,5/2/2013,1010302218,BROFSArv,BROFSAap,lained
+Refund of $53.5 approved.,5/7/2013,1010302218,BROFSArv,BROFSAap,lained
+Refund of $531.49 approved.,8/16/2013,1010438389,BROFSArv,BROFSAap,lained
+Refund of $595.09 approved.,8/16/2013,1011667936,BROFSArv,BROFSAap,lained
+Refund of $603.39 approved.,5/29/2013,1010031592,BROFSArv,BROFSAap,burrene
+Refund of $63.97 approved.,5/2/2013,1010515043,BROFSArv,BROFSAap,lained
+Refund of $63.97 approved.,5/7/2013,1010515043,BROFSArv,BROFSAap,lained
+Refund of $67 approved.,8/13/2013,1003832741,BROFSArv,BROFSAap,lained
+Refund of $719.47 approved.,7/19/2013,1003728120,BROFSArv,BROFSAap,lained
+Refund of $775.84 approved.,8/5/2013,1009909014,BROFSArv,BROFSAap,lained
+Refund of $79.46 approved.,5/10/2013,1010197900,BROFSArv,BROFSAap,lained
+Refund of $81.55 approved.,4/2/2013,1010003449,BROFSArv,BROFSAap,lained
+Refund of $90.76 approved.,5/22/2013,1009714956,BROFSArv,BROFSAap,lained
+Refund of $938 approved.,5/20/2013,1010023940,BROFSArv,BROFSAap,lained
+Refund of $986.35 approved.,8/29/2013,1003781880,BROFSArv,BROFSAap,lained
+REFUND WILL BE APPROVED AFTER APPROVAL BY LEAD ,4/1/2013,1009768211,BROFSArv,BROFSAap,greshae
+

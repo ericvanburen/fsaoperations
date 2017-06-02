@@ -1,0 +1,38 @@
+USE [SpecialtyClaims]
+GO
+/****** Object:  StoredProcedure [dbo].[p_ReportLAProductivity]    Script Date: 04/03/2015 14:21:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+
+-- Author:        Van Buren
+-- Create date: 2015/04/03
+-- Description:   Servicer Receipt Report.The number of claims received for each servicer
+
+-- =============================================
+
+CREATE PROCEDURE [dbo].[p_ReportServicerReceipt]
+    @DateReceivedBegin smalldatetime
+   ,@DateReceivedEnd smalldatetime
+AS
+BEGIN
+      SELECT
+      LTRIM(Servicer) AS [Servicer]
+      ,DischargeType AS [Discharge Type]
+      ,COUNT(ClaimID) As [NumberReceived]
+FROM
+      Claims
+WHERE
+      DateCompleted IS NOT NULL
+      AND DateReceived >= @DateReceivedBegin
+      AND DateReceived < DATEADD(dd, 1, @DateReceivedEnd)
+GROUP BY      
+       Servicer
+      ,DischargeType
+ORDER BY
+      [Servicer],
+      [Discharge Type]
+END

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Menu>
+    <Group>
+        <Item Text="File" Key="F" >
+            <Group>
+                <Item  Text="New" LeftLogo="Img\new.gif" />
+                <Item  Text="Open" LeftLogo="Img\open.gif" >
+                    <Group Width="140" Flow="Vertical">
+                        <Item  Text="Project" />
+                        <Item  Text="Project From Web" />
+                        <Item  Text="File" />
+                        <Item  Text="File from Web" />
+                    </Group>
+                </Item>
+
+                <Item  Text="PostBack Item" PostBack="True"/>
+                <Item  IsSeparator="True" />
+                <Item  Text="ToolTip Item" ToolTip="This is a tooltip" />
+                <Item  Text="Add Existing Item" />
+                <Item  Text="Add Project" />
+            </Group>
+        </Item>
+
+        <Item  Text="Edit" AccessKey="E" >
+            <Group Flow="Vertical">
+                <Item  Text="Undo" />
+                <Item  Text="Redo" Enabled="False" />
+                <Item  Text="Cut" LeftLogo="Img\cut.gif" />
+                <Item  Text="Copy" LeftLogo="Img\copy.gif" />
+                <Item  Text="Paste" />
+            </Group>
+        </Item>
+
+        <Item  Text="View" AccessKey="V" >
+            <Group Flow="Vertical">
+                <Item  Text="Open" />
+                <Item  Text="Open With" />
+                <Item  Text="Toolbox" />
+                <Item  Text="Resource View" />
+                <Item  Text="Properties" />
+            </Group>
+        </Item>
+
+        <Item  Text="Help" Key="H" >
+            <Group Flow="Vertical" OffsetX="-26">
+                <Item  Text="Index" LeftLogo="Img\help.gif" />
+                <Item  Text="Search" />
+                <Item  Text="Online" />
+                <Item  Text="Telerik Home Page" Href="http://www.telerik.com" />
+            </Group>
+        </Item>
+    </Group>
+</Menu>

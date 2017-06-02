@@ -1,0 +1,23 @@
+﻿.GridView 
+    {         
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+    }
+    
+.calendar
+    {
+        background: url(../images/calendar.jpg) no-repeat;
+        padding-left: 18px;
+        border:1px solid #ccc;
+        padding-right: 15px;        
+    }
+    
+  .formBorder
+  {
+        border:2px solid #ccc;
+        padding: 15px;
+  }
+  
+    .defaultText { width: 300px; }
+    .defaultTextActive { color: #a1a1a1; font-style: italic; }
+

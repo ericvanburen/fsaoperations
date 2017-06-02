@@ -1,0 +1,109 @@
+'This works to get the first column, first row in Debt Summary listview 7/10/12 mb
+Public Const PROCESS_QUERY_INFORMATION = 1024
+Public Const PROCESS_VM_OPERATION = &H8
+Public Const PROCESS_VM_READ = &H10
+Public Const PROCESS_VM_WRITE = &H20
+Public Const STANDARD_RIGHTS_REQUIRED = &HF0000
+Public Const MAX_LVMSTRING As Long = 255
+Public Const MEM_COMMIT = &H1000
+Public Const PAGE_READWRITE = &H4
+Public Const LVIF_TEXT As Long = &H1
+Public Const LVM_FIRST = &H1000
+Public Const LVM_GETITEMTEXTA = (LVM_FIRST + 45)
+
+Public Type LV_ITEMA
+   mask         As Long
+   iItem        As Long
+   iSubitem     As Long
+   state        As Long
+   stateMask    As Long
+   pszText      As Long
+   cchTextMax   As Long
+   iImage       As Long
+   lParam       As Long
+   iIndent      As Long
+End Type
+
+Public Declare Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcId As Long) As Long
+Public Declare Function VirtualAllocEx Lib "kernel32" (ByVal hProcess As Long, ByVal lpAddress As Long, ByVal dwSize As Long, ByVal flAllocationType As Long, ByVal flProtect As Long) As Long
+Public Declare Function VirtualFreeEx Lib "kernel32" (ByVal hProcess As Long, ByVal lpAddress As Long, ByVal dwSize As Long, ByVal dwFreeType As Long) As Long
+Public Declare Function WriteProcessMemory Lib "kernel32" (ByVal hProcess As Long, ByVal lpBaseAddress As Any, ByRef lpBuffer As Any, ByVal nSize As Long, lpNumberOfBytesWritten As Long) As Long
+Public Declare Function ReadProcessMemory Lib "kernel32" (ByVal hProcess As Long, ByVal lpBaseAddress As Any, ByRef lpBuffer As Any, ByVal nSize As Long, lpNumberOfBytesWritten As Long) As Long
+
+Public Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByRef lParam As Any) As Long
+
+Public Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
+
+Public Function GetListviewItem(ByVal hWindow As Long, ByVal processID As Long, ByVal pColumn As Long, ByVal pRow As Long) As String
+    Dim result              As Long
+    Dim myItem              As LV_ITEMA
+    Dim pHandle             As Long
+    Dim pStrBufferMemory    As Long
+    Dim pMyItemMemory       As Long
+    Dim strBuffer()         As Byte
+    Dim index               As Long
+    Dim tmpstring           As String
+    Dim strLength           As Long
+    
+    '**********************
+    'init the string buffer
+    '**********************
+    ReDim strBuffer(MAX_LVMSTRING)
+    
+    '***********************************************************
+    'open a handle to the process and allocate the string buffer
+    '***********************************************************
+    pHandle = OpenProcess(PROCESS_VM_OPERATION Or PROCESS_VM_READ Or PROCESS_VM_WRITE, False, processID)
+    pStrBufferMemory = VirtualAllocEx(pHandle, 0, MAX_LVMSTRING, MEM_COMMIT, PAGE_READWRITE)
+        
+    '************************************************************************************
+    'initialize the local LV_ITEM structure
+    'The myItem.iSubItem member is set to the index of the column that is being retrieved
+    '************************************************************************************
+''original code
+'    myItem.mask = LVIF_TEXT
+'    myItem.iSubItem = pColumn
+'    myItem.pszText = pStrBufferMemory
+'    myItem.cchTextMax = MAX_LVMSTRING
+'new code
+    myItem.mask = LVIF_TEXT
+    myItem.iItem = pRow
+    myItem.iSubitem = pColumn
+    myItem.pszText = pStrBufferMemory
+    myItem.cchTextMax = MAX_LVMSTRING
+
+    '**********************************************************
+    'write the structure into the remote process's memory space
+    '**********************************************************
+    pMyItemMemory = VirtualAllocEx(pHandle, 0, Len(myItem), MEM_COMMIT, PAGE_READWRITE)
+    result = WriteProcessMemory(pHandle, pMyItemMemory, myItem, Len(myItem), 0)
+    
+    '*************************************************************
+    'send the get the item message and write back the memory space
+    '*************************************************************
+    result = SendMessage(hWindow, LVM_GETITEMTEXTA, pRow, ByVal pMyItemMemory)
+    result = ReadProcessMemory(pHandle, pStrBufferMemory, strBuffer(0), MAX_LVMSTRING, 0)
+    result = ReadProcessMemory(pHandle, pMyItemMemory, myItem, Len(myItem), 0)
+       
+    '**************************************************
+    'turn the byte array into a string and send it back
+    '**************************************************
+    For index = LBound(strBuffer) To UBound(strBuffer)
+        If Chr(strBuffer(index)) = vbNullChar Then Exit For
+        tmpstring = tmpstring & Chr(strBuffer(index))
+    Next index
+    
+    tmpstring = Trim(tmpstring)
+    debtsum(pColumn) = tmpstring
+    '***********************************************
+    'deallocate the memory and close the process handle
+    '**************************************************
+    result = VirtualFreeEx(pHandle, pStrBufferMemory, 0, MEM_RELEASE)
+    result = VirtualFreeEx(pHandle, pMyItemMemory, 0, MEM_RELEASE)
+    
+    result = CloseHandle(pHandle)
+    
+    If Len(tmpstring) > 0 Then GetListviewItem = tmpstring
+
+End Function
+

@@ -1,0 +1,39 @@
+﻿.formLabel 
+{ 
+  font-family: Tahoma; 
+  font-size:13px;
+  font-weight: bold;
+  color: #808080; 
+  padding-bottom: 15px; 
+  padding-top: 15px; 
+  text-align:right; 
+}
+
+.formLabelHeader
+{ 
+  font-family: Tahoma; 
+  font-size:15px;
+  font-weight: bold;
+  color: #336699; 
+  padding-bottom: 5px; 
+  padding-top: 5px; 
+  text-align:center;   
+}
+
+.formLabelControl
+{ 
+  padding-bottom: 5px; 
+  padding-top: 5px; 
+  text-align:left; 
+  width:25%;
+}
+
+.modalBackground
+ {
+    background-color: Gray;
+    z-index: 10000;
+    overflow: auto;
+ }
+
+
+

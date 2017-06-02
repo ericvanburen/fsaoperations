@@ -1,0 +1,825 @@
+﻿Imports Microsoft.VisualBasic
+Imports Microsoft.Office.Interop.Access
+Imports System.Data.OleDb
+Imports Module3
+Imports Module4
+Imports System.Runtime.InteropServices
+
+Public Class Module2
+    'MB 6/11/13--Make changes to TPD database status on DMCS using worklist
+
+    Public hWndPT As Long, i As Long
+    Public hwndStop As Boolean, ar_win As Boolean
+    Public class_name As String
+    Public endAll As Boolean
+    Public title_name As String
+    Public ivalue As Long, message As String
+    Public stor_hwnd As Long
+    'TPD
+    'Public db As ADODB.Connection
+    'Public rs As New ADODB.Recordset
+    'Public DBdao As dao.Database
+    Public ti_window, TiWin As Boolean, nr_zbal, ival, lResult
+    Public ActCode, ResCode, comment
+    Public foundTag As Boolean, result, debtsum(1000), wrkgrp
+    'end TPD
+
+    Private Declare Function FindWindowEx Lib "user32" Alias "FindWindowExA" _
+    (ByVal hWnd1 As Long, ByVal hWnd2 As Long, ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
+    Private Declare Function GetClassName Lib "user32" Alias "GetClassNameA" _
+    (ByVal hWnd As Long, ByVal lpClassName As String, ByVal nMaxCount As Long) As Long
+    Private Declare Function GetWindowText Lib "user32" Alias "GetWindowTextA" _
+    (ByVal hWnd As Long, ByVal lpString As String, ByVal cch As Long) As Long
+    'added new function for button click 3/9/12 mb
+    Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" _
+    (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Object) As Long
+    'added new functions for click menu item 3/13/12 mb
+    Declare Function GetMenu Lib "user32" (ByVal hWnd As Long) As Long
+    Declare Function GetSubMenu Lib "user32" (ByVal hMenu As Long, ByVal nPos As Long) As Long
+    Declare Function GetMenuItemID Lib "user32" (ByVal hMenu As Long, ByVal nPos As Long) As Long
+    Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+    'Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByRef hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+    Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+
+    Private x As Integer
+
+    Public Structure winEnum
+        Dim winHandle As Integer
+        Dim winClass As Integer
+        Dim winTitle As Integer
+        Dim winHandleClass As Integer
+        Dim winHandleTitle As Integer
+        Dim winHandleClassTitle As Integer
+    End Structure
+
+    Public winOutputType As winEnum
+
+    Public Shared Sub get_brwr_num()      'get borrower number, tpd report code, etc from table DMCS Worklist
+        'load brwr acct and enter AR Event
+        Dim endAll As Boolean
+        Dim brwrNum As String, tpd_status, pcaFlag, TPDDate, rejReason
+        Dim pcaStatus As Boolean, refDate, refType, refFlag, topStatus      'brwrSSN, brwrLName, brwrFName,
+
+        endAll = False
+
+        'db = CurrentProject.Connection
+        'rs.ActiveConnection = db
+        'rs.Open("[DMCS Worklist]", , adOpenStatic)
+        'rs.MoveFirst()
+        'rs.MoveNext()
+
+        'begin loop--get each record in turn and the relevant fields
+        'If rs.RecordCount <> 0 Then rs.MoveFirst()
+        'Do
+        'If Not IsNull(rs.Fields(2)) Then
+        brwrNum = "1003738163"      'borrower number
+        'End If
+        'brwrSSN = rs.Fields(3)
+        '    brwrFName = rs.Fields(4)
+        '    brwrLName = rs.Fields(5)
+        ' wrkgrp = rs.Fields(3)           'workgroup
+        'if workgroup is PCA then set the pcaStatus to True
+        'If InStr(wrkgrp, "PCA") Then
+        'pcaStatus = True
+        'Else
+        'pcaStatus = False
+        'End If
+        'tpd_status = rs.Fields(4)       'DMCS Report Code
+        'refDate = rs.Fields(5)          'Disch approval date for refund calc
+        'refType = rs.Fields(6)          'type of approval--STD OR VET
+        'refFlag = rs.Fields(7)          'if true, apply refund review tag
+        'topStatus = rs.Fields(8)        'TOP status--active, inactive or not certified
+        'pcaFlag = rs.Fields(9)          'if true, PCA suspense tag has been applied
+        'rejReason = rs.Fields(10)       'Reject Reason (if any)
+        'TPDDate = rs.Fields(12)         'TPD Effective Date
+
+
+        'If brwrNum = "" Then brwrNum = brwrSSN
+        'open the borrower acct
+        load_brwr(brwrNum)
+        ''if no record or balance less than 1 update error file
+        '    If nr_zbal <> "" Then
+        '        Call Module2.DB_handler(brwrSSN, brwrFName, brwrLName, nr_zbal)
+        '        GoTo moveon
+        'End If
+        'take appropriate action based on worklist DMCS Report Code
+        'If endAll <> True Then
+        '    Select Case tpd_status
+        '        Case "120SUSP"      'Suspend acct 120 days
+        '            ActCode = "TPDRvw"
+        '            ResCode = "TPDPnd"
+        '            comment = "***TPD 120 Day Suspension Started"
+        '            Call suspend(ActCode, ResCode, comment, pcaStatus, topStatus, pcaFlag, brwrNum)
+        '        Case "INDSUSP"      'apply indefinite suspend
+        '            ActCode = "TPDPndR"
+        '            ResCode = "TPDSkp"
+        '            comment = "***TPD Indefinite Suspension Started"
+        '            Call suspend(ActCode, ResCode, comment, pcaStatus, topStatus, pcaFlag, brwrNum)
+        '        Case "STDAPPR"      'approve standard discharge
+        '            ActCode = "TPDPndR"
+        '            ResCode = "TPDAcc"
+        '            comment = "***TPD Application for Discharge Approved. TPD Date is " & TPDDate & " and Date Approved is " & refDate
+        '            Call approve(ActCode, ResCode, comment, tpd_status, refDate, refFlag, pcaStatus, topStatus, TPDDate)
+        '        Case "VETAPPR"      'approve VA discharge
+        '            ActCode = "VARvw"
+        '            ResCode = "VAAcc"
+        '            comment = "***TPD VA Application for Discharge Approved. TPD Date is " & TPDDate & " and Date Approved is " & refDate
+        '            Call approve(ActCode, ResCode, comment, tpd_status, refDate, refFlag, pcaStatus, topStatus, TPDDate)
+        '        Case "APPREJ"         'DISDND?  apply standard denial
+        '            'If refType = "STD" Then
+        '            ActCode = "TPDRvw"
+        '            ResCode = "TPDRej"
+        '            comment = "***TPD Application for Discharge Denied. " & rejReason
+        '            'ElseIf refType = "VET" Then
+        '            'ActCode = "VARvw"
+        '            'ResCode = "VARej"
+        '            'comment = "TPD VA Application for Discharge Denied"
+        '            'End If
+        '            Call removeSusp(ActCode, ResCode, comment, pcaStatus, topStatus)
+        '        Case "120EXPD"        'apply 120 day expiration AR
+        '            ActCode = "TPDPndR"
+        '            ResCode = "TPDCmp"
+        '            comment = "***TPD 120 Day Suspension Expired"
+        '            Call removeSusp(ActCode, ResCode, comment, pcaStatus, topStatus)
+        '        Case "TOPINAC"      'inactivate TOP
+        '            ActCode = "TOPACtv"
+        '            ResCode = "TOPSusp"
+        '            comment = "***TPD TOP Inactivated"
+        '            Call enterAR(ActCode, ResCode, comment)
+        '            Sleep(50)
+        '    End Select
+        'End If
+        'Call Module2.DB_update(brwrNum)
+        brwrNum = ""
+        'get next record
+moveon:
+        'If endAll = True Then End
+        'rs.MoveNext()
+        'Loop Until rs.EOF
+
+end_itall:
+
+        ' rs.Close()
+        'rs = Nothing
+        'db.Close()
+        'db = Nothing
+        MsgBox("DMCS RECORD UPDATE COMPLETE")
+
+    End Sub
+    Sub load_brwr(brwrNum) 'open brwr acct, get NR and cur bal--called from get_brwr_num
+
+        Dim title As String, hwndText As String
+        Dim idType As Boolean, comment, ActCode, ResCode, lbrwrNum
+        Dim endTime As Date, brwr_num_hwnd As Long, hwndCode As Long, curbal_hwnd As Long
+        Dim ssn_hwnd As Long, name_hwnd As Long, wrkgrp_hwnd As Long, wrkgrp_OK_hwnd
+        Dim curbal As Long, index As Long
+        Const WM_SETTEXT = &HC
+        Const WM_LBUTTONUP As Long = &H202
+        Const WM_LBUTTONDOWN As Long = &H201
+        Const CB_SETCURSEL = &H14E
+        Const BM_CLICK = &HF5&
+
+        endAll = False      'set true if no record of acct found--end processing for that acct
+
+        'store the titanium window handle
+        If ti_window = "" Then Call get_ti_window()
+        If endAll = True Then End
+        'get the borrower number window handle
+        If brwr_num_hwnd = 0 Then
+            title_name = "Titanium"
+            class_name = "SWT_Window0"
+            ivalue = 21         '21 is the ival of brwr nbr window in the borrower pane
+            brwr_num_hwnd = get_hwnd(title_name, class_name, ivalue)
+        End If
+
+        'check brwr num on screen--if same as brwrNum, skip load
+        lbrwrNum = GetText(brwr_num_hwnd)
+        If lbrwrNum <> brwrNum Then
+            'click Brwr Search menu item
+            Call ClickMenu(ti_window, 1, 10, -1)
+            Sleep(1500)
+            'find borrower search box and enter the borrower number in the box
+            title_name = "Borrower Search"
+            class_name = "#32770"
+            ivalue = 12
+            message = brwrNum
+            hwndCode = get_hwnd(title_name, class_name, ivalue)
+            If endAll = True Then GoTo nextcell
+            Sleep(200)
+            '       SendMessage stor_hwnd, WM_CHAR, 32, ByVal 0&    'send space character to clear textbox
+            SendMessage(hwndCode, WM_SETTEXT, False, message)     'send brwr number
+            'select the identifier to search for from combobox--e.g. borrower #, SSN, etc.   added 4/17/12 mb
+            'only do this on the first entry since the box remembers it after that--idType set to true
+            Sleep(200)
+            If idType = False Then
+                title_name = "Borrower Search"
+                class_name = "#32770"
+                ivalue = 14
+                hwndCode = get_hwnd(title_name, class_name, ivalue)
+                Sleep(200)
+                index = 0
+                SendMessage(hwndCode, CB_SETCURSEL, index, index)   'select the identifier type
+                Sleep(200)
+                idType = True
+            End If
+            'click the search button
+            title_name = "Borrower Search"
+            class_name = "#32770"
+            ivalue = 23
+            hwndCode = get_hwnd(title_name, class_name, ivalue)
+            Sleep(200)
+            PostMessage(hwndCode, WM_LBUTTONDOWN, 0, 0)
+            PostMessage(hwndCode, WM_LBUTTONUP, 0, 0)
+            Sleep(4000)            'delay 4 seconds to load acct before continuing
+            title = "Borrower Search"
+            ival = 24
+            Call no_record(title, ival)    'check for "No Record" message--go to next item if endAll=true
+            If endAll <> False Then
+                '        nr_zbal = "SSN not found"
+                GoTo nextcell
+            End If
+        End If
+        '    curbal = Module2.GetText(curbal_hwnd)
+        '    If curbal <= 0 Then
+        '        nr_zbal = "No positive balance loans for borrower"
+        '    End If
+        'NO NEED TO GET FOLLOWING FROM SCREEN--PROVIDED IN WORKLIST
+        '    brwrName = Module2.GetText(name_hwnd)
+        '    brwrSSN = Module2.GetText(ssn_hwnd)
+
+nextcell:
+
+    End Sub
+    Public Sub GetWindows()
+
+        x = 0
+        i = 0
+        winOutputType.winHandle = 0
+        winOutputType.winClass = 1
+        winOutputType.winTitle = 2
+        winOutputType.winHandleClass = 3
+        winOutputType.winHandleTitle = 4
+        winOutputType.winHandleClassTitle = 5
+
+        GetWinInfo(0&, 0, winOutputType.winHandleClassTitle)
+
+    End Sub
+
+    'get the hwnd values for all open windows mb
+    Private Sub GetWinInfo(hParent As Long, intOffset As Integer, OutputType As Integer)
+
+        Dim hWnd As Long, lngRet As Long, y As Integer
+        Dim strText As String
+        Dim wClass As String, wTitle As String
+
+        hWnd = FindWindowEx(hParent, 0&, vbNullString, vbNullString)
+
+        Do While hWnd <> 0
+            'all output types so far are 5
+            Select Case OutputType
+                Case winOutputType.winHandleClassTitle
+                    strText = String$(100, Chr$(0))
+                    lngRet = GetClassName(hWnd, strText, 100)
+                    wClass = Left$(strText, lngRet)
+                    strText = String$(100, Chr$(0))
+                    lngRet = GetWindowText(hWnd, strText, 100)
+                    wTitle = Left$(strText, lngRet)
+                    'moved below IF to here 4/26/12 to get all handles, not just child
+                    If ar_win = True Then
+                        hWndPT = hWnd
+                        i = i + 1
+                        If i = ivalue Then
+                            stor_hwnd = hWnd
+                            Exit Do
+                        End If
+                    End If
+            End Select
+            'Identify desired window and store hWnd in hWndPT
+            If wClass = class_name _
+                And InStr(wTitle, title_name) _
+                And hwndStop = False Then
+                hWndPT = hWnd
+                TiWin = True
+                Exit Sub
+            End If
+            If wClass = class_name _
+                And InStr(wTitle, title_name) _
+                And hwndStop = True Then
+                hWndPT = hWnd
+                ar_win = True
+            End If
+
+            'check for children
+            y = x
+            Select Case OutputType
+                Case Is > 4
+                    GetWinInfo(hWnd, intOffset + 3, OutputType)
+                Case Is > 2
+                    GetWinInfo(hWnd, intOffset + 2, OutputType)
+                Case Else
+                    GetWinInfo(hWnd, intOffset + 1, OutputType)
+            End Select
+            'increment by 1 row if no children found
+            If y = x Then
+                x = x + 1
+            End If
+            'now get next window
+            hWnd = FindWindowEx(hParent, hWnd, vbNullString, vbNullString)
+        Loop
+
+    End Sub
+    Public Function GetText(hWnd As Long) As String 'get text of a window
+
+        Dim strTemp As String
+        Dim lngLength As Long
+        Dim a, strChar, strHoldString
+        Const WM_GETTEXTLENGTH = &HE
+        Const WM_GETTEXT = &HD
+
+        lngLength = SendMessage(hWnd, WM_GETTEXTLENGTH, 0, 0)
+
+        strTemp = Space(lngLength)
+
+        SendMessage(hWnd, WM_GETTEXT, lngLength + 1, strTemp)
+
+        GetText = strTemp
+
+    End Function
+
+    Sub ClickMenu(ByVal hWnd As Long, ByVal lMenu As Long, Optional ByVal lSubMenu As Long = -1, Optional ByVal lSubMenu2 As Long = -1)
+
+        Dim hMenu As Long
+        Dim hSubMenu As Long
+        Dim lMenuID As Long
+        Dim lMenuIndex As Long
+        Const WM_COMMAND = &H111
+
+        ' Get menu handle.
+        hMenu = GetMenu(hWnd)
+
+        ' Get submenu handles.
+        hSubMenu = GetSubMenu(hMenu, lMenu)
+        lMenuIndex = lSubMenu
+
+        ' Get submenu handles.
+        If lSubMenu2 >= 0 Then
+            hSubMenu = GetSubMenu(hSubMenu, lSubMenu)
+            lMenuIndex = lSubMenu2
+        End If
+
+        ' Get menu ID.
+        lMenuID = GetMenuItemID(hSubMenu, lMenuIndex)
+
+        ' Send command to click menu.
+        PostMessage(hWnd, WM_COMMAND, lMenuID, 0)
+
+    End Sub
+    Sub enterAR(ActCode, ResCode, comment)     'enter the AR codes and comment
+
+        Dim hwndCode
+        Dim title As String
+        Const WM_SETTEXT = &HC
+        Const BM_CLICK = &HF5&
+
+        Call ClickMenu(ti_window, 2, 0, -1)     'titanium window already saved
+        Sleep(500)
+        'find AR Event dialog and enter AR codes and comment
+        title_name = "AR Event"
+        class_name = "#32770"
+        ivalue = 5
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        'enter Action code
+        Sleep(200)
+        message = ActCode       'action code
+        SendMessage(hwndCode, WM_SETTEXT, False, message)
+        Sleep(200)
+        title = "New AR Event"
+        class_name = "#32770"
+        ivalue = 10
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        'enter Result code
+        Sleep(200)
+        message = ResCode       'result code
+        SendMessage(hwndCode, WM_SETTEXT, False, message)
+        Sleep(200)
+        title_name = "AR Event"
+        class_name = "#32770"
+        ar_win = False
+        ivalue = 14
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        'enter comment
+        Sleep(200)
+        message = comment       'comment
+        SendMessage(hwndCode, WM_SETTEXT, False, message)
+        Sleep(200)
+        title_name = "AR Event"
+        class_name = "#32770"
+        ivalue = 42     'OK button
+        'ivalue = 43     'cancel button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        'click OK button
+        Sleep(200)
+        PostMessage(hwndCode, BM_CLICK, 0, 0)
+        Sleep(1000)
+        title_name = "New AR Event"
+        ival = 43
+        Call no_record(title, ival)    'check for invalid result code message--go to next item if endAll=true
+        Sleep(1000)
+
+    End Sub
+
+    Sub get_ti_window()
+
+        'store Titanium window handle
+        hwndStop = False
+        ar_win = False
+        title_name = "Titanium"
+        class_name = "SWT_Window0"
+        Sleep(200)
+        Call GetWindows()
+        If TiWin = False Then
+            endAll = True
+            MsgBox("TITANIUM WINDOW NOT FOUND")
+            Exit Sub
+        End If
+        Sleep(200)
+        ti_window = hWndPT
+
+    End Sub
+    Function get_hwnd(title_name, class_name, ivalue)   'get the hwnd for any window
+
+        Dim endTime As Date
+
+        'store window handle
+        endTime = DateAdd("s", 20, Now)
+
+        Do
+            'DoEvents()
+            hwndStop = True
+            ar_win = False
+            ivalue = ivalue
+            title_name = title_name
+            class_name = class_name
+            Sleep(200)
+            Call GetWindows()
+        Loop Until ar_win = True Or Now > endTime
+        If ar_win = False Then
+            endAll = True
+            MsgBox("WINDOW NOT FOUND")
+            Exit Function
+        End If
+
+        Sleep(200)
+        get_hwnd = stor_hwnd
+
+    End Function
+    Sub no_record(title, ival)      'check for no record dialog box. called from load_brwr
+
+        Dim lResult
+        Const BM_CLICK = &HF5&
+        Const WM_CLOSE = &H10
+
+        'Check for dialog stating no results found
+        title_name = title
+        class_name = "#32770"
+        ivalue = 6
+        ar_win = False
+        hwndStop = True
+        Sleep(200)
+        Call GetWindows()
+        Sleep(200)
+        lResult = GetText(stor_hwnd)
+        'if a msgbox appears with OK on it then an error occurred
+        If lResult = "OK" Then
+            Sleep(200)
+            title_name = title
+            class_name = "#32770"
+            ar_win = False
+            hwndStop = False
+            Sleep(200)
+            Call GetWindows()
+            Sleep(200)
+            PostMessage(hWndPT, WM_CLOSE, 0, 0)   'close "error" box
+            title_name = title
+            class_name = "#32770"
+            ivalue = ival
+            ar_win = False
+            hwndStop = True
+            Sleep(200)
+            Call GetWindows()
+            Sleep(200)
+            PostMessage(stor_hwnd, BM_CLICK, 0, 0)   'click CANCEL on the dialog
+            endAll = True       'set variable to end processing
+        End If
+
+    End Sub
+    Sub DB_handler(brwrSSN, brwrFName, brwrLName, nr_zbal)    'called from get_brwr_num. Update LNF Error file if no record or no bal
+
+        'Dim rsa As dao.Recordset
+
+        'DBdao = CurrentDb
+        'rsa = DBdao.OpenRecordset("LNF Error File")
+
+        'make new entry on error file
+        'rsa.AddNew()
+        'rsa.Fields(1) = brwrSSN
+        'rsa.Fields(2) = brwrFName
+        'rsa.Fields(3) = brwrLName
+        'rsa.Fields(4) = nr_zbal
+        'rsa.Fields(5) = Date.Now()
+        'rsa.Update()
+
+       
+        brwrSSN = ""
+        brwrFName = ""
+        brwrLName = ""
+        nr_zbal = ""
+
+        'rsa.Close()
+        'rsa = Nothing
+
+    End Sub
+    Sub suspend(ActCode, ResCode, comment, pcaStatus, topStatus, pcaFlag, brwrNum) 'add suspense AR events. called from get_brwr_num
+
+        Dim wrkgrp_hwnd As Long, wrkgrp_OK_hwnd
+        Const BM_CLICK = &HF5&
+
+        'enter suspense AR
+        Call enterAR(ActCode, ResCode, comment)
+        'remove bPCADsch tag
+        ActCode = "PCADsRvw"
+        ResCode = "NonAppl"
+        comment = ""
+        Call enterAR(ActCode, ResCode, comment)
+        Sleep(50)
+       
+        If pcaStatus = False And Len(pcaFlag) = 0 Then
+            Call enterOldTag(ti_window, brwrNum)
+        End If
+
+        wrkgrp = ""
+
+    End Sub
+    Sub enterTag(ti_window, brwrNum)   'enter the pca suspend tag. Called from suspend
+
+        Dim title As String, x, tag
+        Dim pcaSusp
+        Dim hwndCode, tagLVCode, arrowCode
+        Const WM_SETTEXT = &HC
+        Const BM_CLICK = &HF5&
+        Const CB_SETCURSEL As Long = &H14E
+        Const WM_KEYDOWN = &H100
+        Const VK_RETURN = &HD   'enter key
+        Const VK_DOWN = &H28     'DOWN ARROW key
+        Const VK_UP = &H26     'up ARROW key
+
+        pcaSusp = "bPCAInel - PCA Ineligibility"
+        'Enter pca suspense tag if acct not at PCA already
+        'find Titanium window and click Tag menu
+        Call ClickMenu(ti_window, 1, 3, -1)    'open Tag menu item
+        Sleep(1000)
+        'find Tag dialog and enter tag
+        title_name = "Tags"
+        class_name = "#32770"
+        ivalue = 8      'ADD button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        'click Add button
+        PostMessage(hwndCode, BM_CLICK, 0, 0)
+        Sleep(2000)
+        'select the tag in the listview
+        If tagLVCode = "" Then
+            title_name = "Add Tags"
+            class_name = "#32770"
+            ivalue = 8          'tag listview
+            tagLVCode = get_hwnd(title_name, class_name, ivalue)
+            Sleep(200)
+        End If
+        tag = pcaSusp
+        Call MessageCrossProcess(tagLVCode, ti_window, tag)
+        Sleep(700)
+        ''continue loop if a tag is not found
+        If foundTag = True Then
+            'add selected item to "Add the Following Tags:" box
+            If arrowCode = "" Then
+                title_name = "Add Tags"
+                class_name = "#32770"
+                ivalue = 11          'right arrow button
+                arrowCode = get_hwnd(title_name, class_name, ivalue)
+                Sleep(800)
+            End If
+            PostMessage(arrowCode, BM_CLICK, 0, 0)   'click the right arrow btn
+            '        Else
+            '            MsgBox pcaSusp & " tag not found for " & brwrNum
+        End If
+
+        'click OK button
+        title_name = "Add Tags"
+        class_name = "#32770"
+        ivalue = 20          'OK button
+        'ivalue = 21             'cancel button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        Sleep(200)
+        PostMessage(hwndCode, BM_CLICK, 0, 0)   'click OK button
+        Sleep(200)
+        'click the close button on the Tags window
+clickclose:
+        Sleep(100)
+        title_name = "Tags"
+        class_name = "#32770"
+        ivalue = 13      'Close button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        Sleep(300)
+        PostMessage(hwndCode, BM_CLICK, 0, 0)
+        Sleep(1000)
+        '    End If
+        tagLVCode = ""
+
+    End Sub
+    Sub approve(ActCode, ResCode, comment, tpd_status, refDate, refFlag, pcaStatus, topStatus, TPDDate) 'AR for approval + recall from PCA
+
+        'enter the approval AR
+        Call enterAR(ActCode, ResCode, comment)
+        'PCA Recall--use AR with commission. Recall if acct at PCA
+        If pcaStatus = True Then
+            ActCode = "AccRcl"
+            ResCode = "DisRcl"
+            comment = "***TPD Approval. Recall PCA Account."
+            Call enterAR(ActCode, ResCode, comment)
+            Sleep(50)
+        End If
+        'enter the refund AR, comment based on tpd_status (report code)
+        If tpd_status = "STDAPPR" Then
+            'comment = "***TPD Refund any payments after effective date of disability, " & refDate & "."
+        Else
+            comment = "***TPD VA Refund any payments after effective date of disability, " & TPDDate & "."
+        End If
+        If refFlag = True _
+            Or tpd_status = "VETAPPR" Then
+            ActCode = "BRORevNB"
+            ResCode = "BROrev"
+            Call enterAR(ActCode, ResCode, comment)
+            Sleep(50)
+        End If
+        'inactivate TOP if active
+        If topStatus = "Active" Then
+            ActCode = "TOPACtv"
+            ResCode = "TOPSusp"
+            comment = ""
+            Call enterAR(ActCode, ResCode, comment)
+            Sleep(50)
+        End If
+
+
+    End Sub
+    Sub removeSusp(ActCode, ResCode, comment, pcaStatus, topStatus) 'AR for denial + remove susp
+
+        'reason type from get_brwr_num
+        Call enterAR(ActCode, ResCode, comment)
+        'TOP
+        If topStatus = "Inactive" Then
+            ActCode = "TOPSusp"
+            ResCode = "RmvSusp"
+            comment = ""
+            Call enterAR(ActCode, ResCode, comment)
+            Sleep(50)
+        End If
+        'PCA--remove if acct not at PCA
+        If pcaStatus = False Then
+            ActCode = "PCASusp"
+            ResCode = "RmvSusp"
+            comment = ""
+            Call enterAR(ActCode, ResCode, comment)
+            Sleep(50)
+        End If
+
+    End Sub
+
+    Sub enterOldTag(ti_window, brwrNum)   'enter the tag
+
+        Dim title As String, tag, tagtyp_indx, x
+        Dim hwndCode, tagLVCode, arrowCode
+
+        Const WM_SETTEXT = &HC
+        Const BM_CLICK = &HF5&
+        Const CB_SETCURSEL As Long = &H14E
+        Const WM_KEYDOWN = &H100
+        Const VK_RETURN = &HD   'enter key
+        Const VK_DOWN = &H28     'DOWN ARROW key
+        Const VK_UP = &H26     'up ARROW key
+        Const WM_LBUTTONDOWN As Long = &H201
+        Const WM_LBUTTONUP As Long = &H202
+
+
+        tagtyp_indx = 8
+        tag = "bPCAInel"
+
+        'Enter pca suspense tag if acct not at PCA already
+        'find Titanium window and click Tag menu
+        Call ClickMenu(ti_window, 1, 3, -1)    'open Tag menu item
+        Sleep(1000)
+        'find Tag dialog and enter tag
+        title_name = "Tags"
+        class_name = "#32770"
+        ivalue = 8      'ADD button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        'click Add button
+        PostMessage(hwndCode, BM_CLICK, 0, 0)
+        Sleep(2000)
+        'get combobox handle
+        title_name = "Add Tags"
+        class_name = "#32770"
+        ivalue = 7          'tag type combobox
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        Sleep(200)
+        Sleep(100)
+        SendMessage(hwndCode, CB_SETCURSEL, tagtyp_indx, 0)   'send the tag type index from sheet
+        Sleep(400)
+        'the next 2 PM commands to move the arrow keys are necessary to actually select the item in the combobox
+        PostMessage(hwndCode, WM_KEYDOWN, VK_UP, 0)
+        Sleep(100)
+        PostMessage(hwndCode, WM_KEYDOWN, VK_DOWN, 0)
+        Sleep(100)
+        'select the tag in the listview
+        If tagLVCode = "" Then
+            title_name = "Add Tags"
+            class_name = "#32770"
+            ivalue = 8          'tag listview
+            tagLVCode = get_hwnd(title_name, class_name, ivalue)
+            Sleep(200)
+        End If
+        MessageCrossProcess(tagLVCode, ti_window, tag)
+        Sleep(700)
+        If foundTag = False Then
+            title_name = "Add Tags"
+            class_name = "#32770"
+            ivalue = 21          'cancel button
+            hwndCode = get_hwnd(title_name, class_name, ivalue)
+            PostMessage(hwndCode, BM_CLICK, 0, 0)   'click cancel button
+            GoTo clickclose
+        End If
+        'add selected item to "Add the Following Tags:" box
+        If arrowCode = "" Then
+            title_name = "Add Tags"
+            class_name = "#32770"
+            ivalue = 11          'right arrow button
+            arrowCode = get_hwnd(title_name, class_name, ivalue)
+            Sleep(800)
+            PostMessage(arrowCode, BM_CLICK, 0, 0)   'click the right arrow btn
+        End If
+        'click OK button
+        title_name = "Add Tags"
+        class_name = "#32770"
+        ivalue = 20          'OK button
+        '        ivalue = 21             'cancel button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        Sleep(200)
+        PostMessage(hwndCode, BM_CLICK, 0, 0)   'click OK button
+        Sleep(200)
+        'click the close button on the Tags window
+clickclose:
+        Sleep(100)
+        title_name = "Tags"
+        class_name = "#32770"
+        ivalue = 13      'Close button
+        hwndCode = get_hwnd(title_name, class_name, ivalue)
+        Sleep(300)
+        PostMessage(hwndCode, BM_CLICK, 0, 0)
+        Sleep(1000)
+        tagLVCode = ""
+
+    End Sub
+    Sub DB_update(brwrNum)    'called from get_brwr_num. Update LNF Error file if no record or no bal
+
+        'Dim rsa As dao.Recordset
+        'Dim lookupNum As String
+
+        'DBdao = CurrentDb
+        'rsa = DBdao.OpenRecordset("DMCS Worklist")
+
+        'update existing entry on error file based on brwr no.
+        'rsa.MoveFirst()
+        'Do Until rsa.EOF
+        'lookupNum = rsa.Fields(2)
+        'If lookupNum = brwrNum Then
+        'With rsa
+        '.Edit()
+        '![DMCS Update] = "Complete"
+        '            ![Report Date] = Date
+        '.Update()
+        'End With
+        'Exit Do
+        'End If
+        ' rsa.MoveNext()
+        'Loop
+
+        'rsa.Close()
+        ' rsa = Nothing
+
+    End Sub
+
+
+
+
+
+
+End Class

@@ -1,0 +1,227 @@
+'use to click the listview item
+Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+Private Declare Function SendMessageLong Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Private Declare Function EnumWindows Lib "user32" (ByVal lpEnumFunc As Long, ByVal lParam As Long) As Long
+Private Declare Function FindWindowEx Lib "user32" Alias "FindWindowExA" (ByVal hWnd1 As Long, ByVal hWnd2 As Long, ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
+Private Declare Function GetWindowThreadProcessId Lib "user32" (ByVal hWnd As Long, lpdwProcessId As Long) As Long
+Private Declare Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As Long) As Long
+Private Declare Function VirtualAllocEx Lib "kernel32" (ByVal hProcess As Long, ByVal lpAddress As Long, ByVal dwSize As Long, ByVal flAllocationType As Long, ByVal flProtect As Long) As Long
+Private Declare Function VirtualFreeEx Lib "kernel32" (ByVal hProcess As Long, lpAddress As Any, ByVal dwSize As Long, ByVal dwFreeType As Long) As Long
+Private Declare Function WriteProcessMemory Lib "kernel32" (ByVal hProcess As Long, lpBaseAddress As Any, lpBuffer As Any, ByVal nSize As Long, lpNumberOfBytesWritten As Long) As Long
+Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
+Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+Private Declare Function ReadProcessMemoryLong Lib "kernel32" _
+    Alias "ReadProcessMemory" _
+    (ByVal hProcess As Long, _
+     ByVal lpBaseAddress As Long, _
+     ByVal lpBuffer As Long, _
+     ByVal nSize As Long, _
+     lpNumberOfBytesWritten As Long) As Long
+Private Declare Function WriteProcessMemoryLong Lib "kernel32" _
+    Alias "WriteProcessMemory" _
+    (ByVal hProcess As Long, _
+    ByVal lpBaseAddress As Long, _
+    ByVal lpBuffer As Long, _
+    ByVal nSize As Long, _
+    lpNumberOfBytesWritten As Long) As Long
+
+Private Type LV_ITEM
+    mask As Long
+    iItem As Long
+    iSubitem As Long
+    state As Long
+    stateMask As Long
+    pszText As String
+    cchTextMax As Long
+    iImage As Long
+    lParam As Long
+    iIndent As Long
+End Type
+Public Type LVCOLUMN
+    mask         As Long
+    fmt          As Long
+    cx           As Long
+    pszText      As Long
+    cchTextMax   As Long
+    iSubitem     As Long
+    iImage       As Long
+    iOrder       As Long
+    cText()      As Byte
+End Type
+
+Private Const LVM_FIRST = &H1000&
+Private Const LVM_SETITEMSTATE = (LVM_FIRST + 43)
+Private Const LVIF_STATE = &H8&
+Private Const LVIS_SELECTED = &H2&
+Private Const PROCESS_VM_OPERATION = &H8
+Private Const PROCESS_VM_READ = &H10
+Private Const PROCESS_VM_WRITE = &H20
+Private Const PAGE_READWRITE = &H4&
+Private Const MEM_RESERVE = &H2000
+Private Const MEM_COMMIT = &H1000
+Private Const MEM_RELEASE = &H8000
+Private Const MAX_LVMSTRING = 255&
+Private Const LVM_GETCOLUMNA = LVM_FIRST + 25
+Private Const LVCF_TEXT = &H4
+Private Const LVM_GETITEMCOUNT = (LVM_FIRST + 4)
+Private Const LVM_GETHEADER = (LVM_FIRST + 31)
+Private Const WM_COMMAND = &H111
+
+Private hWndlvw As Long
+Private Function EnumWindowsProc(ByVal hWnd As Long, ByVal lParam As Long) As Long
+    hWndlvw = FindWindowEx(hWnd, 0&, "ListView20WndClass", "")
+    'EnumWindowsProc = (hWndlvw = 0) 'Stop when we find first listview
+    EnumWindowsProc = (hWndlvw = 1) 'Stop when we find first listview
+End Function
+
+'Public Function MessageCrossProcess()
+Public Function MessageCrossProcess(ByVal hWnd As Long, ti_window, tag) 'select debt from debt summary and open "open debt" menu item
+    Dim lProcID As Long
+    Dim hProc As Long
+    Dim lxprocLVITEM As Long
+    Dim LVITEM As LV_ITEM
+    Dim lItemPos As Long
+    Dim y
+    Const WM_LBUTTONDOWN As Long = &H201
+    Const WM_LBUTTONUP As Long = &H202
+    Const WM_LBUTTONDBLCLK As Long = &H203
+    Const VK_RETURN = &HD
+    Const WM_RBUTTONDOWN = &H204
+    Const WM_RBUTTONUP = &H205
+    Const VK_LEFT = &H25
+    Const WM_KEYDOWN = &H100
+Dim tempvar, pColumn, pRow
+Dim endTime As Date
+
+foundTag = False
+    GetWindowThreadProcessId hWnd, lProcID ' Get the process ID in which the ListView is running
+    If lProcID <> 0 Then
+        hProc = OpenProcess(PROCESS_VM_OPERATION Or PROCESS_VM_READ Or PROCESS_VM_WRITE, False, lProcID) ' make sure we have read write permissions in the process space
+        If hProc <> 0 Then
+'added new from JD 11/20/12 mb
+            PostMessage hWnd, WM_KEYDOWN, VK_LEFT, 0
+        ' Deselect all items (or you could find the selected item(s) and deselect just those items).
+            With LVITEM
+                .mask = LVIF_STATE
+                .state = False
+                .stateMask = LVIS_SELECTED Or LVIS_FOCUSED
+            End With
+            ' Get item count.
+            Dim itemCount As Long
+            itemCount = SendMessage(hWnd, LVM_GETITEMCOUNT, 0, 0)
+            ' Deselect all items.
+            For y = 0 To itemCount - 1
+                lxprocLVITEM = VirtualAllocEx(hProc, 0, LenB(LVITEM), MEM_RESERVE Or MEM_COMMIT, PAGE_READWRITE) ' Grab enough memory in the other procedure's space to hold our LV_ITEM
+                ' Copy the local LV_ITEM into the space we reserved in the foreign process
+                WriteProcessMemory hProc, ByVal lxprocLVITEM, ByVal VarPtr(LVITEM), LenB(LVITEM), 0
+                SendMessage hWnd, LVM_SETITEMSTATE, y, ByVal lxprocLVITEM
+                ' Clean up
+                VirtualFreeEx hProc, ByVal lxprocLVITEM, LenB(LVITEM), MEM_RELEASE
+            Next y
+
+'original code
+            lxprocLVITEM = VirtualAllocEx(hProc, 0, LenB(LVITEM), MEM_RESERVE Or MEM_COMMIT, PAGE_READWRITE) ' Grab enough memory in the other procedure's space to hold our LV_ITEM
+' Set up our local LV_ITEM to change the selected item
+            LVITEM.mask = LVIF_STATE
+            LVITEM.state = True
+            LVITEM.stateMask = LVIS_SELECTED
+' Copy the local LV_ITEM into the space we reserved in the foreign process
+            WriteProcessMemory hProc, ByVal lxprocLVITEM, ByVal VarPtr(LVITEM), LenB(LVITEM), 0
+' Now send the message, but pass the address of the copy of our LV_ITEM that now exists in the foreign process instead of our local version
+'endTime = DateAdd("s", 10, Now)
+
+'Do
+'    DoEvents
+            pColumn = 0
+            For pRow = 0 To 15
+                Call Module4.GetListviewItem(hWnd, lProcID, pColumn, pRow)  'call module to get text of listview column
+                If InStr(debtsum(pColumn), tag) Then
+                    foundTag = True
+                    Exit For
+                Else
+                    Erase debtsum
+                End If
+            Next pRow
+'Loop Until foundTag = True Or Now > endTime
+            If foundTag = True Then
+                lItemPos = pRow 'item selected
+                Sleep (200)
+                SendMessage hWnd, LVM_SETITEMSTATE, lItemPos, ByVal lxprocLVITEM
+                Sleep (200)
+'NOTE--USE THESE ONLY WHEN USING enterOldTag SUBROUTINE
+                SendMessage hwndCode, WM_LBUTTONDOWN, lItemPos, ByVal lxprocLVITEM
+                Sleep (50)
+                SendMessage hwndCode, WM_LBUTTONUP, lItemPos, ByVal lxprocLVITEM
+                Sleep (100)
+            End If
+' Clean up
+            VirtualFreeEx hProc, ByVal lxprocLVITEM, LenB(LVITEM), MEM_RELEASE
+            CloseHandle hProc
+        End If
+    End If
+
+End Function
+   
+    Public Function GetColumnLabel(ByVal hWnd As Long, ByVal col As Integer) As String
+        Dim result As String
+        ' Get external process ID.
+        Dim processID As Long
+        GetWindowThreadProcessId hWnd, processID
+        ' Open process.
+        Dim hProcess As Long
+        hProcess = OpenProcess(PROCESS_VM_OPERATION Or PROCESS_VM_READ Or PROCESS_VM_WRITE, 0, processID)
+        ' Allocate memory for data.
+        Dim hItemPointer As Long
+        Dim hDataPointer As Long
+        Dim tLVitem As LV_ITEM
+        hItemPointer = VirtualAllocEx(hProcess, ByVal 0&, ByVal LenB(tLVitem), MEM_RESERVE Or MEM_COMMIT, PAGE_READWRITE)
+        hDataPointer = VirtualAllocEx(hProcess, ByVal 0&, ByVal MAX_LVMSTRING, MEM_RESERVE Or MEM_COMMIT, PAGE_READWRITE)
+        ' Fill in listview item structure.
+        Dim lvc As LVCOLUMN
+        With lvc
+            .mask = LVCF_TEXT
+            .iSubitem = col
+            .pszText = hDataPointer
+            .cchTextMax = MAX_LVMSTRING
+        End With
+        ' Copy LVCOLUMN to shared buffer.
+        WriteProcessMemoryLong hProcess, ByVal hItemPointer, VarPtr(lvc), Len(lvc), 0
+        ' Get column text.
+        SendMessageLong hWnd, LVM_GETCOLUMNA, col, hItemPointer
+        ' Get return data from shared buffer and convert to string.
+        Dim buf(MAX_LVMSTRING) As Byte
+        Erase buf
+        Dim lBuffer As Long
+        lBuffer = VarPtr(buf(0))
+        ReadProcessMemoryLong hProcess, hDataPointer, lBuffer, MAX_LVMSTRING, 0
+        result = TextGet(lBuffer)
+        ' Release allocated buffers.
+        VirtualFreeEx hProcess, hItemPointer, 0, MEM_RELEASE
+        VirtualFreeEx hProcess, hDataPointer, 0, MEM_RELEASE
+        ' Close process.
+        CloseHandle (hProcess)
+        ' Return result.
+        GetColumnLabel = result
+    End Function
+Private Function MAKELPARAM(ByVal wLow As Long, ByVal wHigh As Long) As Long
+    MAKELPARAM = LoWord(wLow) Or (&H10000 * LoWord(wHigh))
+End Function
+ 
+Private Function MAKEWPARAM(ByVal wLow As Long, ByVal wHigh As Long) As Long
+    MAKEWPARAM = (wLow And &HFFFF) Or (BitShiftLeft(wHigh, 16))
+End Function
+ 
+Private Function LoWord(ByVal lDWord As Long) As Long
+    If lDWord And &H8000& Then
+        LoWord = lDWord Or &HFFFF0000
+    Else
+        LoWord = lDWord And &HFFFF&
+    End If
+End Function
+
+Private Function BitShiftLeft(ByVal number As Long, ByVal bits As Integer) As Long
+    BitShiftLeft = number * 2 ^ bits
+End Function
+
+
+

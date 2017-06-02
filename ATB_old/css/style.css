@@ -1,0 +1,290 @@
+﻿
+body 
+{ 
+    font-family: Tahoma;
+    font-size: small;
+    /* background-color: #EBEBEB; */
+    background-color: #FFFFFF; 
+}
+
+.btnExportExcel 
+{
+    padding-right: 12px;
+}
+
+.button {
+  color:#000000;
+  font-weight: bold;
+  font-size: small;
+  font-family: trebuchet ms,helvetica,sans-serif;
+  background-color:#fed;
+  border: 1px solid;
+  border-color: #696 #363 #363 #696;
+  filter:progid:DXImageTransform.Microsoft.Gradient
+  (GradientType=0,StartColorStr='#ffffffff',EndColorStr='#ffeeddaa');  
+}
+
+.DropDownList 
+{
+    font-family: Tahoma;
+    font-size: small; 
+    height: 20px;
+}
+
+.editTextbox 
+{
+    height: 12px; 
+    font-size: xx-small; 
+    font-family: Tahoma;     
+}
+
+.fieldset
+{ 
+    border-color: Black; 
+    border-width: 1px; 
+    padding: 10px; 
+    background-color: #EEEEEE;
+}
+
+.formLabel 
+{
+    font-size:13px; 
+    font-weight: bold; 
+    text-decoration: underline;    
+}
+
+.formValue 
+{
+    background-color:#FFFFFF;
+    font-size:11px; 
+    text-align: left;    
+    border-bottom:solid 1px #bbd9ee; 
+}
+
+.formDetail {
+	border-width: 2px;
+	border-spacing:0;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+	background-color: white;
+}
+
+.formDetail_Preview {
+	border-width: 0px;
+	border-spacing:0;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+	background-color: white;
+}
+  
+
+.grid 
+{ 
+	width:100%; 
+	/* font-family: Tahoma; */
+	font-family: Arial;
+	display: block;
+    margin-left: auto;
+    margin-right: auto 	 
+}
+
+.gridEditRow 
+{
+    Font-Size: Xx-Small; 
+    font-family: Tahoma; 
+    background-color: #fffacd; 
+    width: 10px;
+    vertical-align: bottom;
+    height: 5px; 
+    line-height:1.0;  
+    margin: 0px 0px 0px 0px;  
+    border:0px 0px 0px 0px;  
+    padding: 1px 1px 1px 1px; 
+    padding-top: 0px; 
+    padding-right: 0px; 
+    padding-bottom: 0px; 
+    padding-left: 0px; 
+    vertical-align: middle; 
+    overflow:hidden; 
+    overflow-x:hidden;    
+}
+
+.gridcolumnheader
+{
+    font-weight: bold; 
+    font-size:9pt;    
+    color: #ffffff; 
+    /* background-color: #31629D; */
+    background-color: #e17e3e;   
+    text-decoration: underline;     
+}
+
+.grid .datatable
+{
+	width:100%;
+	color:#666;
+} 
+       
+.grid .datatable TH
+{
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:0px;
+    padding:2px 4px;
+    /*  color:#333333; */ 
+    color: #FFFFFF; 
+    border-bottom:solid 2px #bbd9ee;
+}
+
+.grid .datatable TH A
+{ 
+	/*  text-decoration:none; */
+	text-decoration: underline;
+	padding-right:18px; 
+	/* color:#0066cc; */
+	color: #FFFFFF;
+}
+
+.grid .datatable .row TD
+{
+    font-size:11px;
+    padding:6px 4px;
+    border-bottom:solid 1px #bbd9ee;   
+    
+}  
+
+.grid .datatable .rowalternate 
+{
+    background-color:#EBEBEB;
+    font-size:11px;
+    padding:6px 4px;
+    border-bottom:solid 1px #bbd9ee;    
+}
+
+.grid .datatable .rowalternate:hover
+{
+    background-color:#fffacd;
+    color:#000;
+}
+
+.grid .datatable .row TD.first { padding-left:10px; }
+.grid .datatable .rowalternate TD.first { padding-left:10px; }
+.grid .datatable TH.first { padding-left:10px; } 
+.grid .datatable .row:hover .first
+{
+    background-repeat:no-repeat;   
+    background-image:url('/images/arrow.gif');
+}  
+
+.gvHeaderRow
+{
+background-image:url("/images/gradient.gif");
+font-family: Arial;
+font-size: 9pt;
+color: White;
+}
+
+
+.grid .datatable .row:hover
+{
+    background-color:#fffacd;
+    color:#000;
+}
+.grid .datatable .row TD.first { padding-left:10px; }
+.grid .datatable TH.first { padding-left:10px; }
+
+
+.gridpager 
+{   
+    text-align: left;
+    font-family: Tahoma;
+    font-size: small
+} 
+
+.hideColumn 
+{
+    display:none;
+}
+
+.showColumn 
+{
+    display: block;
+}
+
+.highlight 
+{
+    background-color: Yellow;
+}
+
+.mainDiv 
+{
+ background-color: White;
+ padding-left: 10px;
+ padding-right: 10px;
+ padding-top: 5px;
+ padding-bottom: 10px;
+ border: 1px solid #EDE3C7;
+ border-color: Black; 
+}
+
+.pageSubHeader 
+{
+    font-family: Tahoma;
+    font-size: medium;
+    color:#5c9ccc;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.pageHeader 
+{
+    font-family: Tahoma;
+    color: #00568c;
+    font-size:large;
+    font-weight: bold;
+}
+
+.pageTitle
+{
+    font-family: Tahoma;
+    color: White;
+    font-size: 16pt;
+}
+
+.pageSubTitle
+{
+    font-family: Tahoma;
+    color: White;
+    font-size: 14pt;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+    
+    
+.noMatch
+{
+    background-color: #F3F3F3;
+    padding: 10px;
+    font-family: Arial, Sans-Serif; 
+    text-align: center; 
+    font-weight: bold;
+}
+
+.smallText 
+{
+    font-family: Tahoma;
+    font-size:11px;
+}
+
+.warning 
+{
+    font-family: Arial, Sans-Serif;
+    font-size: x-small;
+    color: Red;
+}
+
+
+
+   

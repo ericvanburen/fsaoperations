@@ -1,0 +1,43 @@
+<!--Primary window-->
+IssueID
+txtDateReceived (greater than, less than)
+ddlIssueStatus (listbox)
+ddlUserID
+txtDateResolved (greater than, less than)
+txtDueDate
+txtFollowupDate
+ddlCategoryID (listbox)
+ddlSubCategoryID (listbox)
+
+<!--Issue Source-->
+ddlSourceOrgType (listbox)
+ddlSourceOrgID (listbox)
+txtSourceName
+txtOwner
+ddlRootCause (lb)
+ddlAffectedOrgID
+txtSourceContactInfo
+
+<!--PCA Complaints-->
+ddlValidity lb
+ddlReceivedBy lb
+ddlComplaintSource lb
+ddlWrittenVerbal
+ddlSeverity
+txtCollectorName
+
+<!--Liaison Issues-->
+ddlResponsibleArea (lb)
+ddlUltimateSourceType
+txtUltimateSourceName
+ddlRatingBorrowers (#)
+txtBorrowersAffected
+ddlRatingLoans (#)
+txtLoansAffected
+ddlRatingFinancial (#)
+txtFinancialImpact 
+
+<!--Borrower Details-->
+BorrowerNumber
+BorrowerName
+SchoolName

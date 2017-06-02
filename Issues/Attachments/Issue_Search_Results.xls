@@ -1,0 +1,35 @@
+<div>
+	<table class="table table-hover table-striped table-bordered table-condensed GridView" cellspacing="0" rules="all" border="1" id="MainContent_GridView1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">Issue</th><th align="center" scope="col">Date Received</th><th align="center" scope="col">Date Resolved</th><th align="center" scope="col">Source Org</th><th align="center" scope="col">Issue Status</th><th align="center" scope="col">Responsible Area</th><th align="center" scope="col">Affected Org</th><th align="center" scope="col">Followup Date</th><th align="center" scope="col">Description</th><th align="center" scope="col">Comments</th><th class="hidden" align="center" scope="col">Owner</th><th class="hidden" align="center" scope="col">SourceName</th><th class="hidden" align="center" scope="col">RootCause</th><th class="hidden" align="center" scope="col">ResponsibleArea</th><th class="hidden" align="center" scope="col">UltimateSourceName</th><th class="hidden" align="center" scope="col">UltimateSourceType</th>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_0" href="Issue_Update.aspx?IssueID=11">11</a>
+                </td><td>05/01/2014</td><td>&nbsp;</td><td>Allied Interstate</td><td>Open</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>description</td><td>comments</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_1" href="Issue_Update.aspx?IssueID=4">4</a>
+                </td><td>04/09/2014</td><td>04/07/2014</td><td>CBE Group</td><td>Open</td><td>FSA-CFO</td><td>DMCS</td><td>4/9/2014</td><td>description</td><td>comments</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">System</td><td class="hidden">FSA-CFO</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_2" href="Issue_Update.aspx?IssueID=5">5</a>
+                </td><td>04/09/2014</td><td>04/06/2014</td><td>DMCS</td><td>Open</td><td>FSA-CFO</td><td>Allied Interstate</td><td>4/6/2014</td><td>Issue Description</td><td>Comments</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">Workforce</td><td class="hidden">FSA-CFO</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_3" href="Issue_Update.aspx?IssueID=6">6</a>
+                </td><td>04/09/2014</td><td>04/06/2014</td><td>&nbsp;</td><td>Open</td><td>&nbsp;</td><td>DMCS</td><td>&nbsp;</td><td>&nbsp;</td><td>my comments part A</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_4" href="Issue_Update.aspx?IssueID=1">1</a>
+                </td><td>04/08/2014</td><td>04/07/2014</td><td>&nbsp;</td><td>Open</td><td>FSA-CIO</td><td>Allied Interstate</td><td>4/8/2014</td><td>issue</td><td>comments</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td><td class="hidden">FSA-CIO</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_5" href="Issue_Update.aspx?IssueID=7">7</a>
+                </td><td>04/09/2014</td><td>&nbsp;</td><td>CBE Group</td><td>Open</td><td>SLMA</td><td>DMCS</td><td>&nbsp;</td><td>&nbsp;</td><td>my comments part A</td><td class="hidden">nnnn</td><td class="hidden">nnn</td><td class="hidden">&nbsp;</td><td class="hidden">SLMA</td><td class="hidden">&nbsp;</td><td class="hidden">&nbsp;</td>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_6" href="Issue_Update.aspx?IssueID=10">10</a>
+                </td><td>04/01/2014</td><td>&nbsp;</td><td>Delta Management Associates</td><td>Open</td><td>FedLoan</td><td>Allied Interstate</td><td>4/16/2014</td><td>description goes here</td><td>comments goes here</td><td class="hidden">dj johnson</td><td class="hidden">jenny jones</td><td class="hidden">Policy/Procedure</td><td class="hidden">FedLoan</td><td class="hidden">&nbsp;</td><td class="hidden">Borrower</td>
+		</tr>
+	</table>
+</div>

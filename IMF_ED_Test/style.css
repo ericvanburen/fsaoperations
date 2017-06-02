@@ -1,0 +1,136 @@
+﻿body 
+{
+    font-family:trebuchet ms,helvetica,sans-serif;
+    font-size: small;
+}
+
+.alternateRowColor 
+{
+    background-color: Gray;
+}
+
+.button {
+  color:#000000;
+  font-weight: bold;
+  font-size: x-small;
+  font-family: trebuchet ms,helvetica,sans-serif;
+  background-color:#fed;
+  border: 1px solid;
+  border-color: #696 #363 #363 #696;
+  filter:progid:DXImageTransform.Microsoft.Gradient
+  (GradientType=0,StartColorStr='#ffffffff',EndColorStr='#ffeeddaa');
+}
+
+.warningMessage { 
+font-weight: bold; 
+font-family:Arial; 
+color:Red; 
+font-size: x-small;   
+}
+
+.formLabel {
+font-family: Trebuchet MS, Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+color: Black;
+font-size: small; 
+}
+
+.formLabelPNote {
+    font-family: Trebuchet MS, Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+    color: Black;
+    font-size: small; 
+    font-weight: bold;
+}
+
+.formLabelForm {
+    font-family: Trebuchet MS, Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+    color: Black;
+    font-size: small; 
+    font-weight: bold; 
+    text-align: right;
+}
+
+.formSeparator {
+    font-family: Trebuchet MS, Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+    color: Black;
+    font-size: small; 
+    font-weight: bold; 
+    text-align: left; 
+    background-color: #CCCCCC;
+}
+
+
+.fieldsetLegend {
+font-family: Arial;
+font-size:medium;
+color: Black;
+font-size: small;
+font-weight: bold;
+}
+
+.grid 
+{ 
+    width:90%; 
+    font-family:Tahoma; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto      
+}
+
+.grid .datatable
+{
+    width:100%;
+    color:#666;
+}        
+.grid .datatable TH
+{
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:0px;
+    text-align:left;
+    padding:2px 4px;
+    /*color:#333333; */
+    color: White;
+    border-bottom:solid 2px #bbd9ee;
+    background-color: #0066cc;  
+}
+.grid .datatable TH A
+{ 
+    text-decoration:none;
+    padding-right:18px; 
+    /* color:#0066cc; */
+    color: White;
+}
+
+.grid .datatable .row TD
+{
+    font-size:11px;
+    text-align:left;
+    padding:6px 4px;
+    border-bottom:solid 1px #bbd9ee;
+}      
+.grid .datatable .row:hover
+{
+    background-color:#fffacd;
+    color:#000;
+}
+.grid .datatable .row TD.first { padding-left:10px; }
+.grid .datatable TH.first { padding-left:10px; }
+.grid .datatable .row:hover .first
+{
+    background-repeat:no-repeat;   
+    background-image:url(images/bullet.gif);
+}  
+
+.hiddenField {    
+    visibility: hidden;
+}
+
+.instructionText { 
+background-color: #DCDCDC; 
+color: #666666;
+}
+
+.smallText {
+    font-size: xx-small; 
+     }
+

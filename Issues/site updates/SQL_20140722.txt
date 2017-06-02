@@ -1,0 +1,74 @@
+USE [Issues]
+GO
+/****** Object:  StoredProcedure [dbo].[p_Delete_IssueImport]    Script Date: 07/22/2014 12:16:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Van Buren, Eric
+-- Create date: 2014/07/22
+-- Description:	Deletes all temp records from table IssueImport
+-- =============================================
+CREATE PROCEDURE [dbo].[p_Delete_IssueImport]
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+    DELETE FROM IssueImport
+END
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Van Buren, Eric
+-- Create date: 2014/07/22
+-- Description:	Copies an issue from table IssueImport into production table Issues
+-- =============================================
+CREATE PROCEDURE p_IssueImport_Copy
+	 @EnteredBy varchar(50) = NULL
+	,@IssueID Int = NULL OUTPUT
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	INSERT INTO Issues
+	(
+		 DateReceived
+		,IssueDescription
+		,SourceOrgType
+		,SourceOrgID
+		,SourceName
+		,SourceContactInfo
+		,AffectedOrgID
+		,DateEntered		
+	)
+	SELECT
+		 DateReceived
+		,IssueDescription
+		,SourceOrgType
+		,SourceOrgID
+		,SourceName
+		,SourceContactInfo
+		,AffectedOrgID
+		,DateEntered
+	FROM 
+		IssueImport
+	
+	SET @IssueID = SCOPE_IDENTITY()   
+    
+    --Now update the issue with the EnteredBy value
+    UPDATE Issues
+    SET 
+     EnteredBy = @EnteredBy
+    ,IssueType = 'Liaisons'
+    WHERE IssueID = @IssueID
+    
+    RETURN @IssueID;
+END
+GO

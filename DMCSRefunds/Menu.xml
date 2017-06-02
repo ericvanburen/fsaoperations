@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Menu>
+    <Group>
+        <Item  Text="Refunds" AccessKey="V" LeftLogo="~/Images/icons/dollar_currency_sign.png">
+            <Group Flow="Vertical">
+                <Item  Text="My Refunds" Href="~/DMCSRefunds/MyRefunds.aspx" />
+                <Item  Text="Get New Refunds" Href="~/DMCSRefunds/Default.aspx" />
+                <Item  Text="2nd Line Approvals" Href="~/DMCSRefunds/SecondLineApproval.aspx" />
+            </Group>
+        </Item>
+
+        <Item  Text="Search" AccessKey="S" LeftLogo="~/Images/icons/search.png">
+            <Group Flow="Vertical">
+                <Item  Text="Search Refunds" Href="~/DMCSRefunds/search.aspx" />
+            </Group>
+        </Item>
+        
+        <Item Text="Administration" Key="A" LeftLogo="~/Images/icons/briefcase.png">
+        <Group Flow="Vertical">
+                <Item  Text="Upload" Href="~/DMCSRefunds/admin/upload.aspx" />
+                <Item  Text="Assign" Href="~/DMCSRefunds/admin/assign.aspx" />
+                <Item  Text="Add Refund" Href="~/DMCSRefunds/admin/AddRefund.aspx" />
+            <Item  Text="Reports">
+                <Group Width="140" Flow="Vertical">
+                    <Item  Text="Total Count By LA" ToolTip="All Loan Analysts totals" Href="~/DMCSRefunds/admin/Report_CountByLAStatus.aspx" />
+                </Group>
+            </Item>
+            </Group>
+        </Item>
+
+        <Item Text="Help" Key="H" LeftLogo="~/Images/icons/question_mark.png">
+            <Group Flow="Vertical" OffsetX="-26">
+                <Item  Text="Index" Href="~/DMCSRefunds/Help.aspx" />                
+            </Group>
+        </Item>
+    </Group>
+</Menu>

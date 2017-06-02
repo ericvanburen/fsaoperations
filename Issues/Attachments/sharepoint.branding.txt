@@ -1,0 +1,29 @@
+v4.master — This is the default master page that is used for many of the site templates used
+by SharePoint 2010
+
+however, much of the main CSS for SharePoint still resides in one core CSS fi le named corev4.css
+
+1024 × 768 to be the most common screen resolution, followed closely by 1280 × 800.
+
+There are a few ways to apply custom CSS in SharePoint. One common mistake is to just log in
+to the server and fi nd and edit the core SharePoint CSS fi le (corev4.css) in the SharePoint root.
+This should be avoided because it is problematic in terms of supportability. If Microsoft releases an
+update for SharePoint (which is inevitable), the corev4.css fi le in the SharePoint root is likely to be
+overwritten. Also, changes to this fi le will apply branding to all web applications on the farm, which
+is probably not the desired behavior.
+
+Instead of editing the core CSS fi le, you should be overriding the default SharePoint styles.
+This entails creating your custom CSS using the same CSS selectors provided out-of-the-box in
+SharePoint and then ensuring that your CSS is loaded after the core CSS. SharePoint 2010 provides
+two primary means for overriding SharePoint’s CSS with your own:
+
+?? Alternate CSS — T his method enables you to easily apply custom CSS to a particular site and
+all subsites below it. However, without writing custom code, alternate CSS is available only
+from the SharePoint Web user interface in a SharePoint Server publishing site. If you have
+SharePoint Server, alternate CSS is an easy way to ensure that custom CSS is loaded last.
+
+?? CSS applied via custom master page — Through the use of a custom master page and the
+CssRegistration tag, you can ensure that custom CSS is always loaded after the SharePoint
+core CSS. This method is particularly well suited to creating custom branding because often a
+custom master page is specifi cally tied to one or more custom CSS fi les. By applying the CSS
+with CssRegistration, the two will always be applied together.

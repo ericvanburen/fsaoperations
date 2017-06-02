@@ -1,0 +1,53 @@
+AG	Password
+582	$TXli9w
+
+- Allow PCAs to resubmit requests that have been retracted and resubmit to FSA users
+  Status: Completed
+  Affected Changes: IMF.Detail.aspx
+
+- Allow PCAs to archive multiple IMFs at once
+  Status: Completed. Added feature to advanced search page rather than create new page/screen
+  Affected Changes: created new stored procedure, p_MyIMFs_PCA_Archive, update stored procedure, p_MyIMFs_PCA_NoCompleted
+
+- Modify the "Users Assigned to Work Each IMF Type" to display the Team, PCA Ids along with the user name, Imf Type and PCAs
+
+  Status: Completed
+  Affected Changes: Update p_EDUsers_IMFTypes_ByOneType, Update v_EDUsers_IMFTypes_ByType, update     EDUsers_IMFTypes_ByType.aspx
+
+- Add IMF Audit Log for Status Changes
+
+  Status: Completed
+  Affected Changes: Create p_IMFAudit_Insert, p_IMFAudit_Select.  Create table IMF_Audit. Update IMF.Detail.aspx
+
+- Add Request Type to ED Basic Search
+
+  Status: Completed
+  Affected Changes: update search.ED.basic.aspx
+
+- Allow multiple Team Assignments for ED users
+
+  Status: In progress
+  Affected Changes: Maintenance.ED.Users.aspx, create v_EDUsers_Teams, create p_EDUsers_Teams, create table EDUsers_Teams, update p_Update_EDUser_UserDetail, create p_Update_EDUser_Teams_Delete, create p_Update_EDUser_Teams_Insert, populate EDUsers_Teams, update p_TeamMembers, update ED_User_Admin.aspx
+
+
+- Update existing Summary Report screen to display total requests in Pending, Returned to PCA and Retracted
+
+  Status: Completed
+  Affected Changes: report.ED.aspx, CREATE PROCEDURE [GetTotalRetractedIMFs], CREATE PROCEDURE [GetTotalReturnedPCAIMFs],
+
+
+-Create Daily Metrics Performance Repor
+
+	Status: Completed
+
+	Affected Changes: create p_Daily_Metrics_Report, create report.ED.performance.metrics.aspx,add /js/date.js, add /js/datePicker.css, add /js/calendar.png
+
+- Add Vangent/DRG Login
+
+        Status: In progress
+	Affected Changes: login.aspx, update table Requests_Vangent, update table Vangent_Users, create v_Vangent_Queues, update IMF.Types.Definitions.aspx, update IMFs.Add.PCA.aspx, update Requests_Vangent, update p_InsertIMF_Vangent, /Vangent/IMFs.Vangent.aspx, /vangent/left.menu.vangent.aspx, p_IMFs_Vangent, v_MyMissingPnotes, p_IMFs_Vangent_NoCompleted, p_IMFs_Vangent_Queue, p_IMFs_Vangent_NoCompleted_Queue, create IMFs.Queue.aspx, create p_MyIMFs_Vangent, create /vangent/my.imfs.aspx
+
+Create DRG IMF Details page
+
+       Status: In Progress
+	Affected Changes: create /vangent/imf.detail.aspx, create p_AllDRGUsersActive, 

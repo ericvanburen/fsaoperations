@@ -1,0 +1,197 @@
+USE [Region4Reports]
+GO
+/****** Object:  StoredProcedure [dbo].[p_Report_LACompletions]    Script Date: 09/30/2015 08:14:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:    Van Buren, Eric
+-- Create date: 2015/04/15
+-- Description: Counts all completions for each LA across all of the databases
+-- =============================================
+ALTER PROCEDURE [dbo].[p_Report_LACompletions]
+  @BeginDate smalldatetime = NULL,
+  @EndDate smalldatetime = NULL
+AS
+BEGIN
+SELECT U.UserID, TL.[TOP Completions], 
+       ISS.[Issue Completions], PC.[Phone Review Completions], REF.[DMCS Refund Completions], RC.[Rehab Review Completions]
+FROM  Region4Reports.dbo.Users AS U 
+--TOP Completions
+LEFT JOIN (SELECT UserID, SUM(CASE WHEN ApprovalStatus = 'Completed' AND DateApproved BETWEEN @BeginDate AND @EndDate
+                                   Then 1 
+                                   Else 0 
+                              END) AS [TOP Completions]
+           FROM TOPLog.dbo.TOPLog 
+           GROUP BY UserID) AS TL ON U.UserID = TL.UserID
+--DMCS Refunds
+LEFT JOIN (SELECT UserID, SUM(CASE WHEN FirstLineApprovalStatus = 'Approved' AND FirstLineDateApproved BETWEEN @BeginDate AND @EndDate
+                                   Then 1 
+                                   Else 0 
+                              END) AS [DMCS Refund Completions]
+           FROM DMCSRefunds.dbo.Refunds 
+           GROUP BY UserID) AS REF ON U.UserID = REF.UserID
+--Issues/Complaints           
+LEFT JOIN  (SELECT UserID, SUM(CASE WHEN IssueStatus = 'Closed' AND DateResolved BETWEEN @BeginDate AND @EndDate 
+                                    Then 1 
+                                    Else 0 
+                                END) AS [Issue Completions]
+           FROM Issues.dbo.Issues 
+           GROUP  BY UserID) AS ISS ON U.UserID = ISS.UserID 
+--PCA Phone Reviews
+LEFT JOIN  (SELECT UserID, SUM(CASE WHEN DateSubmitted BETWEEN @BeginDate AND @EndDate 
+                                    Then 1 
+                                    Else 0 
+                                END) AS [Phone Review Completions]
+           FROM PCACalls.dbo.Calls
+           GROUP  BY UserID) AS PC ON U.UserID = PC.UserID
+           
+--PCA Reviews BETA
+LEFT JOIN  (SELECT UserID, SUM(CASE WHEN DateSubmitted BETWEEN @BeginDate AND @EndDate 
+                                    Then 1 
+                                    Else 0 
+                                END) AS [PCA Review Completions BETA]
+           FROM PCAReviews.dbo.Reviews
+           GROUP  BY UserID) AS PR ON U.UserID = PC.UserID           
+           
+--Rehab Reviews
+LEFT JOIN  (SELECT UserID, SUM(CASE WHEN DateSubmitted BETWEEN @BeginDate AND @EndDate 
+                                    Then 1 
+                                    Else 0 
+                                END) AS [Rehab Review Completions]
+           FROM PCACalls.dbo.RehabCalls
+           GROUP  BY UserID) AS RC ON U.UserID = RC.UserID            
+            
+ORDER BY U.UserID
+END
+
+
+USE [Region4Reports]
+GO
+/****** Object:  StoredProcedure [dbo].[p_ReportAllCompletionsByLA]    Script Date: 09/30/2015 08:04:37 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:    Van Buren, Eric
+-- Create date: 2015/04/16
+-- Description: Lists all completions for a given LA for all products
+-- =============================================
+ALTER PROCEDURE [dbo].[p_ReportAllCompletionsByLA] 
+  @UserID varchar(50) = NULL,
+  @BeginDate smalldatetime = NULL,
+  @EndDate smalldatetime = NULL
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  SELECT 
+    UserID, 
+    'Refunds' AS [Review Type], 
+    FirstLineDateApproved AS [Date Completed] 
+  FROM 
+    DMCSRefunds.dbo.Refunds 
+  WHERE 
+    FirstLineApprovalStatus = 'Approved' 
+    AND (FirstLineDateApproved BETWEEN @BeginDate AND @EndDate)
+    AND UserID = @UserID
+  
+  UNION ALL
+  
+  SELECT 
+    UserID, 
+    'Complaints' AS [Review Type], 
+    DateResolved FROM Issues.dbo.Issues 
+  WHERE 
+    IssueStatus = 'Closed' 
+    AND (DateResolved BETWEEN @BeginDate AND @EndDate)
+    AND UserID = @UserID
+  
+  UNION ALL
+  
+  SELECT 
+    UserID, 
+    'TOP Review' AS [Review Type], 
+    DateApproved 
+  FROM 
+    TOPLog.dbo.TOPLog 
+  WHERE 
+    ApprovalStatus = 'Completed' 
+    AND (DateApproved BETWEEN @BeginDate AND @EndDate)
+    AND UserID = @UserID
+  
+  UNION ALL
+  
+  SELECT 
+    UserID, 
+    'Phone Review' AS [Review Type], 
+    DateSubmitted 
+  FROM 
+    PCACalls.dbo.Calls 
+  WHERE 
+    (DateSubmitted BETWEEN @BeginDate AND @EndDate)
+    AND UserID = @UserID
+  
+  UNION ALL
+  
+  SELECT 
+    UserID, 
+    'Rehab Review' AS [Review Type], 
+    DateSubmitted 
+  FROM 
+    PCACalls.dbo.RehabCalls 
+  WHERE 
+    (DateSubmitted BETWEEN @BeginDate AND @EndDate)
+    AND UserID = @UserID
+    
+  UNION ALL
+  
+  SELECT 
+    UserID, 
+    'PCA Review' AS [Review Type], 
+    DateSubmitted 
+  FROM 
+    PCAReviews.dbo.Reviews
+  WHERE 
+    (DateSubmitted BETWEEN @BeginDate AND @EndDate)
+    AND UserID = @UserID  
+
+  
+  ORDER BY UserID, [Review Type], [Date Completed]
+
+END
+
+
+USE [Region4Reports]
+GO
+/****** Object:  StoredProcedure [dbo].[p_PhoneReviewCompletions]    Script Date: 09/30/2015 08:04:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:    Van Buren, Eric
+-- Create date: 2015/09/30
+-- Description: PCA Review Completions from PCAReviews database
+-- =============================================
+CREATE PROCEDURE [dbo].[p_PCAReviewCompletions] 
+  @UserID varchar(50) = NULL,
+  @BeginDate smalldatetime = NULL,
+  @EndDate smalldatetime = NULL
+AS
+BEGIN
+  SELECT 
+    ReviewID,
+    CallDate,
+    PCA,
+    BorrowerNumber 
+  FROM  
+    PCAReviews.dbo.Reviews INNER JOIN PCAReviews.dbo.PCAs ON Reviews.PCAID = PCAs.PCAID
+  WHERE
+    UserID = @UserID
+    AND DateSubmitted BETWEEN @BeginDate AND @EndDate
+  ORDER BY 
+    CallDate DESC
+END

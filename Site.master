@@ -1,0 +1,64 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.Master.vb" Inherits="Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>FSA Operations Home</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+   
+</head>
+<body>
+    <form runat="server" id="form1">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <asp:Image ID="ImgFSALogo" runat="server" ImageUrl="~/Images/FSA_Logo.png" alt="FSA Logo" />
+            </div>
+            <div class="loginDisplay">
+               <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu hidden-print" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                   <StaticMenuItemStyle CssClass="menuitem" />
+                   <DynamicMenuItemStyle CssClass="menuitem" />
+                   
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/ATB/searchOPEID.aspx" Text="ATB" Selected="true"/>
+                        <asp:MenuItem NavigateUrl="~/ClosedSchool/Default.aspx" Text="Closed School"/>
+                        <asp:MenuItem NavigateUrl="~/DMCSRefunds/Default.aspx" Text="DMCS Refunds"/>
+                        <asp:MenuItem NavigateUrl="~/PNoteTracker/Default.aspx" Text="PNote Requests"/>
+                        <asp:MenuItem NavigateUrl="~/CCM/FormB.aspx" Text="CCMT"/>
+                        <asp:MenuItem NavigateUrl="~/CCM2/FormB.aspx" Text="CCMT2"/>
+                        <asp:MenuItem NavigateUrl="~/PCAReviews/MyNewAssignments.aspx" Text="PCA Reviews"/>                       
+                        <asp:MenuItem NavigateUrl="~/SpecialtyClaims/EnterNewClaim.aspx" Text="Claims"/>
+                        <asp:MenuItem NavigateUrl="~/Issues/Dashboard.aspx" Text="Issues"/>
+                        <asp:MenuItem NavigateUrl="~/IBRReviews/EnterNewReview.aspx" Text="IBR Reviews"/>
+                        <asp:MenuItem NavigateUrl="~/TOPLog/" Text="TOP Log"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

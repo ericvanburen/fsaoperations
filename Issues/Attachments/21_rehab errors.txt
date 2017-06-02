@@ -1,0 +1,52 @@
+<asp:BoundField DataField="UserID" HeaderText="Loan Analyst" SortExpression="UserID" HeaderStyle-HorizontalAlign="Center" />                
+            <asp:BoundField DataField="CorrectID_Errors" HeaderText="CorrectID Errors" SortExpression="CorrectID_Errors" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="ProperlyIdentified_Errors" HeaderText="ProperlyIdentified Errors" SortExpression="ProperlyIdentified_Errors" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="MiniMiranda_Errors" HeaderText="MiniMiranda Errors" SortExpression="MiniMiranda_Errors" HeaderStyle-HorizontalAlign="Center" /> 
+            <asp:BoundField DataField="Accuracy_Errors" HeaderText="Accuracy Errors" SortExpression="Accuracy_Errors" HeaderStyle-HorizontalAlign="Center" /> 
+            <asp:BoundField DataField="Notepad_Errors" HeaderText="Notepad Errors" SortExpression="Notepad_Errors" HeaderStyle-HorizontalAlign="Center" /> 
+            <asp:BoundField DataField="Tone_Errors" HeaderText="Tone Errors" SortExpression="Tone_Errors" HeaderStyle-HorizontalAlign="Center" /> 
+            <asp:BoundField DataField="PCAResponsive_Errors" HeaderText="PCAResponsive Errors" SortExpression="PCAResponsive_Errors" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="AWGInfo_Errors" HeaderText="AWG Info Errors" SortExpression="AWGInfo_Errors" HeaderStyle-HorizontalAlign="Center" /> 
+            <asp:BoundField DataField="Complaint_Errors" HeaderText="Complaint Errors" SortExpression="Complaint_Errors" HeaderStyle-HorizontalAlign="Center" /> 
+            <asp:BoundField DataField="Rehab_Errors" HeaderText="Rehab Errors" SortExpression="Rehab_Errors" HeaderStyle-HorizontalAlign="Center" />
+
+
+USE [PCAReviews]
+GO
+/****** Object:  StoredProcedure [dbo].[p_PCACallsLAErrorReport]    Script Date: 11/19/2015 14:37:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:        Van Buren, Eric
+-- Create date: 2015/04/29
+-- Description:   A summary of PCA call errors for each Loan Analyst
+-- =============================================
+ALTER PROCEDURE [dbo].[p_PCACallsLAErrorReport] 
+AS
+BEGIN
+      SELECT
+            UserID
+            ,COUNT(CASE WHEN Score_CorrectID_Accuracy = 'Error' Then Score_CorrectID_Accuracy END) AS CorrectID_Errors
+            ,COUNT(CASE WHEN Score_ProperlyIdentified_Accuracy = 'Error' Then Score_ProperlyIdentified_Accuracy END) AS ProperlyIdentified_Errors
+            ,COUNT(CASE WHEN Score_MiniMiranda_Accuracy = 'Error' Then Score_MiniMiranda_Accuracy END) AS MiniMiranda_Errors
+            ,COUNT(CASE WHEN Score_Accuracy_Accuracy = 'Error' Then Score_Accuracy_Accuracy END) AS Accuracy_Errors
+            ,COUNT(CASE WHEN Score_Notepad_Accuracy = 'Error' Then Score_Notepad_Accuracy END) AS Notepad_Errors
+            ,COUNT(CASE WHEN Score_Tone_Accuracy = 'Error' Then Score_Tone_Accuracy END) AS Tone_Errors
+            ,COUNT(CASE WHEN Score_PCAResponsive_Accuracy = 'Error' Then Score_PCAResponsive_Accuracy END) PCAResponsive_Errors
+            ,COUNT(CASE WHEN Score_AWGInfo_Accuracy = 'Error' Then Score_AWGInfo_Accuracy END) AWGInfo_Accuracy
+            ,COUNT(CASE WHEN Complaint_Accuracy = 'Error' Then Complaint_Accuracy END) AS Complaint_Errors
+            ,COUNT(RehabMetricsCalls.ReviewID) AS Rehab_Errors
+      FROM  
+      --    Reviews
+      RehabMetrics INNER JOIN
+             RehabMetricsCalls ON RehabMetrics.RehabMetricID = RehabMetricsCalls.RehabMetricID RIGHT OUTER JOIN
+             Reviews ON RehabMetricsCalls.ReviewID = Reviews.ReviewID
+      WHERE 
+            (UserID IS NOT NULL AND UserID <> '')
+      GROUP BY 
+            UserID
+      ORDER BY 
+            UserID
+END

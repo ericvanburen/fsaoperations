@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Web Developer Express 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "IMF_ED_Test", ".", "{BC540312-39A9-4EB3-A6D8-CB3602160780}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
+		Debug.AspNetCompiler.VirtualPath = "/IMF_ED_Test"
+		Debug.AspNetCompiler.PhysicalPath = "..\IMF_ED_Test\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\IMF_ED_Test\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/IMF_ED_Test"
+		Release.AspNetCompiler.PhysicalPath = "..\IMF_ED_Test\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\IMF_ED_Test\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49269"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC540312-39A9-4EB3-A6D8-CB3602160780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC540312-39A9-4EB3-A6D8-CB3602160780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+<div>
+	<table class="table table-hover table-striped" cellspacing="0" rules="all" border="1" id="MainContent_GridView1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col"><a href="javascript:__doPostBack(&#39;ctl00$MainContent$GridView1&#39;,&#39;Sort$UserID&#39;)">Loan Analyst</a></th><th align="center" scope="col"><a href="javascript:__doPostBack(&#39;ctl00$MainContent$GridView1&#39;,&#39;Sort$Error Count&#39;)">Error Count</a></th>
+		</tr><tr>
+			<td>
+                    <a id="MainContent_GridView1_HyperLink2_0" href="ReportsRehabCallErrors.aspx?UserID=eric.vanburen">eric.vanburen</a>
+                </td><td>19</td>
+		</tr>
+	</table>
+</div>

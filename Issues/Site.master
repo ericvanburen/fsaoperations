@@ -1,0 +1,124 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.Master.vb" Inherits="Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>FSA Operations Home</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+   
+</head>
+<body>
+    <form runat="server" id="form1">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <asp:Image ID="ImgFSALogo" runat="server" ImageUrl="~/Images/FSA_Logo.png" alt="FSA Logo" />
+            </div>
+            <div class="loginDisplay">
+               <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                   <StaticMenuItemStyle CssClass="menuitem" />
+                   <DynamicMenuItemStyle CssClass="menuitem" />
+                   
+                    <Items>
+                        <asp:MenuItem NavigateUrl="Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/ATB/searchOPEID.aspx" Text="ATB" Selected="true"/>
+                        <asp:MenuItem NavigateUrl="~/ClosedSchool/Default.aspx" Text="Closed School"/>
+                        <asp:MenuItem NavigateUrl="~/DMCSRefunds/Default.aspx" Text="DMCS Refunds"/>
+                        <asp:MenuItem NavigateUrl="~/PNoteTracker/Default.aspx" Text="PNote Requests"/>
+                        <asp:MenuItem NavigateUrl="~/CCM/FormB.aspx" Text="Monitoring"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+        <h3>Operations Issues</h3>
+        <!--Navigation Menu-->
+ <div>
+ <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+  <li class="dropdown" id="navA0">
+    <a href="#" id="A0" class="dropdown-toggle" data-toggle="dropdown">Dashboard <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+        <li><a href="/Issues/Dashboard.aspx">Dashboard</a></li>       
+    </ul>
+  </li>
+
+  <li class="dropdown" id="navA1">
+    <a href="#" id="A1" class="dropdown-toggle" data-toggle="dropdown">Enter New Issue <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">        
+        <li><a href="/Issues/Issue_Add_PCA.aspx">New PCA Issue</a></li> 
+        <li><a href="/Issues/Issue_Add.aspx">New Issue - Other</a></li>
+        <li><a href="/Issues/Issue_Import_Liaison.aspx">Import Liaison Issue</a></li>      
+    </ul>
+  </li>  
+  <li class="dropdown" id="navA2">
+    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Issues <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+        <li><a href="/Issues/MyIssues.aspx">My Issues</a></li>        
+    </ul>
+  </li> 
+  <li class="dropdown" id="navA3">
+    <a href="#" id="A3" class="dropdown-toggle" data-toggle="dropdown">Search Issues <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+        <li><a href="/Issues/Issue_Search.aspx">Search Issues</a></li>        
+    </ul>
+  </li>
+  <li class="dropdown" id="navA4">
+    <a href="#" id="A4" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+        <li role="menuitem" tabindex="-1"><a href="#"></a>Liaisons</li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Affecting_Org.aspx">Affected Org</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Affecting_Org_All_Status.aspx">Affected Org (All Status)</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Assigned_Responsible_Area.aspx">Responsible Area</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_OpenRecentlyClosed.aspx">Open/Recently Closed</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Owner.aspx">Owner</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_LiaisonCountByUserID.aspx">Total By Liaison</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_CountByAffectedOrg.aspx">Total By AffectedOrg</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Aging.aspx">Aging Report</a></li>
+        <li role="presentation" class="divider"></li>
+        <li role="menuitem" tabindex="-1"><a href="#"></a>PCA</li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_PCA_CountByUserID.aspx">Total By LA</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_PCA_CountByAffectedOrg.aspx">Total By PCA</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_PCA_CountComplaintValidity.aspx">Complaint Counts By PCA</a></li>
+     
+        <li role="presentation" class="divider"></li>
+        <li role="menuitem" tabindex="-1"><a href="#"></a>All</li> 
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Summary.aspx">Report Summary</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_All_AffectedOrg.aspx">Total By Affected Org</a></li> 
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_All_CountByUserID.aspx">Total By Employee</a></li>       
+    </ul>
+  </li>
+  <li class="dropdown" id="navA5">
+    <a href="#" id="A5" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+        <li><a href="/Issues/Administration/Default.aspx">Administrative Functions</a></li>        
+    </ul>
+  </li>   
+ </ul>
+ </div>
+<!--End Navigation Menu-->
+<asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

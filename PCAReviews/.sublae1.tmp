@@ -1,0 +1,22 @@
+Update table 'Calls' Add field name 'NewAssignmentID (int)'
+
+UPDATE Calls
+Set Calls.NewAssignmentID = [PCACalls_Assignments].[NewAssignmentID]
+FROM         PCACalls_Assignments, Calls
+WHERE 
+		Calls.UserID = [PCACalls_Assignments].UserID 
+		AND Calls.PCAID = [PCACalls_Assignments].PCAID 
+		AND Calls.RecordingDeliveryDate = [PCACalls_Assignments].RecordingDeliveryDate
+
+
+
+update MyNewAssignments.aspx and MyNewAssignments.aspx.vb
+Update MyCallReviews.aspx and MyCallReviews.aspx.vb
+update NewReview.aspx and NewReview.aspx.vb
+update LAAssignments.aspx and LAAssignments.aspx.vb
+
+update p_MyCallReviews
+update p_InsertNewCall 
+update p_LAPCAReviewsAssigned
+update p_search
+

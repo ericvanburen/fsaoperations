@@ -1,0 +1,25 @@
+Fields Removed
+Score_TPD
+Score_Unaffordable_Payments
+Score_Ineligible_Borrower
+Score_Credit_All_Negative_Data_Removed
+Score_Credit_Never_Defaulted
+Score_Credit_Score_Will_Improve
+
+Fields Added
+ConsolTalkOff
+Score_ProperlyIdenitified
+Score_Disconnect_Borrower
+Score_Credit_Reporting
+Score_Electronic_Payments
+Score_Consol_New_Loan
+Score_Consol_Credit_Reporting
+Score_Consol_Interest_Rates
+Score_Consol_Capitalization
+Score_Consol_TitleIV
+Score_Consol_Repayment_Options
+Score_Consol_Default
+Correct_Actions
+Incorrect_Actions
+Total_Actions
+Percent_Actions

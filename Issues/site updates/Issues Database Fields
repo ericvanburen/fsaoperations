@@ -1,0 +1,79 @@
+<!--Primary window-->
+IssueID
+IssueType
+txtDateReceived (greater than, less than)
+ddlIssueStatus (listbox)
+EnteredBy
+ddlUserID
+txtDateResolved (greater than, less than)
+txtDueDate
+txtFollowupDate
+ddlCategoryID (listbox)
+ddlSubCategoryID (listbox)
+
+<!--Issue Source-->
+ddlSourceOrgType (listbox)
+ddlSourceOrgID (listbox)
+txtSourceName
+txtOwner
+ddlRootCause (lb)
+ddlAffectedOrgID
+txtSourceContactInfo
+
+<!--PCA Complaints-->
+ddlValidity lb
+ddlReceivedBy lb
+ddlComplaintSource lb
+ddlWrittenVerbal
+ddlSeverity
+txtCollectorName
+DCSViolationCode1
+DCSViolationCode2
+DCSViolationCode3
+DCSViolationCode4
+DCSViolationCode5
+DCSViolationCode6
+FDCPAViolationCodeA
+FDCPAViolationCodeB
+FDCPAViolationCodeC
+FDCPAViolationCodeD
+FDCPAViolationCodeE
+FDCPAViolationCodeF
+ComplaintTypeA
+ComplaintTypeB
+ComplaintTypeC
+ComplaintTypeD
+ComplaintTypeE
+ComplaintTypeF
+ComplaintTypeG
+ComplaintTypeH
+ComplaintTypeI
+ComplaintTypeJ
+ComplaintTypeK
+ComplaintTypeL
+ComplaintTypeM
+ComplaintTypeN
+ComplaintTypeO
+ComplaintTypeP
+ComplaintTypeQ
+ComplaintTypeR
+ComplaintTypeS
+ComplaintTypeT
+ComplaintTypeU
+
+
+<!--Liaison Issues-->
+ddlResponsibleArea (lb)
+ddlUltimateSourceType
+txtUltimateSourceName
+ddlRatingBorrowers (#)
+txtBorrowersAffected
+ddlRatingLoans (#)
+txtLoansAffected
+ddlRatingFinancial (#)
+txtFinancialImpact 
+
+<!--Borrower Details-->
+BorrowerNumber
+BorrowerName
+SchoolName
