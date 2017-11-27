@@ -27,6 +27,7 @@ Partial Class PCAReviews_Assignments_PCAReviews
         cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = ddlUserID.SelectedValue
         cmd.Parameters.Add("@PCAID", SqlDbType.Int).Value = ddlPCAID.SelectedValue
         cmd.Parameters.Add("@RecordingDeliveryDate", SqlDbType.SmallDateTime).Value = txtRecordingDeliveryDate.Text
+        cmd.Parameters.Add("@CallReviewDueDate", SqlDbType.SmallDateTime).Value = txtCallReviewDueDate.Text
 
         If ddlReviewPeriodMonth.SelectedValue <> "" Then
             cmd.Parameters.AddWithValue("@ReviewPeriodMonth", ddlReviewPeriodMonth.SelectedValue)

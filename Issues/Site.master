@@ -88,6 +88,8 @@
         <li role="menuitem" tabindex="-1"><a href="/Issues/Report_LiaisonCountByUserID.aspx">Total By Liaison</a></li>
         <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_CountByAffectedOrg.aspx">Total By AffectedOrg</a></li>
         <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Aging.aspx">Aging Report</a></li>
+        <li role="menuitem" tabindex="-1"><a href="/Issues/Report_Liaison_Closed_Issues.aspx">Closed Issues</a></li>
+        
         <li role="presentation" class="divider"></li>
         <li role="menuitem" tabindex="-1"><a href="#"></a>PCA</li>
         <li role="menuitem" tabindex="-1"><a href="/Issues/Report_PCA_CountByUserID.aspx">Total By LA</a></li>

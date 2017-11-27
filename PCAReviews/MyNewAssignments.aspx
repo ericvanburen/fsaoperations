@@ -18,13 +18,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 <!--Navigation Menu-->
-    <div>
+<div>
  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
   <li class="dropdown active">
-    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Reviews <b class="caret"></b></a>
+    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Work <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
         <li><a href="MyReviews.aspx">My Reviews</a></li>
-        <li><a href="MyNewAssignments.aspx">My Assignments</a></li>
+        <li><a href="MyNewAssignments.aspx">My Review Assignments</a></li>
+        <li><a href="MyQCAssignments.aspx">My QC Assignments</a></li>
     </ul>
   </li>
 
@@ -38,18 +39,17 @@
   <li class="dropdown">
     <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop4">
-        <li><a href="Reports.aspx">Save New PCA Review Old</a></li>
-        <li><a href="Reports2.aspx">Save New PCA Review</a></li>
-        <li><a href="Reports_SavedReports.aspx">Search PCA Reviews</a></li>       
+        <li><a href="Reports2.aspx">Save New PCA Review</a></li>  
         <li><a href="LAAssignments.aspx">LA Assignments</a></li>
         <li><a href="MakeAssignments.aspx">Make New LA Assignments</a></li>
         <li><a href="DataRequests.aspx">Data Requests</a></li>
         <li><a href="ReportsPCACallErrors.aspx">PCA Reviews - LA Errors</a></li>
         <li><a href="LetterReviews.aspx">Final Review Letter</a></li>
+        <li><a href="ReportCompletionCount.aspx">Completion Count</a></li>
         <li><a href="Reports_PCA_Performance.aspx">PCA Performance</a></li>
-        <li><a href="Reports_Incorrect_Actions_ByGroup.aspx">PCA Incorrect Actions Summary</a></li>
-        <li><a href="Reports_Incorrect_Actions.aspx">PCA Incorrect Actions Detail</a></li>
         <li><a href="QCCalc.aspx">QC Calculator</a></li>
+        <li><a href="QCTierReport.aspx">QC Tier Report</a></li>
+        <li><a href="QCUserManager.aspx">QC User Manager</a></li>
     </ul>
   </li>
  </ul>
@@ -92,6 +92,8 @@
                                 HeaderStyle-HorizontalAlign="Center" SortExpression="PCA" ReadOnly="true" />
                             <asp:BoundField DataField="PCAID" HeaderText="PCA" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
                             <asp:BoundField DataField="RecordingDeliveryDate" HeaderText="Recording Delivery Date" SortExpression="RecordingDeliveryDate"
+                                 DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ReadOnly="true"  ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="CallReviewDueDate" HeaderText="Call Review Due Date" SortExpression="CallReviewDueDate"
                                  DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ReadOnly="true"  ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="NewAssignmentID" HeaderText="" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />  
                             <asp:BoundField DataField="WorksheetPCADate" HeaderText="Date Worksheet Completed By LA" SortExpression="WorksheetPCADate"

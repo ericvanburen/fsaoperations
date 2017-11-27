@@ -126,6 +126,7 @@ Partial Class Issues_Issue_Update
         Dim RatingFinancial As String = ""
         Dim FinancialImpact As String = ""
         Dim AffectFFEL As String = ""
+        Dim SMETopic As String = ""
         Dim Attachment1 As String = ""
         Dim Attachment2 As String = ""
         Dim Attachment3 As String = ""
@@ -181,6 +182,7 @@ Partial Class Issues_Issue_Update
             RatingFinancial = CType(dataItem.FindControl("ddlRatingFinancial"), DropDownList).SelectedValue
             FinancialImpact = CType(dataItem.FindControl("txtFinancialImpact"), TextBox).Text
             AffectFFEL = CType(dataItem.FindControl("ddlAffectFFEL"), DropDownList).SelectedValue
+            SMETopic = CType(dataItem.FindControl("ddlSMETopic"), DropDownList).SelectedValue
             Attachment1 = CType(dataItem.FindControl("ImageUpload1"), FileUpload).PostedFile.FileName
             Attachment2 = CType(dataItem.FindControl("ImageUpload2"), FileUpload).PostedFile.FileName
             Attachment3 = CType(dataItem.FindControl("ImageUpload3"), FileUpload).PostedFile.FileName
@@ -435,6 +437,12 @@ Partial Class Issues_Issue_Update
             cmd.Parameters.Add("@AffectFFEL", SqlDbType.VarChar).Value = AffectFFEL
         Else
             cmd.Parameters.Add("@AffectFFEL", SqlDbType.VarChar).Value = DBNull.Value
+        End If
+
+        If Len(SMETopic) > 0 Then
+            cmd.Parameters.Add("@SMETopic", SqlDbType.VarChar).Value = SMETopic
+        Else
+            cmd.Parameters.Add("@SMETopic", SqlDbType.VarChar).Value = DBNull.Value
         End If
 
         'Attachment 1

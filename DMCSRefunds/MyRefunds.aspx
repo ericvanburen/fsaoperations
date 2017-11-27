@@ -84,6 +84,7 @@
                     <asp:ListItem Text="Approved" Value="Approved" />
                     <asp:ListItem Text="Denied" Value="Denied" />
                     <asp:ListItem Text="Pending" Value="Pending" />
+                    <asp:ListItem Text="Issue" Value="Issue" />
                     </asp:DropDownList></td>
                     <td align="right" style="padding-right: 23px;">
                      <asp:GridView ID="grdMyTotals" runat="server" DataSourceID="dsMyRefundsTotals" 
@@ -215,6 +216,7 @@
                         <asp:ListItem Text="Approved" Value="Approved" />
                         <asp:ListItem Text="Denied" Value="Denied" />
                         <asp:ListItem Text="Pending" Value="Pending" />
+                        <asp:ListItem Text="Issue" Value="Issue" />
                     </asp:DropDownList>
                 </td>
                 <td>
@@ -232,6 +234,7 @@
                         <asp:ListItem Text="Approved" Value="Approved" />
                         <asp:ListItem Text="Denied" Value="Denied" />
                         <asp:ListItem Text="Pending" Value="Pending" />
+                        <asp:ListItem Text="Issue" Value="Issue" />
                     </asp:DropDownList>
                 </td>
                 <td>

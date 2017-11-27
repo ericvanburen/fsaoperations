@@ -21,7 +21,7 @@
             $('#navA3').removeClass("active");
             //Reports
             $('#navA4').addClass("active");
-        });     
+        });
     </script>
    
 </asp:Content>
@@ -70,12 +70,13 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
                 HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="AffectedOrg" HeaderText="Affected Org" SortExpression="AffectedOrg" HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="FSAGroup" HeaderText="FSA Group" HeaderStyle-HorizontalAlign="Center" SortExpression="FSAGroup" /> 
+	    <asp:BoundField DataField="UserID" HeaderText="Owner" HeaderStyle-HorizontalAlign="Center" SortExpression="UserID" /> 
             <asp:TemplateField HeaderText="Description"> 
             <ItemTemplate>
 	             <%# If(Eval("IssueDescription") Is DBNull.Value, "", FormatParagraph.FormatParagraphHTML(Eval("IssueDescription")))%> 
             </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Owner" HeaderText="Assigned To" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="Owner" HeaderText="Assigned To" HeaderStyle-HorizontalAlign="Center" SortExpression="Owner" />
             <asp:TemplateField HeaderText="Comments"> 
              <ItemTemplate>
 	            <%# If(Eval("Comments") Is DBNull.Value, "", FormatParagraph.FormatParagraphHTML(Eval("Comments")))%> 

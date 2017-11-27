@@ -101,6 +101,7 @@ Partial Class CCM_New_FormBDetail
         Dim DateofReview As String = ""
         Dim BeginTimeofReview As String = ""
         Dim EndTimeofReview As String = ""
+        Dim CallReviewMonth As String = ""
         Dim BorrowerAccountNumber As String = ""
         Dim InboundOutbound As String = ""
         Dim Escalated As String = ""
@@ -227,6 +228,7 @@ Partial Class CCM_New_FormBDetail
             DateofReview = CType(dataItem.FindControl("txtDateofReview"), TextBox).Text
             BeginTimeofReview = CType(dataItem.FindControl("txtBeginTimeofReview"), TextBox).Text
             EndTimeofReview = CType(dataItem.FindControl("txtEndTimeofReview"), TextBox).Text
+            CallReviewMonth = CType(dataItem.FindControl("ddlCallReviewMonth"), DropDownList).SelectedValue
             BorrowerAccountNumber = CType(dataItem.FindControl("txtBorrowerAccountNumber"), TextBox).Text
             InboundOutbound = CType(dataItem.FindControl("ddlInboundOutbound"), DropDownList).SelectedValue
             Escalated = CType(dataItem.FindControl("ddlEscalated"), DropDownList).SelectedValue
@@ -359,6 +361,7 @@ Partial Class CCM_New_FormBDetail
         cmd.Parameters.AddWithValue("@DateofReview", DateofReview)
         cmd.Parameters.AddWithValue("@BeginTimeofReview", BeginTimeofReview)
         cmd.Parameters.AddWithValue("@EndTimeofReview", EndTimeofReview)
+        cmd.Parameters.AddWithValue("@CallReviewMonth", CallReviewMonth)
         cmd.Parameters.AddWithValue("@BorrowerAccountNumber", BorrowerAccountNumber)
         cmd.Parameters.AddWithValue("@InboundOutbound", InboundOutbound)
         If ddlSpecialtyLine.SelectedValue <> "" Then

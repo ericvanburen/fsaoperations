@@ -28,14 +28,15 @@
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
-    <!--Navigation Menu-->
-    <div>
+<!--Navigation Menu-->
+<div>
  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
   <li class="dropdown">
-    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Reviews <b class="caret"></b></a>
+    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Work <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
         <li><a href="MyReviews.aspx">My Reviews</a></li>
-        <li><a href="MyNewAssignments.aspx">My Assignments</a></li>
+        <li><a href="MyNewAssignments.aspx">My Review Assignments</a></li>
+        <li><a href="MyQCAssignments.aspx">My QC Assignments</a></li>
     </ul>
   </li>
 
@@ -49,18 +50,17 @@
   <li class="dropdown">
     <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop4">
-        <li><a href="Reports.aspx">Save New PCA Review Old</a></li>
-        <li><a href="Reports2.aspx">Save New PCA Review</a></li>
-        <li><a href="Reports_SavedReports.aspx">Search PCA Reviews</a></li>       
+        <li><a href="Reports2.aspx">Save New PCA Review</a></li>  
         <li><a href="LAAssignments.aspx">LA Assignments</a></li>
         <li><a href="MakeAssignments.aspx">Make New LA Assignments</a></li>
         <li><a href="DataRequests.aspx">Data Requests</a></li>
         <li><a href="ReportsPCACallErrors.aspx">PCA Reviews - LA Errors</a></li>
         <li><a href="LetterReviews.aspx">Final Review Letter</a></li>
+        <li><a href="ReportCompletionCount.aspx">Completion Count</a></li>
         <li><a href="Reports_PCA_Performance.aspx">PCA Performance</a></li>
-        <li><a href="Reports_Incorrect_Actions_ByGroup.aspx">PCA Incorrect Actions Summary</a></li>
-        <li><a href="Reports_Incorrect_Actions.aspx">PCA Incorrect Actions Detail</a></li>
         <li><a href="QCCalc.aspx">QC Calculator</a></li>
+        <li><a href="QCTierReport.aspx">QC Tier Report</a></li>
+        <li><a href="QCUserManager.aspx">QC User Manager</a></li>
     </ul>
   </li>
  </ul>
@@ -187,10 +187,13 @@
             <asp:BoundField DataField="DateSubmitted" HeaderText="Date Submitted" SortExpression="DateSubmitted" 
                 HeaderStyle-HorizontalAlign="Center" />
 
+            <asp:BoundField DataField="TimeSubmitted" HeaderText="Time Submitted" SortExpression="TimeSubmitted" 
+                HeaderStyle-HorizontalAlign="Center" />
+
             <asp:BoundField DataField="ReviewAgency" HeaderText="Agency" SortExpression="ReviewAgency" 
                 HeaderStyle-HorizontalAlign="Center" />
 
-		    <asp:BoundField DataField="CallLength" HeaderText="Call Length" SortExpression="CallLength" 
+		    <asp:BoundField DataField="CallLengthActual" HeaderText="Call Length Actual" SortExpression="CallLengthActual" 
                 HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
 
             <asp:BoundField DataField="CallDate" HeaderText="Call Date" SortExpression="CallDate" DataFormatString="{0:d}" HtmlEncode="false"
@@ -211,6 +214,9 @@
             <asp:BoundField DataField="BorrowerNumber" HeaderText="Borrower #" SortExpression="BorrowerNumber"
                 HeaderStyle-HorizontalAlign="Center" />
 
+            <asp:BoundField DataField="CallReviewDueDate" HeaderText="Call Review Due Date" SortExpression="CallReviewDueDate" DataFormatString="{0:d}" HtmlEncode="false"
+                HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+            
             <asp:BoundField DataField="RecordingDeliveryDate" HeaderText="Recording Delivery Date" SortExpression="RecordingDeliveryDate" DataFormatString="{0:d}" HtmlEncode="false"
                 HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" /> 
              
@@ -244,6 +250,12 @@
             <asp:TemplateField HeaderText="Mini-Miranda?" SortExpression="Score_MiniMiranda" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden">
                 <ItemTemplate>
                     <%# If(Eval("Score_MiniMiranda") Is DBNull.Value, "", TrueFalse(Eval("Score_MiniMiranda")))%>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="Call Recording?" SortExpression="Score_CallRecording" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden">
+                <ItemTemplate>
+                    <%# If(Eval("Score_CallRecording") Is DBNull.Value, "", TrueFalse(Eval("Score_CallRecording")))%>
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -300,14 +312,6 @@
             <asp:BoundField DataField="Score_Reversed_Payments" HeaderText="Reversed or NSF pymts can jeopardize rehab" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
             <asp:BoundField DataField="Score_Loans_Transferred_After_60_Days" HeaderText="Loan(s) will be transferred to servicer approx 60 days after rehab" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
             <asp:BoundField DataField="Score_Electronic_Payments" HeaderText="Did the rep encourage electronic payments?" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_Delay_Tax_Reform" HeaderText="Advise the borr to delay filing tax return" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_More_Aid" HeaderText="Tell the borr that he/she will be eligible for TIV, defers, forbs" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_Collection_Costs_Waived" HeaderText="Quote an exact amt for the collection costs that will be waived" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_False_Requirements" HeaderText="Impose requirements that are not required" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_Avoid_PIF" HeaderText="Talk them out of PIF or SIF" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_Rehab_Then_TPD" HeaderText="Tell a disabled borr that to rehab first then apply for TPD" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_Payments_Are_Final" HeaderText="State pymt amounts and dates are final" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-            <asp:BoundField DataField="Score_Not_Factual" HeaderText="State anything that is not factual" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
             <asp:BoundField DataField="Score_Consol_New_Loan" HeaderText="Did the PCA rep advise the borrower that consolidation is a new loan?" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
             <asp:BoundField DataField="Score_Consol_Credit_Reporting" HeaderText="PCA accurately explained how consolidation affects credit reporting?" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
             <asp:BoundField DataField="Score_Consol_Interest_Rates" HeaderText="PCA accurately explained interest rate of consolidation loan" HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />

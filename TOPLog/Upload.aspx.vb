@@ -43,7 +43,7 @@ Partial Class TOPLog_Upload
             'strSaveLocation = "d:\DCS\fsaoperations\internal\TOPLog\FileUploads\" & strFileNameOnly
 
             'Upload location for development
-            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\TOPLog\FileUploads\" & strFileNameOnly
+            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\TOPLog\FileUploads\" & strFileNameOnly
             Try
                 fileuploadExcel.PostedFile.SaveAs(strSaveLocation)
                 ImportFile(strFileNameOnly)
@@ -62,10 +62,10 @@ Partial Class TOPLog_Upload
             Dim conn As SqlConnection = New SqlConnection(connStr)
 
             'Connection Sting For Production
-            'excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=d:\DCS\fsaoperations\internal\TOPLog\FileUploads\" & FileName & ";Extended Properties=Excel 8.0;Persist Security Info=False"
+            'excelConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=d:\DCS\fsaoperations\internal\TOPLog\FileUploads\" & FileName & ";Extended Properties=Excel 12.0;Persist Security Info=False"
 
             'Connection String for Development
-            excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\ericv_000\Dropbox\fsaoperations\TOPLog\FileUploads\" & FileName & ";Extended Properties=Excel 8.0;Persist Security Info=False"
+            excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\TOPLog\FileUploads\" & FileName & ";Extended Properties=Excel 8.0;Persist Security Info=False"
 
             Dim excelConnection As OleDbConnection = New OleDbConnection(excelConnectionString)
             conn.Open()
@@ -87,8 +87,11 @@ Partial Class TOPLog_Upload
             excelConnection.Close()
             conn.Close()
 
+            'Sometimes junk records are imported with missing borrower numbers.  These need to be deleted
+            DeleteBadBorrowerNumbers()
+
             'Now copy the records from table TOPLogUpload to TOPLog
-            CopyNewRecords()
+            SelectNewTOPLog()
 
         Else
             lblMessage.ForeColor = Drawing.Color.Red
@@ -117,29 +120,6 @@ Partial Class TOPLog_Upload
         End Try
     End Sub
 
-    Sub CopyNewRecords()
-        'Copies records from table TOPLogUpload to TOPLog
-        Dim strSql As String
-        Dim cmd As SqlCommand
-
-        Dim strConnection As SqlConnection = New SqlConnection(connStr)
-        strSql = "p_Insert_TOPLog"
-        cmd = New SqlCommand(strSql)
-        cmd.CommandType = CommandType.StoredProcedure
-        Try
-            strConnection.Open()
-            cmd.Connection = strConnection
-            cmd.ExecuteNonQuery()
-            'Sometimes junk records are imported with missing borrower numbers.  These need to be deleted
-            DeleteBadBorrowerNumbers()
-        Catch ex As Exception
-            lblMessage.Text = ex.Message
-            lblMessage.ForeColor = Drawing.Color.Red
-        Finally
-            strConnection.Close()
-        End Try
-    End Sub
-
     Sub DeleteBadBorrowerNumbers()
         'Sometimes junk records are imported with missing borrower numbers.  These need to be deleted
         Dim strSql As String
@@ -154,9 +134,6 @@ Partial Class TOPLog_Upload
             cmd.Connection = strConnection
             cmd.ExecuteNonQuery()
 
-            'Now show the new records in the Gridview
-            BindGridView()
-
         Catch ex As Exception
             lblMessage.Text = ex.Message
             lblMessage.ForeColor = Drawing.Color.Red
@@ -165,40 +142,118 @@ Partial Class TOPLog_Upload
         End Try
     End Sub
 
+    Sub SelectNewTOPLog()
+
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
+        Dim UserID As String
+
+        Dim con As SqlConnection = New SqlConnection(connStr)
+        cmd = New SqlCommand("p_SelectNewTOPLog", con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+                    UserID = GetRandomUser()
+                    InsertNewTOPLog(UserID, dr("LogDate"), dr("RowID"), dr("BorrowerNumber"), dr("Action"), IIf((dr("NewOffsetAmount") Is DBNull.Value), 0, dr("NewOffsetAmount")))
+                End While
+            End Using
+
+        Catch ex As Exception
+            lblMessage.Text = ex.Message
+            lblMessage.ForeColor = Drawing.Color.Red
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Private Function GetRandomUser() As String
+        Dim UserID As String = ""
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
+
+        Dim con As SqlConnection = New SqlConnection(connStr)
+        cmd = New SqlCommand("p_ActiveUsers", con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+                    UserID = dr("UserID")
+                End While
+            End Using
+
+        Finally
+            con.Close()
+        End Try
+        Return UserID
+    End Function
+
+    Sub InsertNewTOPLog(ByVal UserID As String, ByVal LogDate As Date, ByVal RowID As Integer, ByVal BorrowerNumber As String, ByVal Action As String, Optional ByVal NewOffsetAmount As Decimal = 0.0)
+        'Copies records from table TOPLogUpload to TOPLog
+        Dim strSql As String
+        Dim cmd As SqlCommand
+
+        Dim strConnection As SqlConnection = New SqlConnection(connStr)
+        strSql = "p_Insert_NewTOPLog"
+        cmd = New SqlCommand(strSql)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = UserID
+        cmd.Parameters.Add("@LogDate", SqlDbType.SmallDateTime).Value = LogDate
+        cmd.Parameters.Add("@RowID", SqlDbType.Int).Value = RowID
+        cmd.Parameters.Add("@BorrowerNumber", SqlDbType.VarChar).Value = BorrowerNumber
+        cmd.Parameters.Add("@Action", SqlDbType.VarChar).Value = Action
+        cmd.Parameters.Add("@NewOffsetAmount", SqlDbType.Float).Value = NewOffsetAmount
+
+        Try
+            strConnection.Open()
+            cmd.Connection = strConnection
+            cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            lblMessage.Text = ex.Message
+            lblMessage.ForeColor = Drawing.Color.Red
+        Finally
+            strConnection.Close()
+            lblMessage.Text = "The import was successul!"
+            grdUserManager.DataBind()
+        End Try
+    End Sub
+
     Protected Sub grdTOPLog_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
         grdTOPLog.PageIndex = e.NewPageIndex
     End Sub
 
-    Sub BindGridView()
-        Dim strSQLConn As SqlConnection
+    Sub DeleteDuplicates()
+        'Deletes old records from table TOPLogUpload
+        Dim strSql As String
         Dim cmd As SqlCommand
-        Dim ds As DataSet
 
-        strSQLConn = New SqlConnection(ConfigurationManager.ConnectionStrings("TOPLogConnectionString").ConnectionString)
-        cmd = New SqlCommand("p_TOPLogUpload_AllRecords", strSQLConn)
+        Dim strConnection As SqlConnection = New SqlConnection(connStr)
+        strSql = "p_DeleteDuplicates"
+        cmd = New SqlCommand(strSql)
         cmd.CommandType = CommandType.StoredProcedure
-
         Try
-            strSQLConn.Open()
-            Dim MyAdapter As New SqlDataAdapter(cmd)
+            strConnection.Open()
+            cmd.Connection = strConnection
+            cmd.ExecuteNonQuery()
 
-            ds = New DataSet()
-            MyAdapter.Fill(ds, "TOPLog")
+            'Delete the duplicates in the TOPLog table
+            DeleteDuplicates()
 
-            lblRowCount.ForeColor = Drawing.Color.Green
-            Dim intRecordCount As Integer = ds.Tables(0).Rows.Count()
-            lblRowCount.Text = "The import was successul!  You imported " & intRecordCount & " new TOP records today."
-
-            ds.Tables(0).DefaultView.Sort = lblSortExpression.Text
-
-            grdTOPLog.DataSource = ds.Tables("TOPLog").DefaultView
-            grdTOPLog.DataBind()
-
+        Catch ex As Exception
+            lblMessage.Text = ex.Message
+            lblMessage.ForeColor = Drawing.Color.Red
         Finally
-            strSQLConn.Close()
+            strConnection.Close()
         End Try
     End Sub
-
-   
 
 End Class

@@ -43,6 +43,7 @@ Partial Class CCM_New_FormB
         cmd.Parameters.AddWithValue("@DateofReview", txtDateofReview.Text)
         cmd.Parameters.AddWithValue("@BeginTimeofReview", Today() & " " & txtBeginTimeofReview.Text)
         cmd.Parameters.AddWithValue("@EndTimeofReview", Today() & " " & txtEndTimeofReview.Text)
+        cmd.Parameters.AddWithValue("@CallReviewMonth", ddlCallReviewMonth.SelectedValue)
         cmd.Parameters.AddWithValue("@BorrowerAccountNumber", txtBorrowerAccountNumber.Text)
         cmd.Parameters.AddWithValue("@InboundOutbound", ddlInboundOutbound.SelectedValue)
         If ddlSpecialtyLine.SelectedValue <> "" Then

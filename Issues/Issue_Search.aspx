@@ -257,6 +257,7 @@ Select Issue Type:
             <asp:ListItem Text="" Value="" Selected="True" />             
             <asp:ListItem Text="AES/PHEAA" Value="AES/PHEAA" />
             <asp:ListItem Text="Cornerstone" Value="Conerstone" />
+            <asp:ListItem Text="EdFinancial-HESC" Value="EdFinancial-HESC" />
             <asp:ListItem Text="ESA" Value="ESA" /> 
             <asp:ListItem Text="FedLoan" Value="FedLoan" /> 
             <asp:ListItem Text="FSA-Bus Ops" Value="FSA-Bus Ops" />

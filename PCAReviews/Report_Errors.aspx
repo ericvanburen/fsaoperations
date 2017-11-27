@@ -47,6 +47,7 @@
         <li><a href="Reports_Incorrect_Actions_ByGroup.aspx">PCA Incorrect Actions Summary</a></li>
         <li><a href="Reports_Incorrect_Actions.aspx">PCA Incorrect Actions Detail</a></li>
         <li><a href="QCCalc.aspx">QC Calculator</a></li>
+        <li><a href="QCUserManager.aspx">QC User Manager</a></li>
     </ul>
   </li>
  </ul>

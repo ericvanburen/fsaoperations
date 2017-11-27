@@ -70,6 +70,7 @@
                   <asp:ListItem Text="Approved" Value="Approved" />
                   <asp:ListItem Text="Denied" Value="Denied" />
                   <asp:ListItem Text="Pending" Value="Pending" />
+                  <asp:ListItem Text="Issue" Value="Issue" />
               </asp:ListBox></td>
 </tr>
 <tr>
@@ -93,6 +94,7 @@
                   <asp:ListItem Text="Approved" Value="Approved" />
                   <asp:ListItem Text="Denied" Value="Denied" />
                   <asp:ListItem Text="Pending" Value="Pending" />
+                  <asp:ListItem Text="Issue" Value="Issue" />
               </asp:ListBox></td>
     <td class="formLabel">Second Line Approved By:</td>
     <td><asp:ListBox ID="ddlSecondLineApprovedBy" runat="server" SelectionMode="Multiple" Rows="3">
@@ -173,7 +175,10 @@
     <asp:BoundField DataField="FirstLineDateApproved" HeaderText="First Line Date Approved" SortExpression="FirstLineDateApproved" DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" />                            
     <asp:BoundField DataField="SecondLineApprovalStatus" HeaderText="Second Line Approval Status" SortExpression="SecondLineApprovalStatus" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" />
     <asp:BoundField DataField="SecondLineDateApproved" HeaderText="Second Line Date Approved" SortExpression="SecondLineDateApproved" DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" /> 
-    </Columns>
+    <asp:BoundField DataField="UploadDate" HeaderText="Upload Date" SortExpression="UploadDate" DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" /> 
+    <asp:BoundField DataField="Comments" HeaderText="Comments" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" /> 
+
+</Columns>
 </asp:GridView>
     <br />
     <div align="center">

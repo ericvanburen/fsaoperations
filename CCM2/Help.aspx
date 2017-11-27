@@ -67,6 +67,8 @@
                                             <li><a href="admin/ReportIndividualProductivityCallCenter.aspx">Productivity-Call Center</a></li>
                                             <li><a href="admin/Search.aspx">Search</a></li>
                                             <li><a href="ChecksSearch.aspx">Servicer Check Report</a></li>
+                                            <li><a href="admin/QCReview_New.aspx">QC Review - Add</a></li>
+                                            <li><a href="admin/QCReview_Search.aspx">QC Review - Search</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Monitoring</a>

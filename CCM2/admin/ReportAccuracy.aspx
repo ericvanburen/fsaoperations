@@ -4,12 +4,9 @@
 
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/menustyle.css" rel="stylesheet" type="text/css" />
-    <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <link href="../css/menustyle.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="../css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
     <script src="../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="../Scripts/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-    <script src="../Scripts/menu.js" type="text/javascript"></script>
     <script src="../Scripts/menu.js" type="text/javascript"></script>
     <style type="text/css">
     .sectionHeader {
@@ -54,6 +51,8 @@
                                             <li><a href="ReportIndividualProductivityCallCenter.aspx">Productivity-Call Center</a></li>
                                             <li><a href="Search.aspx">Search</a></li>
                                             <li><a href="../ChecksSearch.aspx">Servicer Check Report</a></li>
+                                            <li><a href="QCReview_New.aspx">QC Review - Add</a></li>
+                                            <li><a href="QCReview_Search.aspx">QC Review - Search</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Monitoring</a>
@@ -73,10 +72,10 @@
                                     SelectCommand="p_CallCentersAll" SelectCommandType="StoredProcedure" />
                                 
                                 <div align="left" style="padding-top: 10px" id="tabs-1">
-                                    <table cellpadding="2" cellspacing="2" border="0" width="100%">
+                                    <table cellpadding="4" cellspacing="2" border="0" width="100%">
                                         <tr>
                                             <td valign="top">
-                                                <strong>Call Center:</strong><br />
+                                                <strong>Choose the Call Center:</strong><br />
                                                 <asp:DropDownList ID="ddlCallCenterID" runat="server" DataSourceID="dsCallCenters"
                                                     SelectionMode="Multiple" Rows="4" AppendDataBoundItems="true" DataTextField="CallCenter"
                                                     DataValueField="CallCenterID">
@@ -84,20 +83,64 @@
                                                 </asp:DropDownList>
                                                 <br />
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlCallCenterID"
-                                                    ErrorMessage="* Call Center is reqired" CssClass="warning" Display="Dynamic" />
+                                                    ErrorMessage="* Call Center is reqired" CssClass="warning" Display="Dynamic" ValidationGroup="1" />
+                                            <br />
                                             </td>
+                                         </tr>
+                                        <tr style="outline: thin solid">   
                                             <td valign="top">
                                                 <strong>Begin Date of Review:</strong><br />                                                
                                                             <asp:TextBox ID="txtDateofReviewBegin" runat="server" /><br />
-                                                            <asp:RequiredFieldValidator ID="rfd1" runat="server" ControlToValidate="txtDateofReviewBegin" ErrorMessage="* Begin Date is reqired" CssClass="warning" Display="Dynamic"/>                                                        
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDateofReviewBegin"
+                                                    ErrorMessage="* Begin Date of Review is reqired" CssClass="warning" Display="Dynamic" ValidationGroup="1" />                                                        
                                             </td>
                                             <td valign="top">
                                                 <strong>End Date of Review:</strong><br />                                               
                                                             <asp:TextBox ID="txtDateofReviewEnd" runat="server" /><br />
-                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDateofReviewEnd" ErrorMessage="*End Date is reqired" CssClass="warning" Display="Dynamic" />                                                         
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtDateofReviewEnd"
+                                                    ErrorMessage="* End Date of Review is reqired" CssClass="warning" Display="Dynamic" ValidationGroup="1" />                                                         
                                             </td>
                                             <td valign="bottom">
-                                                <asp:Button ID="btnSearch" runat="server" CssClass="button" Text="Search" OnClick="btnAccuracyReport_Click" />
+                                                <asp:Button ID="btnSearch" runat="server" CssClass="button" Text="Search" OnClick="btnAccuracyReport_Click" ValidationGroup="1" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                             <td valign="top"><h2>OR</h2><br /></td>
+                                        </tr>
+                                        <tr style="outline: thin solid">
+                                            <td valign="top">
+                                                <strong>Call Review Month:</strong><br />                                                
+                                                <asp:DropDownList ID="ddlCallReviewMonth" runat="server" Height="25px">                                                        
+                                                        <asp:ListItem Text="" Value="" />
+                                                        <asp:ListItem Text="January" Value="01" />
+                                                        <asp:ListItem Text="February" Value="02" />
+                                                        <asp:ListItem Text="March" Value="03" />
+                                                        <asp:ListItem Text="April" Value="04" />
+                                                        <asp:ListItem Text="May" Value="05" />
+                                                        <asp:ListItem Text="June" Value="06" />
+                                                        <asp:ListItem Text="July" Value="07" />
+                                                        <asp:ListItem Text="August" Value="08" />
+                                                        <asp:ListItem Text="September" Value="09" />
+                                                        <asp:ListItem Text="October" Value="10" />
+                                                        <asp:ListItem Text="November" Value="11" />
+                                                        <asp:ListItem Text="December" Value="12" />
+                                                    </asp:DropDownList><br />
+                                                <br />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlCallReviewMonth"
+                                                    ErrorMessage="* Call Review Month is reqired" CssClass="warning" Display="Dynamic" ValidationGroup="2" />                                                              
+                                            </td>
+                                            <td valign="top">
+                                                <strong>Call Review Year:</strong><br />                                               
+                                                 <asp:DropDownList ID="ddlCallReviewYear" runat="server" Height="25px">                                                        
+                                                        <asp:ListItem Text="" Value="" />
+                                                        <asp:ListItem Text="2017" Value="2017" />
+                                                        <asp:ListItem Text="2018" Value="2018" />                                                        
+                                                    </asp:DropDownList><br />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlCallReviewYear"
+                                                    ErrorMessage="* Call Review Year is reqired" CssClass="warning" Display="Dynamic" ValidationGroup="2" />                                                                 
+                                            </td>
+                                            <td valign="bottom">
+                                                <asp:Button ID="btnSearch2" runat="server" CssClass="button" Text="Search" OnClick="btnAccuracyReport2_Click" ValidationGroup="2" />
                                             </td>
                                         </tr>
                                     </table>

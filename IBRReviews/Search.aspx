@@ -93,7 +93,7 @@
         <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="PCA" data-content="The PCA the IBR review is for">PCA</a></th>
         <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Quarter" data-content="The fiscal quarter of the review">Quarter</a></th>
         <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Year" data-content="The fiscal year of the review">Year</a></th>
-        <th class="tableColumnHead" colspan="1"> </th>
+        <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Month" data-content="The Month the IBR review is for">Month</a></th>
      </tr>
     <tr>        
         <td valign="top" class="tableColumnCell" colspan="1">                  
@@ -109,13 +109,30 @@
                 <asp:ListItem Text="4 (Jul, Aug, Sep)" Value="4" />                    
             </asp:ListBox></td>
         <td valign="top" class="tableColumnCell" colspan="1">               
-                <asp:ListBox ID="ddlReportYear" runat="server" CssClass="inputBox" TabIndex="7" SelectionMode="Multiple">
+                <asp:ListBox ID="ddlReportYear" runat="server" CssClass="inputBox" TabIndex="8" SelectionMode="Multiple">
                 <asp:ListItem Text="" Value="" />
+                <asp:ListItem Text="2018" Value="2018" />
                 <asp:ListItem Text="2017" Value="2017" />
                 <asp:ListItem Text="2016" Value="2016" />
                 <asp:ListItem Text="2015" Value="2015" />                
         </asp:ListBox></td>
-        <td valign="top" class="tableColumnCell" colspan="1"></td>
+        <td valign="top" class="tableColumnCell" colspan="1">
+           <asp:ListBox ID="ddlReportMonth" runat="server" CssClass="inputBox" TabIndex="9" SelectionMode="Multiple">
+                <asp:ListItem Text="" Value="" />        
+                <asp:ListItem Text="01" Value="01" />
+                <asp:ListItem Text="02" Value="02" />
+                <asp:ListItem Text="03" Value="03" />
+                <asp:ListItem Text="04" Value="04" />
+                <asp:ListItem Text="05" Value="05" />
+                <asp:ListItem Text="06" Value="06" />
+                <asp:ListItem Text="07" Value="07" />
+                <asp:ListItem Text="08" Value="08" />
+                <asp:ListItem Text="09" Value="09" />
+                <asp:ListItem Text="10" Value="10" />
+                <asp:ListItem Text="11" Value="11" />
+                <asp:ListItem Text="12" Value="12" />
+           </asp:ListBox>
+        </td>
     </tr>    
     <tr>
         <td colspan="4" align="center"><br />
@@ -143,9 +160,12 @@
             </asp:TemplateField>            
             <asp:BoundField DataField="UserID" HeaderText="Loan Analyst" SortExpression="UserID" HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="PCA" HeaderText="PCA" SortExpression="PCA" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="ReportMonth" HeaderText="Month" SortExpression="ReportMonth" HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="ReportQuarter" HeaderText="Quarter" SortExpression="ReportQuarter" HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="ReportYear" HeaderText="Year" SortExpression="ReportYear" HeaderStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="DateSubmitted" HeaderText="Date Submitted" SortExpression="DateSubmitted" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="DateSubmitted" HeaderText="Date Submitted" SortExpression="DateSubmitted" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" DataFormatString="{0:d}" />
+            <asp:BoundField DataField="DateAssigned" HeaderText="Date Assigned" SortExpression="DateAssigned" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" DataFormatString="{0:d}" />
+            <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" DataFormatString="{0:d}" />
             <asp:BoundField DataField="BorrowerNumber" HeaderText="Borrower #" SortExpression="BorrowerNumber" HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Agreement_Letter_Signed" HeaderText="Agreement Letter Signed?" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" /> 
             <asp:BoundField DataField="Agreement_Letter_Signed_Date" HeaderText="Date Agreement Letter Was Signed" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />

@@ -41,7 +41,7 @@
             $("#pnlQCBody").css("display", "none");
             $("#expanderSignQC").text("+")
 
-        });     
+        });
     </script> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -155,9 +155,9 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
     <tr>    
     <td align="right"><a href="#" data-toggle="popover" title="Source Org Type" data-content="Please indicate what type of organization the issue originated from">Issue Source</a></td>
             <td>
-        <asp:DropDownList ID="ddlSourceOrgType" runat="server" CssClass="inputBox" SelectedValue='<%# Eval("SourceOrgType") %>'>
+        <asp:DropDownList ID="ddlSourceOrgType" runat="server" CssClass="inputBox" SelectedValue='<%# Eval("SourceOrgType") %>'>            
             <asp:ListItem Text="" Value="" Selected="True" />
-            <asp:ListItem Text="Attorney" Value="Attorney" />
+	    <asp:ListItem Text="Attorney" Value="Attorney" />            
             <asp:ListItem Text="BBB" Value="BBB" />
             <asp:ListItem Text="Borrower" Value="Borrower" />
             <asp:ListItem Text="CFPB" Value="CFPB" />
@@ -199,7 +199,7 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
                  <asp:ListItem Text="PIC/Vangent" Value="PIC/Vangent" />
                  <asp:ListItem Text="Web" Value="Web" />
                  <asp:ListItem Text="ED" Value="ED" />
-                 <asp:ListItem Text="ECS" Value="ECS" />
+		 <asp:ListItem Text="ECS" Value="ECS" />
              </asp:DropDownList>       
         </td>
     </tr>    

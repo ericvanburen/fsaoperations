@@ -117,6 +117,12 @@ Partial Class PCAReviews_NewReview
             cmd.Parameters.AddWithValue("@Score_MiniMiranda", DBNull.Value)
         End If
 
+        If ddlScore_CallRecording.SelectedValue <> "" Then
+            cmd.Parameters.AddWithValue("@Score_CallRecording", ddlScore_CallRecording.SelectedValue)
+        Else
+            cmd.Parameters.AddWithValue("@Score_CallRecording", DBNull.Value)
+        End If
+
         If ddlScore_Tone.SelectedValue <> "" Then
             cmd.Parameters.AddWithValue("@Score_Tone", ddlScore_Tone.SelectedValue)
         Else
@@ -265,54 +271,54 @@ Partial Class PCAReviews_NewReview
             cmd.Parameters.AddWithValue("@Score_Electronic_Payments", DBNull.Value)
         End If
 
-        'Supposed to be "Delay Tax Return"
-        If ddlScore_Delay_Tax_Reform.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Delay_Tax_Reform", ddlScore_Delay_Tax_Reform.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Delay_Tax_Reform", DBNull.Value)
-        End If
+        ''Supposed to be "Delay Tax Return"
+        'If ddlScore_Delay_Tax_Reform.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_Delay_Tax_Reform", ddlScore_Delay_Tax_Reform.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_Delay_Tax_Reform", DBNull.Value)
+        'End If
 
-        If ddlScore_More_Aid.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_More_Aid", ddlScore_More_Aid.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_More_Aid", DBNull.Value)
-        End If
+        'If ddlScore_More_Aid.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_More_Aid", ddlScore_More_Aid.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_More_Aid", DBNull.Value)
+        'End If
 
-        If ddlScore_Collection_Costs_Waived.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Collection_Costs_Waived", ddlScore_Collection_Costs_Waived.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Collection_Costs_Waived", DBNull.Value)
-        End If
+        'If ddlScore_Collection_Costs_Waived.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_Collection_Costs_Waived", ddlScore_Collection_Costs_Waived.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_Collection_Costs_Waived", DBNull.Value)
+        'End If
 
-        If ddlScore_False_Requirements.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_False_Requirements", ddlScore_False_Requirements.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_False_Requirements", DBNull.Value)
-        End If
+        'If ddlScore_False_Requirements.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_False_Requirements", ddlScore_False_Requirements.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_False_Requirements", DBNull.Value)
+        'End If
 
-        If ddlScore_Avoid_PIF.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Avoid_PIF", ddlScore_Avoid_PIF.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Avoid_PIF", DBNull.Value)
-        End If
+        'If ddlScore_Avoid_PIF.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_Avoid_PIF", ddlScore_Avoid_PIF.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_Avoid_PIF", DBNull.Value)
+        'End If
 
-        If ddlScore_Rehab_Then_TPD.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Rehab_Then_TPD", ddlScore_Rehab_Then_TPD.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Rehab_Then_TPD", DBNull.Value)
-        End If
+        'If ddlScore_Rehab_Then_TPD.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_Rehab_Then_TPD", ddlScore_Rehab_Then_TPD.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_Rehab_Then_TPD", DBNull.Value)
+        'End If
 
-        If ddlScore_Payments_Are_Final.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Payments_Are_Final", ddlScore_Payments_Are_Final.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Payments_Are_Final", DBNull.Value)
-        End If
+        'If ddlScore_Payments_Are_Final.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_Payments_Are_Final", ddlScore_Payments_Are_Final.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_Payments_Are_Final", DBNull.Value)
+        'End If
 
-        If ddlScore_Not_Factual.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Not_Factual", ddlScore_Not_Factual.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Not_Factual", DBNull.Value)
-        End If
+        'If ddlScore_Not_Factual.SelectedValue <> "" Then
+        '    cmd.Parameters.AddWithValue("@Score_Not_Factual", ddlScore_Not_Factual.SelectedValue)
+        'Else
+        '    cmd.Parameters.AddWithValue("@Score_Not_Factual", DBNull.Value)
+        'End If
 
         If ddlScore_Financial_Documents.SelectedValue <> "" Then
             cmd.Parameters.AddWithValue("@Score_Financial_Documents", ddlScore_Financial_Documents.SelectedValue)
@@ -407,14 +413,20 @@ Partial Class PCAReviews_NewReview
             cmd.Parameters.AddWithValue("@FSA_Conclusions", DBNull.Value)
         End If
 
+        cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Direction = ParameterDirection.Output
+
         Try
             strSQLConn.Open()
             cmd.Connection = strSQLConn
             cmd.ExecuteNonQuery()
+            Dim ReviewID As Integer = cmd.Parameters("@ReviewID").Value.ToString()
 
             lblUpdateConfirm.Text = "Your review was successfully submitted"
             btnSubmit.Visible = False
             btnUpdateAgain.Visible = True
+
+            'Now add the review to the QCTier1 work queue
+            InsertNewQCTier1Assignment(ReviewID)
 
         Finally
             strSQLConn.Close()
@@ -427,5 +439,59 @@ Partial Class PCAReviews_NewReview
         Dim ReviewPeriodYear As String = Server.UrlEncode(ddlReviewPeriodYear.SelectedValue)
         Response.Redirect("NewReview.aspx?PCAID=" & ddlPCAID.SelectedValue & "&CallDate=" & txtCallDate.Text & "&RecordingDeliveryDate=" & RecordingDeliveryDate & "&ReviewPeriodMonth=" & ReviewPeriodMonth & "&ReviewPeriodYear=" & ReviewPeriodYear & "&NewAssignmentID=" & lblNewAssignmentID.Text)
     End Sub
+
+    Sub InsertNewQCTier1Assignment(ByVal ReviewID As Integer)
+        Dim strSql As String
+        Dim cmd As SqlCommand
+
+        Dim con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
+        strSql = "p_Insert_NewQCTier1Assignment"
+        cmd = New SqlCommand(strSql)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = ReviewID
+        cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = GetRandomQCUser()
+        cmd.Parameters.Add("@DateAssigned", SqlDbType.SmallDateTime).Value = Now.ToShortDateString()
+        cmd.Parameters.Add("@ReviewPeriodMonth", SqlDbType.VarChar).Value = ddlReviewPeriodMonth.SelectedValue
+        cmd.Parameters.Add("@ReviewPeriodYear", SqlDbType.VarChar).Value = ddlReviewPeriodYear.SelectedValue
+
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            lblUpdateConfirm.Text = ex.Message
+            lblUpdateConfirm.ForeColor = Drawing.Color.Red
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Private Function GetRandomQCUser() As String
+        Dim UserID As String = ""
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
+
+        Dim con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_ActiveQCTier1Users", con)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add("@ReviewPeriodMonth", SqlDbType.VarChar).Value = ddlReviewPeriodMonth.SelectedValue
+        cmd.Parameters.Add("@ReviewPeriodYear", SqlDbType.VarChar).Value = ddlReviewPeriodYear.SelectedValue
+
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+                    UserID = dr("UserID")
+                End While
+            End Using
+
+        Finally
+            con.Close()
+        End Try
+        Return UserID
+    End Function
 
 End Class

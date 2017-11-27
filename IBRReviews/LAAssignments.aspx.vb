@@ -56,7 +56,7 @@ Partial Class IBRReviews_LAAssignments
         If e.Row.RowType = DataControlRowType.DataRow Then
             'This is for the Review Calls link - Hyperlink1
             Dim link = DirectCast(e.Row.FindControl("HyperLink1"), HyperLink)
-            Dim strNewAssignmentID As String = e.Row.Cells(9).Text
+            Dim strNewAssignmentID As String = e.Row.Cells(11).Text
             Dim strUserID As String = e.Row.Cells(2).Text
             Dim strPCA As String = e.Row.Cells(4).Text
             Dim strPCAID As String = e.Row.Cells(5).Text
@@ -103,11 +103,14 @@ Partial Class IBRReviews_LAAssignments
         ddlReportYear.SelectedValue = ""
         lblPCA2.Text = ""
         txtRecordingDeliveryDate.Text = ""
+        txtDateAssigned.Text = ""
+        txtDueDate.Text = ""
         txtWorksheetPCADate.Text = ""
         txtQCWorksheetDate.Text = ""
         txtFinalPCADate.Text = ""
         txtQCFinalDate.Text = ""
         txtComments.Text = ""
+
 
         'Clear the update confirm label
         lblUpdateConfirm.Text = ""
@@ -120,18 +123,18 @@ Partial Class IBRReviews_LAAssignments
                 While dr.Read()
                     ddlUserIDModal.SelectedValue = dr("UserID").ToString()
 
-                    'ReviewDate is ordinal 8 in pIBRAssignment
-                    If Not dr.IsDBNull(8) Then
+                    'ReviewDate is ordinal 10 in pIBRAssignment
+                    If Not dr.IsDBNull(10) Then
                         txtReviewDate.Text = dr("ReviewDate")
                     End If
 
-                    'ReportQuarter is ordinal 9 in pIBRAssignment
-                    If Not dr.IsDBNull(9) Then
+                    'ReportQuarter is ordinal 11 in pIBRAssignment
+                    If Not dr.IsDBNull(11) Then
                         ddlReportQuarter.SelectedValue = dr("ReportQuarter")
                     End If
 
-                    'ReportYear is ordinal 10 in pIBRAssignment
-                    If Not dr.IsDBNull(10) Then
+                    'ReportYear is ordinal 12 in pIBRAssignment
+                    If Not dr.IsDBNull(12) Then
                         ddlReportYear.SelectedValue = dr("ReportYear")
                     End If
 
@@ -145,28 +148,38 @@ Partial Class IBRReviews_LAAssignments
                         txtRecordingDeliveryDate.Text = dr("RecordingDeliveryDate").ToString()
                     End If
 
-                    'WorksheetPCADate is ordinal 4 in pIBRAssignment
+                    'DateAssigned is ordinal 4 in pIBRAssignment
                     If Not dr.IsDBNull(4) Then
+                        txtDateAssigned.Text = dr("DateAssigned").ToString()
+                    End If
+
+                    'DueDate is ordinal 5 in pIBRAssignment
+                    If Not dr.IsDBNull(5) Then
+                        txtDueDate.Text = dr("DueDate").ToString()
+                    End If
+
+                    'WorksheetPCADate is ordinal 6 in pIBRAssignment
+                    If Not dr.IsDBNull(6) Then
                         txtWorksheetPCADate.Text = dr("WorksheetPCADate").ToString()
                     End If
 
-                    'QCWorksheetDate is ordinal 6 in pIBRAssignment
-                    If Not dr.IsDBNull(6) Then
+                    'QCWorksheetDate is ordinal 8 in pIBRAssignment
+                    If Not dr.IsDBNull(8) Then
                         txtQCWorksheetDate.Text = dr("QCWorksheetDate").ToString()
                     End If
 
-                    'FinalPCADate is ordinal 5 in pIBRAssignment
-                    If Not dr.IsDBNull(5) Then
+                    'FinalPCADate is ordinal 7 in pIBRAssignment
+                    If Not dr.IsDBNull(7) Then
                         txtFinalPCADate.Text = dr("FinalPCADate").ToString()
                     End If
 
-                    'QCFinalDate is ordinal 7 in pIBRAssignment
-                    If Not dr.IsDBNull(7) Then
+                    'QCFinalDate is ordinal 9 in pIBRAssignment
+                    If Not dr.IsDBNull(9) Then
                         txtQCFinalDate.Text = dr("QCFinalDate").ToString()
                     End If
 
-                    'Comments is ordinal 11 in pIBRAssignment
-                    If Not dr.IsDBNull(11) Then
+                    'Comments is ordinal 13 in pIBRAssignment
+                    If Not dr.IsDBNull(13) Then
                         txtComments.Text = dr("Comments").ToString()
                     End If
 
@@ -199,6 +212,18 @@ Partial Class IBRReviews_LAAssignments
             cmd.Parameters.Add("@RecordingDeliveryDate", SqlDbType.SmallDateTime).Value = txtRecordingDeliveryDate.Text
         Else
             cmd.Parameters.Add("@RecordingDeliveryDate", SqlDbType.SmallDateTime).Value = DBNull.Value
+        End If
+
+        If txtDateAssigned.Text <> "" Then
+            cmd.Parameters.Add("@DateAssigned", SqlDbType.SmallDateTime).Value = txtDateAssigned.Text
+        Else
+            cmd.Parameters.Add("@DateAssigned", SqlDbType.SmallDateTime).Value = DBNull.Value
+        End If
+
+        If txtDueDate.Text <> "" Then
+            cmd.Parameters.Add("@DueDate", SqlDbType.SmallDateTime).Value = txtDueDate.Text
+        Else
+            cmd.Parameters.Add("@DueDate", SqlDbType.SmallDateTime).Value = DBNull.Value
         End If
 
         If ddlReportQuarter.SelectedValue <> "" Then

@@ -10,6 +10,11 @@ Partial Class DMCSRefunds_admin_upload
 
     Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
         If Not Page.IsPostBack Then
+            'Make sure only admins can access this page
+            If Roles.IsUserInRole("DMCSRefunds_Admins") = False Then
+                Response.Redirect("/Account/Login.aspx")
+            End If
+
             RadMenu1.LoadContentFile("~/DMCSRefunds/Menu.xml")
 
             'Deletes old records from table Refunds_Upload
@@ -34,8 +39,8 @@ Partial Class DMCSRefunds_admin_upload
                 Response.Redirect("InvalidFiletype.aspx")
             End If
 
-            strSaveLocation = "d:\DCS\fsaoperations\internal\DMCSRefunds\FileUploads\" & strFileNameOnly
-            'strSaveLocation = "C:\Users\Acer\Dropbox\fsaoperations\DMCSRefunds\FileUploads\" & strFileNameOnly
+            'strSaveLocation = "d:\DCS\fsaoperations\internal\DMCSRefunds\FileUploads\" & strFileNameOnly
+            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\DMCSRefunds\FileUploads\" & strFileNameOnly
             Try
                 fileuploadExcel.PostedFile.SaveAs(strSaveLocation)
                 ImportFile(strFileNameOnly)
@@ -59,9 +64,9 @@ Partial Class DMCSRefunds_admin_upload
             Dim conn As SqlConnection = New SqlConnection(connStr)
 
             'If extension = ".xls" Then
-            excelConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=d:\DCS\fsaoperations\internal\DMCSRefunds\FileUploads\" & FileName & ";Extended Properties=Excel 12.0;Persist Security Info=False"
+            'excelConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=d:\DCS\fsaoperations\internal\DMCSRefunds\FileUploads\" & FileName & ";Extended Properties=Excel 12.0;Persist Security Info=False"
             'excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Eric\Dropbox\fsaoperations\DMCSRefunds\FileUploads\refunds.xls;Extended Properties=Excel 8.0;Persist Security Info=False"
-            'excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Acer\Dropbox\fsaoperations\DMCSRefunds\FileUploads\" & FileName & ";Extended Properties=Excel 8.0;Persist Security Info=False"
+            excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\DMCSRefunds\FileUploads\" & FileName & ";Extended Properties=Excel 8.0;Persist Security Info=False"
             'ElseIf extension = ".xlsx" Then
             'excelConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Server.MapPath(path) & ";Extended Properties=Excel 12.0;Persist Security Info=False"
             'End If
@@ -89,11 +94,11 @@ Partial Class DMCSRefunds_admin_upload
             lblMessage.ForeColor = Drawing.Color.Green
             lblMessage.Text = "Import was successful!<br />"
 
-            'Now copy the records from table Refunds_Upload to Refunds
-            CopyNewRecords()
+            'Sometimes junk records are imported with missing borrower numbers.  These need to be deleted
+            DeleteBadBorrowerNumbers()
 
-            'Show the new records in the GridView
-            'grdRefunds.DataBind()
+            'Now copy the records from table Refunds_Upload to Refunds
+            SelectNewRefunds()
 
         Else
             lblMessage.ForeColor = Drawing.Color.Red
@@ -101,7 +106,7 @@ Partial Class DMCSRefunds_admin_upload
         End If
     End Sub
 
-    Sub DeleteOldRecords()
+    Sub DeleteOldRecords() 'Runs on page_load
         'Deletes old records from table Refunds_Upload
         Dim strSql As String
         Dim cmd As SqlCommand
@@ -114,29 +119,6 @@ Partial Class DMCSRefunds_admin_upload
             strConnection.Open()
             cmd.Connection = strConnection
             cmd.ExecuteNonQuery()
-        Catch ex As Exception
-            lblMessage.Text = ex.Message
-            lblMessage.ForeColor = Drawing.Color.Red
-        Finally
-            strConnection.Close()
-        End Try
-    End Sub
-
-    Sub CopyNewRecords()
-        'Copies records from table Refunds_Upload to Refunds
-        Dim strSql As String
-        Dim cmd As SqlCommand
-
-        Dim strConnection As SqlConnection = New SqlConnection(connStr)
-        strSql = "p_Insert_Refunds"
-        cmd = New SqlCommand(strSql)
-        cmd.CommandType = CommandType.StoredProcedure
-        Try
-            strConnection.Open()
-            cmd.Connection = strConnection
-            cmd.ExecuteNonQuery()
-            'Sometimes junk records are imported with missing borrower numbers.  These need to be deleted
-            DeleteBadBorrowerNumbers()
         Catch ex As Exception
             lblMessage.Text = ex.Message
             lblMessage.ForeColor = Drawing.Color.Red
@@ -166,120 +148,122 @@ Partial Class DMCSRefunds_admin_upload
         End Try
     End Sub
 
-    Private Sub FindCheckedRows()
-        Dim checkedRowsList As ArrayList
-        If ViewState("checkedRowsList") IsNot Nothing Then
-            checkedRowsList = DirectCast(ViewState("checkedRowsList"), ArrayList)
-        Else
-            checkedRowsList = New ArrayList()
-        End If
+    Sub SelectNewRefunds()
 
-        For Each gvRow As GridViewRow In grdRefunds.Rows
-            If gvRow.RowType = DataControlRowType.DataRow Then
-                Dim rowIndex As String = Convert.ToString(grdRefunds.DataKeys(gvRow.RowIndex)("RefundID"))
-                Dim chkSelect As CheckBox = DirectCast(gvRow.FindControl("chkSelect"), CheckBox)
+        'For i As Integer = 0 To userArray.Count - 1
+        'Response.Write(userArray(i).ToString() + "<br/>")
+        'Dim Rand As New Random()
+        'Dim Index As Integer = Rand.Next(0, userArray.Count - 1)
+        'Dim randomUser = userArray(Index)
+        'Next
 
-                If (chkSelect.Checked) AndAlso (Not checkedRowsList.Contains(rowIndex)) Then
-                    checkedRowsList.Add(rowIndex)
-                ElseIf (Not chkSelect.Checked) AndAlso (checkedRowsList.Contains(rowIndex)) Then
-                    checkedRowsList.Remove(rowIndex)
-                End If
-            End If
-        Next
-        ViewState("checkedRowsList") = checkedRowsList
-    End Sub
-
-    Protected Sub grdRefunds_PageIndexChanging(ByVal sender As Object, ByVal e As GridViewPageEventArgs)
-        grdRefunds.PageIndex = e.NewPageIndex
-        FindCheckedRows()
-    End Sub
-
-    Protected Sub grdRefunds_RowDataBound(sender As Object, e As GridViewRowEventArgs)
-        If ViewState("checkedRowsList") IsNot Nothing Then
-            Dim checkedRowsList As ArrayList = DirectCast(ViewState("checkedRowsList"), ArrayList)
-            Dim gvRow As GridViewRow = e.Row
-            If gvRow.RowType = DataControlRowType.DataRow Then
-                Dim chkSelect As CheckBox = DirectCast(gvRow.FindControl("chkSelect"), CheckBox)
-                Dim rowIndex As String = Convert.ToString(grdRefunds.DataKeys(gvRow.RowIndex)("RefundID"))
-
-                If checkedRowsList.Contains(rowIndex) Then
-                    chkSelect.Checked = True
-                End If
-            End If
-        End If
-    End Sub
-
-    Sub btnRefundsMenu_Click(ByVal sender As Object, ByVal e As CommandEventArgs)
-        Select Case e.CommandArgument
-            Case "Unassigned"
-                'Call the BindGridView method with the correct argument
-                'BindGridView(CType(e.CommandArgument, String))
-                BindGridView("p_Refunds_Unassigned")
-            Case ""
-            Case ""
-        End Select
-    End Sub
-
-    Sub BindGridView(ByVal procName As String)
-        Dim strSQLConn As SqlConnection
         Dim cmd As SqlCommand
-        Dim ds As DataSet
+        Dim dr As SqlDataReader
+        Dim UserID As String
 
-        strSQLConn = New SqlConnection(ConfigurationManager.ConnectionStrings("DMCSRefundsConnectionString").ConnectionString)
-        cmd = New SqlCommand(procName, strSQLConn)
+        Dim con As SqlConnection = New SqlConnection(connStr)
+        cmd = New SqlCommand("p_SelectNewRefunds", con)
         cmd.CommandType = CommandType.StoredProcedure
 
         Try
-            strSQLConn.Open()
-            Dim MyAdapter As New SqlDataAdapter(cmd)
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+                    UserID = GetRandomUser()
+                    InsertNewRefunds(UserID, dr("BorrowerNumber"), dr("TagDate"))
+                    'Response.Write(randomUser)
+                End While
+            End Using
 
-            ds = New DataSet()
-            MyAdapter.Fill(ds, "Refunds")
+            'Delete the duplicates in the Refunds table
+            DeleteDuplicates()
 
-            Dim intRecordCount As Integer = ds.Tables(0).Rows.Count()
-            lblRowCount.Text = "Your list contains " & intRecordCount & " refunds"
-
-            ds.Tables(0).DefaultView.Sort = lblSortExpression.Text
-
-            grdRefunds.DataSource = ds.Tables("Refunds").DefaultView
-            grdRefunds.DataBind()
-
+        Catch ex As Exception
+            lblMessage.Text = ex.Message
+            lblMessage.ForeColor = Drawing.Color.Red
         Finally
-            strSQLConn.Close()
+            con.Close()
         End Try
     End Sub
 
-    Protected Sub GridView1_Sorting(ByVal sender As Object, ByVal e As GridViewSortEventArgs)
-        Dim strSortString = Convert.ToString(e.SortExpression) & " " & GetSortDirection(e.SortDirection)
-        lblSortExpression.Text = strSortString.ToString
-        'Now bind the gridview with the results
-        'BindGridView()
-    End Sub
+    Private Function GetRandomUser() As String
+        Dim UserID As String = ""
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
 
-    Private Function GetSortDirection(ByVal column As String) As String
-        ' By default, set the sort direction to ascending. 
-        Dim sortDirection = "ASC"
-        ' Retrieve the last column that was sorted. 
-        Dim sortExpression = TryCast(ViewState("SortExpression"), String)
-        If sortExpression IsNot Nothing Then
-            ' Check if the same column is being sorted. 
-            ' Otherwise, the default value can be returned. 
-            If sortExpression = column Then
-                Dim lastDirection = TryCast(ViewState("SortDirection"), String)
-                If lastDirection IsNot Nothing _
-                AndAlso lastDirection = "ASC" Then
-                    sortDirection = "DESC"
-                End If
-            End If
-        End If
-        ' Save new values in ViewState. 
-        ViewState("SortDirection") = sortDirection
-        ViewState("SortExpression") = column
-        Return sortDirection
+        Dim con As SqlConnection = New SqlConnection(connStr)
+        cmd = New SqlCommand("p_ActiveUsers", con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+                    UserID = dr("UserID")
+                End While
+            End Using
+
+        Finally
+            con.Close()
+        End Try
+        Return UserID
     End Function
 
+    Sub InsertNewRefunds(ByVal UserID As String, ByVal BorrowerNumber As String, ByVal TagDate As Date)
+        'Copies records from table Refunds_Upload to Refunds
+        Dim strSql As String
+        Dim cmd As SqlCommand
 
-    Protected Sub btnDeleteDuplicates_Click(sender As Object, e As EventArgs)
+        Dim strConnection As SqlConnection = New SqlConnection(connStr)
+        strSql = "p_Insert_NewRefunds"
+        cmd = New SqlCommand(strSql)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = UserID
+        cmd.Parameters.Add("@BorrowerNumber", SqlDbType.VarChar).Value = BorrowerNumber
+        cmd.Parameters.Add("@TagDate", SqlDbType.SmallDateTime).Value = TagDate
+
+        Try
+            strConnection.Open()
+            cmd.Connection = strConnection
+            cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            lblMessage.Text = ex.Message
+            lblMessage.ForeColor = Drawing.Color.Red
+        Finally
+            strConnection.Close()
+        End Try
+    End Sub
+
+    'Sub CopyNewRecords()
+    '    'Copies records from table Refunds_Upload to Refunds
+    '    Dim strSql As String
+    '    Dim cmd As SqlCommand
+
+    '    Dim strConnection As SqlConnection = New SqlConnection(connStr)
+    '    strSql = "p_Insert_Refunds"
+    '    cmd = New SqlCommand(strSql)
+    '    cmd.CommandType = CommandType.StoredProcedure
+    '    Try
+    '        strConnection.Open()
+    '        cmd.Connection = strConnection
+    '        cmd.ExecuteNonQuery()
+    '        'Sometimes junk records are imported with missing borrower numbers.  These need to be deleted
+    '        DeleteBadBorrowerNumbers()
+    '    Catch ex As Exception
+    '        lblMessage.Text = ex.Message
+    '        lblMessage.ForeColor = Drawing.Color.Red
+    '    Finally
+    '        strConnection.Close()
+    '    End Try
+    'End Sub
+
+
+    Protected Sub DeleteDuplicates()
         Dim strSql As String
         Dim cmd As SqlCommand
 
@@ -296,7 +280,6 @@ Partial Class DMCSRefunds_admin_upload
             lblMessage.ForeColor = Drawing.Color.Red
         Finally
             strConnection.Close()
-            lblMessage.Text = "Duplicates were deleted"
         End Try
     End Sub
 End Class

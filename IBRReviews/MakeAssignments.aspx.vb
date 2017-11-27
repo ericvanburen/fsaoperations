@@ -11,6 +11,9 @@ Partial Class IBRReviews_MakeAssignments
                 Response.Redirect("/Account/Login.aspx")
             End If
 
+            'Populate Date Assigned field with todays date
+            txtDateAssigned.Text = DateTime.Now.ToShortDateString()
+
             ddlUserID.DataSource = Roles.GetUsersInRole("IBRReviews")
             ddlUserID.DataBind()
         End If
@@ -34,6 +37,12 @@ Partial Class IBRReviews_MakeAssignments
             cmd.Parameters.Add("@ReviewDate", SqlDbType.SmallDateTime).Value = DBNull.Value
         End If
 
+        If ddlReportMonth.SelectedValue <> "" Then
+            cmd.Parameters.Add("@ReportMonth", SqlDbType.VarChar).Value = ddlReportMonth.SelectedValue
+        Else
+            cmd.Parameters.Add("@ReportMonth", SqlDbType.VarChar).Value = DBNull.Value
+        End If
+
         If ddlReportQuarter.SelectedValue <> "" Then
             cmd.Parameters.Add("@ReportQuarter", SqlDbType.Int).Value = ddlReportQuarter.SelectedValue
         Else
@@ -44,6 +53,18 @@ Partial Class IBRReviews_MakeAssignments
             cmd.Parameters.Add("@ReportYear", SqlDbType.Int).Value = ddlReportYear.SelectedValue
         Else
             cmd.Parameters.Add("@ReportYear", SqlDbType.Int).Value = DBNull.Value
+        End If
+
+        If txtDateAssigned.Text <> "" Then
+            cmd.Parameters.Add("@DateAssigned", SqlDbType.SmallDateTime).Value = txtDateAssigned.Text
+        Else
+            cmd.Parameters.Add("@DateAssigned", SqlDbType.SmallDateTime).Value = DBNull.Value
+        End If
+
+        If txtDueDate.Text <> "" Then
+            cmd.Parameters.Add("@DueDate", SqlDbType.SmallDateTime).Value = txtDueDate.Text
+        Else
+            cmd.Parameters.Add("@DueDate", SqlDbType.SmallDateTime).Value = DBNull.Value
         End If
 
         Try

@@ -3,6 +3,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <script src="../Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+    
     <script src="../bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
     <script src="../bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="scripts/scripts_PCA.js" type="text/javascript"></script>
@@ -10,7 +12,9 @@
     <link href="../bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/datepicker.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-   
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <script src="scripts/FileUpload.js" type="text/javascript"></script>
+
     <script type="text/javascript">
         // this updates the active tab on the navbar
         $(document).ready(function () {
@@ -36,9 +40,26 @@
                 trigger: 'hover',
                 'placement': 'top'
             });
-            
-         });
+
+        });
     </script> 
+
+    <style type="text/css">
+        .progressbar {
+            width: 300px;
+            height: 21px;
+        }
+
+        .progressbarlabel {
+            width: 300px;
+            height: 21px;
+            position: absolute;
+            text-align: center;
+            font-size: small;
+        }
+    </style>
+
+       
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 <!--Datasource for all of the Categories-->
@@ -184,7 +205,7 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
                  <asp:ListItem Text="PIC/Vangent" Value="PIC/Vangent" />
                  <asp:ListItem Text="Web" Value="Web" />
                  <asp:ListItem Text="ED" Value="ED" />
-                 <asp:ListItem Text="ECS" Value="ECS" />
+		 <asp:ListItem Text="ECS" Value="ECS" />
              </asp:DropDownList>       
         </td>
     </tr>    
@@ -522,23 +543,32 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
   <div class="panel-body" id="pnlAttachmentsBody">
    <table style="padding: 5px 5px 5px 15px;" width="100%" cellpadding="5" cellspacing="5">
        <tr>
-    <td align="left"><asp:FileUpload ID="ImageUpload1" runat="server" /><br />
-        <asp:Label ID="lblAttachment1" runat="server" />
+    <td align="left"><asp:FileUpload ID="ImageUpload1" runat="server" /><asp:Button ID="btnAttachment1" runat="server" Text="Upload" CausesValidation="false" /><br />
+        <asp:hiddenfield ID="lblAttachment1Number" runat="server" />
+        <div id="progressbar1" class="progressbar">
+          <div id="progresslabel1" class="progressbarlabel"></div>
+      </div>
     </td>
    </tr>
    <tr>
-    <td align="left"><asp:FileUpload ID="ImageUpload2" runat="server" /><br />
-        <asp:Label ID="lblAttachment2" runat="server" />
+    <td align="left"><asp:FileUpload ID="ImageUpload2" runat="server" /><asp:Button ID="btnAttachment2" runat="server" Text="Upload" CausesValidation="false" /><br />
+        <asp:hiddenfield ID="lblAttachment2Number" runat="server" />
+        <div id="progressbar2" class="progressbar">
+          <div id="progresslabel2" class="progressbarlabel"></div>
+      </div>
     </td>
    </tr> 
    <tr>
-    <td align="left"><asp:FileUpload ID="ImageUpload3" runat="server" /><br />
-        <asp:Label ID="lblAttachment3" runat="server" />
+    <td align="left"><asp:FileUpload ID="ImageUpload3" runat="server" /><asp:Button ID="btnAttachment3" runat="server" Text="Upload" CausesValidation="false" /><br />
+        <asp:hiddenfield ID="lblAttachment3Number" runat="server" />
+        <div id="progressbar3" class="progressbar">
+          <div id="progresslabel3" class="progressbarlabel"></div>
+      </div>
     </td>
    </tr>  
    </table>
   </div>
- </div>
+</div>
 
 <div align="center">
     <asp:Label runat="server" ID="lblInsertConfirm" CssClass="alert-success" /> <br /><br />

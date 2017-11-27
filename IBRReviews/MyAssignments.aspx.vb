@@ -34,19 +34,20 @@ Partial Class IBRReviews_MyAssignments
             Dim strReviewDate As String = e.Row.Cells(2).Text
             Dim strPCA As String = e.Row.Cells(3).Text
             Dim strPCAID As String = e.Row.Cells(4).Text
-            Dim strReportQuarter As String = e.Row.Cells(5).Text
-            Dim strReportYear As String = e.Row.Cells(6).Text
-            Dim strRecordingDeliveryDate As String = e.Row.Cells(7).Text
-            Dim strNewAssignmentID As String = e.Row.Cells(8).Text
+            Dim strReportMonth As String = e.Row.Cells(5).Text
+            Dim strReportQuarter As String = e.Row.Cells(6).Text
+            Dim strReportYear As String = e.Row.Cells(7).Text
+            Dim strRecordingDeliveryDate As String = e.Row.Cells(8).Text
+            Dim strNewAssignmentID As String = e.Row.Cells(11).Text
 
             link.Text = "Enter New IBR Review"
-            link.NavigateUrl = "EnterNewReview.aspx?PCAID=" & strPCAID & "&ReportQuarter=" & strReportQuarter & "&ReportYear=" & strReportYear & "&NewAssignmentID=" & strNewAssignmentID
+            link.NavigateUrl = "EnterNewReview.aspx?PCAID=" & strPCAID & "&ReportQuarter=" & strReportQuarter & "&ReportYear=" & strReportYear & "&ReportMonth=" & strReportMonth & "&NewAssignmentID=" & strNewAssignmentID
 
             'This is for the Review Calls link - Hyperlink2
             Dim link2 = DirectCast(e.Row.FindControl("HyperLink2"), HyperLink)
             link2.Text = "Review Calls"
             link2.NavigateUrl = "MyReviews.aspx?PCA=" & Server.UrlEncode(strPCA) & "&PCAID=" & strPCAID & "&NewAssignmentID=" & strNewAssignmentID
-       
+
         End If
 
     End Sub

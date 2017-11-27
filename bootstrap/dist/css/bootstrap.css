@@ -1409,6 +1409,14 @@ pre code {
      
 }
 
+.tableColumnHeadLeft
+{
+    font-size: 11pt; 
+    text-align:left; 
+    font-family: Calibri;      
+}
+
+
 .tableColumnHead a:link
 {
     color: #555555; 

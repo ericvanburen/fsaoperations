@@ -16,13 +16,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 
 <!--Navigation Menu-->
-<div class="hidden-print">
+<div>
  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
   <li class="dropdown">
-    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Reviews <b class="caret"></b></a>
+    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Work <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
         <li><a href="MyReviews.aspx">My Reviews</a></li>
-        <li><a href="MyNewAssignments.aspx">My Assignments</a></li>
+        <li><a href="MyNewAssignments.aspx">My Review Assignments</a></li>
+        <li><a href="MyQCAssignments.aspx">My QC Assignments</a></li>
     </ul>
   </li>
 
@@ -36,18 +37,17 @@
   <li class="dropdown active">
     <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop4">
-        <li><a href="Reports.aspx">Save New PCA Review Old</a></li>
-        <li><a href="Reports2.aspx">Save New PCA Review</a></li>
-        <li><a href="Reports_SavedReports.aspx">Search PCA Reviews</a></li>       
+        <li><a href="Reports2.aspx">Save New PCA Review</a></li>  
         <li><a href="LAAssignments.aspx">LA Assignments</a></li>
         <li><a href="MakeAssignments.aspx">Make New LA Assignments</a></li>
         <li><a href="DataRequests.aspx">Data Requests</a></li>
         <li><a href="ReportsPCACallErrors.aspx">PCA Reviews - LA Errors</a></li>
         <li><a href="LetterReviews.aspx">Final Review Letter</a></li>
+        <li><a href="ReportCompletionCount.aspx">Completion Count</a></li>
         <li><a href="Reports_PCA_Performance.aspx">PCA Performance</a></li>
-        <li><a href="Reports_Incorrect_Actions_ByGroup.aspx">PCA Incorrect Actions Summary</a></li>
-        <li><a href="Reports_Incorrect_Actions.aspx">PCA Incorrect Actions Detail</a></li>
         <li><a href="QCCalc.aspx">QC Calculator</a></li>
+        <li><a href="QCTierReport.aspx">QC Tier Report</a></li>
+        <li><a href="QCUserManager.aspx">QC User Manager</a></li>
     </ul>
   </li>
  </ul>
@@ -186,6 +186,13 @@
     <td class="text-right"><asp:Label ID="lblScore_MiniMiranda_Incorrect" runat="server" /></td>
     <td class="text-right"><asp:Label ID="lblScore_MiniMiranda_Percent" runat="server" /></td>
     <td class="text-center"><asp:Button ID="Button1" runat="server" CommandArgument="Score_MiniMiranda,bit" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
+</tr>
+<tr>
+    <td>Call Recording</td>
+    <td class="text-right"><asp:Label ID="lblScore_CallRecording_Total" runat="server" /></td>
+    <td class="text-right"><asp:Label ID="lblScore_CallRecording_Incorrect" runat="server" /></td>
+    <td class="text-right"><asp:Label ID="lblScore_CallRecording_Percent" runat="server" /></td>
+    <td class="text-center"><asp:Button ID="Button9" runat="server" CommandArgument="Score_CallRecording,bit" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
 </tr>
 <tr>
     <td>PCA Used Professional Tone</td>
@@ -372,65 +379,6 @@
     <td class="text-center"><asp:Button ID="Button23" runat="server" CommandArgument="Score_Electronic_Payments,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
 </tr>
 
-<tr>
-   <th class="alert-danger" colspan="5">Rehab Ratings - Collector MUST NOT say these things</th> 
-</tr>
-<tr>
-    <td>Advise the borr to delay filing tax return</td>
-    <td class="text-right"><asp:Label ID="lblScore_Delay_Tax_Reform_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Delay_Tax_Reform_Incorrect" runat="server" /></td> 
-    <td class="text-right"><asp:Label ID="lblScore_Delay_Tax_Reform_Percent" runat="server" /></td>   
-    <td class="text-center"><asp:Button ID="Button24" runat="server" CommandArgument="Score_Delay_Tax_Reform,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>Tell the borr that he/she will be eligible for TIV, defers, forbs</td>
-    <td class="text-right"><asp:Label ID="lblScore_More_Aid_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_More_Aid_Incorrect" runat="server" /></td> 
-    <td class="text-right"><asp:Label ID="lblScore_More_Aid_Percent" runat="server" /></td>   
-    <td class="text-center"><asp:Button ID="Button25" runat="server" CommandArgument="Score_More_Aid,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>Quote an exact amt for the collection costs that will be waived</td>
-    <td class="text-right"><asp:Label ID="lblScore_Collection_Costs_Waived_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Collection_Costs_Waived_Incorrect" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Collection_Costs_Waived_Percent" runat="server" /></td>    
-    <td class="text-center"><asp:Button ID="Button26" runat="server" CommandArgument="Score_Collection_Costs_Waived,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>Impose requirements that are not required</td>
-    <td class="text-right"><asp:Label ID="lblScore_False_Requirements_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_False_Requirements_Incorrect" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_False_Requirements_Percent" runat="server" /></td>    
-    <td class="text-center"><asp:Button ID="Button27" runat="server" CommandArgument="Score_False_Requirements,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>Talk them out of PIF or SIF if they are able and willing.  (Can see the credit benefit of rehab.)</td>
-    <td class="text-right"><asp:Label ID="lblScore_Avoid_PIF_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Avoid_PIF_Incorrect" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Avoid_PIF_Percent" runat="server" /></td>    
-    <td class="text-center"><asp:Button ID="Button28" runat="server" CommandArgument="Score_Avoid_PIF,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>Tell a disabled borr that he/she should rehab first then apply for TPD.</td>
-    <td class="text-right"><asp:Label ID="lblScore_Rehab_Then_TPD_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Rehab_Then_TPD_Incorrect" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Rehab_Then_TPD_Percent" runat="server" /></td>    
-    <td class="text-center"><asp:Button ID="Button29" runat="server" CommandArgument="Score_Rehab_Then_TPD,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>Tell the borr that pymt amounts and dates are final and cannot be changed</td>
-    <td class="text-right"><asp:Label ID="lblScore_Payments_Are_Final_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Payments_Are_Final_Incorrect" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Payments_Are_Final_Percent" runat="server" /></td>    
-    <td class="text-center"><asp:Button ID="Button30" runat="server" CommandArgument="Score_Payments_Are_Final,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
-<tr>
-    <td>State anything that is not factual including attributing to ED things that are not ED policy</td>
-    <td class="text-right"><asp:Label ID="lblScore_Not_Factual_Total" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Not_Factual_Incorrect" runat="server" /></td>
-    <td class="text-right"><asp:Label ID="lblScore_Not_Factual_Percent" runat="server" /></td>    
-    <td class="text-center"><asp:Button ID="Button31" runat="server" CommandArgument="Score_Not_Factual,string" CssClass="btn-sm" Text="Show Me" OnClick="btnErrorType_Click" /></td>
-</tr>
 <!--Section Added-->
 <tr>
    <th class="alert-success" colspan="5">Consolidation Ratings - Collector MAY say these things</th> 

@@ -35,7 +35,7 @@ Partial Class PCAReviews_MyNewAssignments
             Dim strPCA As String = e.Row.Cells(3).Text
             Dim strPCAID As String = e.Row.Cells(4).Text
             Dim strRecordingDeliveryDate As String = e.Row.Cells(5).Text
-            Dim strNewAssignmentID As String = e.Row.Cells(6).Text
+            Dim strNewAssignmentID As String = e.Row.Cells(7).Text
 
             link.Text = "Enter New Review"
             link.NavigateUrl = "NewReview.aspx?PCAID=" & strPCAID & "&RecordingDeliveryDate=" & Server.UrlEncode(strRecordingDeliveryDate) & "&ReviewPeriodMonth=" & Server.UrlEncode(strReviewPeriodMonth) & "&ReviewPeriodYear=" & strReviewPeriodYear & "&NewAssignmentID=" & strNewAssignmentID
@@ -98,15 +98,15 @@ Partial Class PCAReviews_MyNewAssignments
                     'PCA Admins can update all of these fields at any time. Other users can update only the WorksheetPCADate and FinalPCADate fields and only when there
                     'isn't already an existing value there
                     If isPCAAdmin = "False" Then
-                        'ordinal 4 is Worksheet PCA Date
-                        If dr.IsDBNull(4) Then
+                        'ordinal 5 is Worksheet PCA Date
+                        If dr.IsDBNull(5) Then
                             txtWorksheetPCADate.Enabled = True
                         Else
                             txtWorksheetPCADate.Enabled = False
                         End If
 
-                        'ordinal 5 is Final PCA Date
-                        If dr.IsDBNull(5) Then
+                        'ordinal 6 is Final PCA Date
+                        If dr.IsDBNull(6) Then
                             txtFinalPCADate.Enabled = True
                         Else
                             txtFinalPCADate.Enabled = False

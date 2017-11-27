@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Search Claims" Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyClaims.aspx.vb" Inherits="Unconsolidation_AddRequest" %>
+﻿<%@ Page Title="My Claims" Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyClaims.aspx.vb" Inherits="Unconsolidation_AddRequest" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
         <script src="../Scripts/jquery-1.10.2.js" type="text/javascript"></script>
@@ -117,6 +117,12 @@
 
                                                         <asp:BoundField DataField="Account" HeaderText="Account" SortExpression="Account" 
                                                             HeaderStyle-HorizontalAlign="Center" />
+
+                                                        <asp:BoundField DataField="AwardID" HeaderText="Award ID" SortExpression="AwardID" 
+                                                        HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
+
+                                                        <asp:BoundField DataField="SequenceNumber" HeaderText="Sequence Number" SortExpression="SequenceNumber" 
+                                                        HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
                                                                                                                 
                                                         <asp:BoundField DataField="Servicer" HeaderText="Servicer" SortExpression="Servicer" 
                                                             HeaderStyle-HorizontalAlign="Center" />

@@ -23,7 +23,8 @@ Partial Class Issues_Issue_Add_PCA
             End If
 
             'Set the Date Received field to current date + 1
-            Dim DateReceived As Date = Date.Now.ToString    ' Current date and time.
+            'Dim DateReceived As Date = Date.Now.ToShortDateString()    ' Current date and time.
+            Dim DateReceived As Date = Date.Now.ToString()    ' Current date and time.
             txtDateReceived.Text = DateReceived.AddDays(1)  ' Increment by 1 days.
 
         End If
@@ -440,22 +441,8 @@ Partial Class Issues_Issue_Add_PCA
         'Attachment 1
         Dim strFileNameOnly As String = ImageUpload1.PostedFile.FileName
         If strFileNameOnly.Length > 0 Then
-
-            Dim strSaveLocation As String
-            Dim rndNumber As Integer = CInt(Math.Ceiling(Rnd() * 100000))
-
-            'This checks for a valid file name and type
-            Dim Filename1Regex As New Regex("(doc|docx|xls|xlsx|pdf|zip|zipx|gif|jpg|txt|csv|png|mp3|wav)$")
-            If Not Filename1Regex.IsMatch(strFileNameOnly.ToLower(), RegexOptions.IgnoreCase) Then
-                Response.Redirect("InvalidFiletype.aspx")
-            End If
-
-            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\Issues\Attachments\" & rndNumber & "_" & ValidFileName(strFileNameOnly)
-            Response.Write("File Name: " & strSaveLocation)
-            'strSaveLocation = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly
-            ImageUpload1.PostedFile.SaveAs(strSaveLocation)
-            cmd.Parameters.Add("@Attachment1", SqlDbType.VarChar).Value = rndNumber & "_" & strFileNameOnly
-            lblAttachment1.Text = "Your file was uploaded"
+            Dim strFileNumber1 As String = lblAttachment1Number.Value
+            cmd.Parameters.Add("@Attachment1", SqlDbType.VarChar).Value = strFileNumber1 & "_" & strFileNameOnly
         Else
             cmd.Parameters.Add("@Attachment1", SqlDbType.VarChar).Value = DBNull.Value
         End If
@@ -463,21 +450,8 @@ Partial Class Issues_Issue_Add_PCA
         'Attachment 2
         Dim strFileNameOnly2 As String = ImageUpload2.PostedFile.FileName
         If strFileNameOnly2.Length > 0 Then
-
-            Dim strSaveLocation2 As String
-            Dim rndNumber2 As Integer = CInt(Math.Ceiling(Rnd() * 100000))
-
-            'This checks for a valid file name and type
-            Dim Filename1Regex As New Regex("(doc|docx|xls|xlsx|pdf|zip|zipx|gif|jpg|txt|csv|png|mp3|wav)$")
-            If Not Filename1Regex.IsMatch(strFileNameOnly2.ToLower(), RegexOptions.IgnoreCase) Then
-                Response.Redirect("InvalidFiletype.aspx")
-            End If
-
-            'strSaveLocation2 = "C:\Users\ericv_000\Dropbox\fsaoperations\Issues\Attachments\" & rndNumber2 & "_" & strFileNameOnly2
-            strSaveLocation2 = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber2 & "_" & strFileNameOnly2
-            ImageUpload2.PostedFile.SaveAs(strSaveLocation2)
-            cmd.Parameters.Add("@Attachment2", SqlDbType.VarChar).Value = rndNumber2 & "_" & strFileNameOnly2
-            lblAttachment2.Text = "Your file was uploaded"
+            Dim strFileNumber2 As String = lblAttachment2Number.Value
+            cmd.Parameters.Add("@Attachment2", SqlDbType.VarChar).Value = strFileNumber2 & "_" & strFileNameOnly2
         Else
             cmd.Parameters.Add("@Attachment2", SqlDbType.VarChar).Value = DBNull.Value
         End If
@@ -485,21 +459,8 @@ Partial Class Issues_Issue_Add_PCA
         'Attachment 3
         Dim strFileNameOnly3 As String = ImageUpload3.PostedFile.FileName
         If strFileNameOnly3.Length > 0 Then
-
-            Dim strSaveLocation3 As String
-            Dim rndNumber3 As Integer = CInt(Math.Ceiling(Rnd() * 100000))
-
-            'This checks for a valid file name and type
-            Dim Filename1Regex As New Regex("(doc|docx|xls|xlsx|pdf|zip|zipx|gif|jpg|txt|csv|png|mp3|wav)$")
-            If Not Filename1Regex.IsMatch(strFileNameOnly3.ToLower(), RegexOptions.IgnoreCase) Then
-                Response.Redirect("InvalidFiletype.aspx")
-            End If
-
-            'strSaveLocation3 = "C:\Users\ericv_000\Dropbox\fsaoperations\Issues\Attachments\" & rndNumber3 & "_" & strFileNameOnly3
-            strSaveLocation3 = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber3 & "_" & strFileNameOnly3
-            ImageUpload3.PostedFile.SaveAs(strSaveLocation3)
-            cmd.Parameters.Add("@Attachment3", SqlDbType.VarChar).Value = rndNumber3 & "_" & strFileNameOnly3
-            lblAttachment3.Text = "Your file was uploaded"
+            Dim strFileNumber3 As String = lblAttachment3Number.Value
+            cmd.Parameters.Add("@Attachment3", SqlDbType.VarChar).Value = strFileNumber3 & "_" & strFileNameOnly3
         Else
             cmd.Parameters.Add("@Attachment3", SqlDbType.VarChar).Value = DBNull.Value
         End If
@@ -516,12 +477,12 @@ Partial Class Issues_Issue_Add_PCA
             btnSubmit.Visible = False
             btnAddAnother.Visible = True
 
-    'Add the call to the IssueHistory table
-    Dim newIssueHistory As New IssueHistory
+            'Add the call to the IssueHistory table
+            Dim newIssueHistory As New IssueHistory
             newIssueHistory.IssueID = IssueID
             newIssueHistory.Comments = txtComments.Text
 
-    'Add new record to IssueHistory table
+            'Add new record to IssueHistory table
             newIssueHistory.InsertIssueHistory(IssueID, txtComments.Text, "Issue Added")
 
         Finally
@@ -544,7 +505,7 @@ Partial Class Issues_Issue_Add_PCA
         Return builder.ToString()
     End Function
 
-    
+
     Function FormatHTML(sText)
         Dim strReturn = ""
         strReturn = Replace(strReturn, ">", "")
@@ -554,5 +515,6 @@ Partial Class Issues_Issue_Add_PCA
         strReturn = Replace(strReturn, "", "")
         FormatHTML = strReturn
     End Function
+
 
 End Class

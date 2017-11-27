@@ -23,7 +23,7 @@
             $('#navA4').addClass("active");
             //Administration
             $('#navA5').removeClass("active");
-        });     
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -60,13 +60,13 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
             <asp:ListItem Text="Opened In Error" Value="Opened In Error" />
             <asp:ListItem Text="Agenda" Value="Agenda" />
         </asp:ListBox>
-       </td> 
-        <td align="left">FSA Group<br />
+       </td>
+       <td align="left">FSA Group<br />
        <asp:ListBox ID="ddlFSAGroup" runat="server" CssClass="inputBox" SelectionMode="Multiple" Width="250px">
                 <asp:ListItem Text="Bus Ops" Value="Bus Ops" Selected="True" />
                 <asp:ListItem Text="FMB Group" Value="FMB Group" />
         </asp:ListBox>
-       </td>                     
+       </td>                      
     </tr>
     <tr>
         <td colspan="4" align="center"><asp:Button ID="btnSearch" runat="server" CausesValidation="false" OnClick="btnSearch_Click" CssClass="btn btn-md btn-primary" Text="Search" Width="150px" /></td>
@@ -87,12 +87,13 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
                 HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="AffectedOrg" HeaderText="Affected Org" SortExpression="AffectedOrg" HeaderStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="FSAGroup" HeaderText="FSA Group" HeaderStyle-HorizontalAlign="Center" SortExpression="FSAGroup" /> 
+	    <asp:BoundField DataField="UserID" HeaderText="Owner" HeaderStyle-HorizontalAlign="Center" SortExpression="UserID" />            
             <asp:TemplateField HeaderText="Description"> 
             <ItemTemplate>
 	             <%# If(Eval("IssueDescription") Is DBNull.Value, "", FormatParagraph.FormatParagraphHTML(Eval("IssueDescription")))%> 
             </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Owner" HeaderText="Assigned To" HeaderStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="Owner" HeaderText="Assigned To" HeaderStyle-HorizontalAlign="Center" SortExpression="Owner" />
             <asp:TemplateField HeaderText="Comments"> 
              <ItemTemplate>
 	            <%# If(Eval("Comments") Is DBNull.Value, "", FormatParagraph.FormatParagraphHTML(Eval("Comments")))%> 

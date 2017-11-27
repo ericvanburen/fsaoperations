@@ -38,6 +38,8 @@
                                             <li><a href="ReportIndividualProductivityCallCenter.aspx">Productivity-Call Center</a></li>
                                             <li><a href="Search.aspx">Search</a></li>
                                             <li><a href="../ChecksSearch.aspx">Servicer Check Report</a></li>
+                                            <li><a href="QCReview_New.aspx">QC Review - Add</a></li>
+                                            <li><a href="QCReview_Search.aspx">QC Review - Search</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Monitoring</a>
@@ -131,12 +133,24 @@
                                                         <asp:ListItem Text="Military" Value="Military" />
                                                         <asp:ListItem Text="PSLF" Value="PSLF" />
                                                         <asp:ListItem Text="School" Value="School" />
+                                                        <asp:ListItem Text="Subcontractor Calls" Value="Subcontractor Calls" />
                                                         <asp:ListItem Text="TEACH" Value="TEACH" />
+							                            <asp:ListItem Text="TPD" Value="TPD" />
+                                                        <asp:ListItem Text="Visually Impaired" Value="Visually Impaired" />
+                                                        <asp:ListItem Text="WC/Scheduled Callbacks" Value="WC/Scheduled Callbacks" />
+							<asp:ListItem Text="TPD" Value="TPD" />
                                                         <asp:ListItem Text="Visually Impaired" Value="Visually Impaired" />
                                                         <asp:ListItem Text="WC/Scheduled Callbacks" Value="WC/Scheduled Callbacks" />        
                                                 </asp:ListBox>
+                                            </td>                                                
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" valign="top"><strong><asp:Label ID="lblOverallScore" runat="server" Text="Call Failed?" /></strong> <br />
+                                            <asp:DropDownList ID="ddlOverallScore" runat="server" Height="25px">
+                                                        <asp:ListItem Text="" Value="" Selected ="True" />
+                                                        <asp:ListItem Text="Failed" Value="Failed" />
+                                                    </asp:DropDownList>
                                             </td>
-                                                
                                         </tr>
                                         <tr>
                                             <td colspan="3">
@@ -202,7 +216,9 @@
                     <asp:BoundField DataField="AgentID" HeaderText="Agent ID" SortExpression="AgentID"
                         ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="BorrowerAccountNumber" HeaderText="Acct #" SortExpression="BorrowerAccountNumber"
-                        ItemStyle-HorizontalAlign="Left" />                    
+                        ItemStyle-HorizontalAlign="Left" />  
+                    <asp:BoundField DataField="TotalScore" HeaderText="Total Score" 
+                        ItemStyle-HorizontalAlign="Left" />                  
                     <asp:BoundField DataField="Comments" HeaderText="Comments" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="Escalated" HeaderText="Escalated?" SortExpression="Escalated"
                         ItemStyle-HorizontalAlign="Left" /> 

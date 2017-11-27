@@ -30,10 +30,28 @@ Partial Class PCAReviews_ReviewDetail2
                 txtRecordingDeliveryDate.Enabled = False
             End If
 
-            'Tier1 and Tier2 can view the QC Tier1 section
-            If Roles.IsUserInRole("PCAReviews_QCTier1") = True OrElse Roles.IsUserInRole("PCAReviews_QCTier2") = True Then
-                pnlQCTier1.Visible = True
-                LoadQCTier1(ReviewID)
+            'Check the users access to the QCTier 1 section
+            If Roles.IsUserInRole("PCAReviews_QCTier1") = True Then 'We know the user is Tier 1
+
+                'This checks to see if the review in the QCTier1 table matches the current user. 
+                Dim Tier1UserMatch As Boolean = False
+                Tier1UserMatch = QCTier1TableCheckUserMatch(ReviewID)
+
+                'Tier 1 users should be able to see Tier 1 section if it is empty and does not contain another user's data
+                Dim Tier1IsEmpty As Boolean = False
+                Tier1IsEmpty = QCTier1TableCheckIsEmpty(ReviewID)
+
+                'Tier1UserMatch determines if the review in the QCTier1 table matches the current user.
+                'Tier1IsEmpty determines if the QCTier1 table contains a record for the current review.
+
+                'If Tier1UserMatch = True, then the person logged in is looking at their own QC review and should see the QC1 section
+                'If Tier1IsEmpty = True, then QCTier1 table does not have a QC record for the table and user should see the QC1 section
+                If Tier1UserMatch = True OrElse Tier1IsEmpty = True Then
+                    pnlQCTier1.Visible = True
+                    LoadQCTier1(ReviewID)
+                Else
+                    pnlQCTier1.Visible = False
+                End If
             Else
                 pnlQCTier1.Visible = False
             End If
@@ -49,36 +67,97 @@ Partial Class PCAReviews_ReviewDetail2
                 pnlQCTier2.Visible = False
             End If
 
-            'Load data in the form
+            'Only Tier3 can view the QC Tier3 section
+            If Roles.IsUserInRole("PCAReviews_QCTier3") = True Then
+                pnlQCTier1.Visible = True
+                LoadQCTier1(ReviewID)
+
+                pnlQCTier2.Visible = True
+                LoadQCTier2(ReviewID)
+
+                pnlQCTier3.Visible = True
+                LoadQCTier3(ReviewID)
+            Else
+                pnlQCTier3.Visible = False
+            End If
+
+            'Load data in the full form
             LoadForm(ReviewID)
+
         End If
     End Sub
 
-    'Sub UserIDLookUp(ByVal ReviewID As Integer)
-    '    Dim con As SqlConnection
-    '    Dim cmd As SqlCommand
-    '    Dim dr As SqlDataReader
+    Private Function QCTier1TableCheckUserMatch(ByVal ReviewID As Integer) As Boolean
+        Dim blnTier1UserMatch As Boolean = False
 
-    '    con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
-    '    cmd = New SqlCommand("p_UserIDQCLookup", con)
-    '    cmd.CommandType = CommandType.StoredProcedure
+        Dim con As SqlConnection
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
 
-    '    cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = ReviewID
+        con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_UserIDQCTier1Lookup", con)
+        cmd.CommandType = CommandType.StoredProcedure
 
-    '    Try
-    '        cmd.Connection = con
-    '        Using con
-    '            con.Open()
-    '            dr = cmd.ExecuteReader()
-    '            While dr.Read()
-    '                lblUserID.Text = dr("UserID").ToString()
-    '            End While
-    '        End Using
+        cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = ReviewID
 
-    '    Finally
-    '        con.Close()
-    '    End Try
-    'End Sub
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+                    If HttpContext.Current.User.Identity.Name = dr("UserID").ToString() Then
+                        'We know the Tier 1 user's Review from the QCTier1 table matches the current user
+                        blnTier1UserMatch = True
+                    Else
+                        blnTier1UserMatch = False
+                    End If
+                End While
+            End Using
+
+        Finally
+            con.Close()
+        End Try
+        Return blnTier1UserMatch
+
+    End Function
+
+    Private Function QCTier1TableCheckIsEmpty(ByVal ReviewID As Integer) As Boolean
+        Dim blnTier1IsEmpty As Boolean
+
+        Dim con As SqlConnection
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
+
+        con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_UserIDQCTier1Lookup", con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = ReviewID
+
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                'While dr.Read()
+                If dr.HasRows Then
+                    blnTier1IsEmpty = False
+                Else
+                    'We know there are no reviews in the QCTier1 table with the given ReviewID
+                    blnTier1IsEmpty = True
+                End If
+                'End While
+            End Using
+
+        Finally
+            con.Close()
+        End Try
+        Return blnTier1IsEmpty
+
+    End Function
+
+    
 
     Sub LoadForm(ByVal ReviewID As Integer)
 
@@ -172,6 +251,10 @@ Partial Class PCAReviews_ReviewDetail2
 
                     If Not dr("Score_MiniMiranda") Is DBNull.Value Then
                         ddlScore_MiniMiranda.SelectedValue = dr("Score_MiniMiranda")
+                    End If
+
+                    If Not dr("Score_CallRecording") Is DBNull.Value Then
+                        ddlScore_CallRecording.SelectedValue = dr("Score_CallRecording")
                     End If
 
                     If Not dr("Score_Tone") Is DBNull.Value Then
@@ -284,37 +367,6 @@ Partial Class PCAReviews_ReviewDetail2
                         ddlScore_Electronic_Payments.SelectedValue = dr("Score_Electronic_Payments")
                     End If
 
-                    If Not dr("Score_Delay_Tax_Reform") Is DBNull.Value Then
-                        ddlScore_Delay_Tax_Reform.SelectedValue = dr("Score_Delay_Tax_Reform")
-                    End If
-
-                    If Not dr("Score_More_Aid") Is DBNull.Value Then
-                        ddlScore_More_Aid.SelectedValue = dr("Score_More_Aid")
-                    End If
-
-                    If Not dr("Score_Collection_Costs_Waived") Is DBNull.Value Then
-                        ddlScore_Collection_Costs_Waived.SelectedValue = dr("Score_Collection_Costs_Waived")
-                    End If
-
-                    If Not dr("Score_False_Requirements") Is DBNull.Value Then
-                        ddlScore_False_Requirements.SelectedValue = dr("Score_False_Requirements")
-                    End If
-
-                    If Not dr("Score_Avoid_PIF") Is DBNull.Value Then
-                        ddlScore_Avoid_PIF.SelectedValue = dr("Score_Avoid_PIF")
-                    End If
-
-                    If Not dr("Score_Rehab_Then_TPD") Is DBNull.Value Then
-                        ddlScore_Rehab_Then_TPD.SelectedValue = dr("Score_Rehab_Then_TPD")
-                    End If
-
-                    If Not dr("Score_Payments_Are_Final") Is DBNull.Value Then
-                        ddlScore_Payments_Are_Final.SelectedValue = dr("Score_Payments_Are_Final")
-                    End If
-
-                    If Not dr("Score_Not_Factual") Is DBNull.Value Then
-                        ddlScore_Not_Factual.SelectedValue = dr("Score_Not_Factual")
-                    End If
                     'End Rehab Fields   
 
                     'Added
@@ -423,6 +475,10 @@ Partial Class PCAReviews_ReviewDetail2
                         ddlScore_MiniMiranda_Accuracy.SelectedValue = dr("Score_MiniMiranda_Accuracy")
                     End If
 
+                    If Not dr("Score_CallRecording_Accuracy") Is DBNull.Value Then
+                        ddlScore_CallRecording_Accuracy.SelectedValue = dr("Score_CallRecording_Accuracy")
+                    End If
+
                     If Not dr("Score_Tone_Accuracy") Is DBNull.Value Then
                         ddlScore_Tone_Accuracy.SelectedValue = dr("Score_Tone_Accuracy")
                     End If
@@ -449,6 +505,10 @@ Partial Class PCAReviews_ReviewDetail2
 
                     If Not dr("Score_ExceededHoldTime_Accuracy") Is DBNull.Value Then
                         ddlScore_ExceededHoldTime_Accuracy.SelectedValue = dr("Score_ExceededHoldTime_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Recording_Time_Bucket_Accuracy") Is DBNull.Value Then
+                        ddlRecording_Time_Bucket_Accuracy.SelectedValue = dr("Recording_Time_Bucket_Accuracy").ToString()
                     End If
 
                     If Not dr("Score_Rehab_Once_Accuracy") Is DBNull.Value Then
@@ -517,42 +577,6 @@ Partial Class PCAReviews_ReviewDetail2
 
                     If Not dr("Score_Electronic_Payments_Accuracy") Is DBNull.Value Then
                         ddlScore_Electronic_Payments_Accuracy.SelectedValue = dr("Score_Electronic_Payments_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Delay_Tax_Reform_Accuracy") Is DBNull.Value Then
-                        ddlScore_Delay_Tax_Reform_Accuracy.SelectedValue = dr("Score_Delay_Tax_Reform_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_More_Aid_Accuracy") Is DBNull.Value Then
-                        ddlScore_More_Aid_Accuracy.SelectedValue = dr("Score_More_Aid_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Collection_Costs_Waived_Accuracy") Is DBNull.Value Then
-                        ddlScore_Collection_Costs_Waived_Accuracy.SelectedValue = dr("Score_Collection_Costs_Waived_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_False_Requirements_Accuracy") Is DBNull.Value Then
-                        ddlScore_False_Requirements_Accuracy.SelectedValue = dr("Score_False_Requirements_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Avoid_PIF_Accuracy") Is DBNull.Value Then
-                        ddlScore_Avoid_PIF_Accuracy.SelectedValue = dr("Score_Avoid_PIF_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Avoid_PIF_Accuracy") Is DBNull.Value Then
-                        ddlScore_Avoid_PIF_Accuracy.SelectedValue = dr("Score_Avoid_PIF_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Rehab_Then_TPD_Accuracy") Is DBNull.Value Then
-                        ddlScore_Rehab_Then_TPD_Accuracy.SelectedValue = dr("Score_Rehab_Then_TPD_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Payments_Are_Final_Accuracy") Is DBNull.Value Then
-                        ddlScore_Payments_Are_Final_Accuracy.SelectedValue = dr("Score_Payments_Are_Final_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Not_Factual_Accuracy") Is DBNull.Value Then
-                        ddlScore_Not_Factual_Accuracy.SelectedValue = dr("Score_Not_Factual_Accuracy").ToString()
                     End If
 
                     If Not dr("Score_Consol_New_Loan_Accuracy") Is DBNull.Value Then
@@ -628,6 +652,10 @@ Partial Class PCAReviews_ReviewDetail2
                         ddlScore_MiniMiranda_Accuracy2.SelectedValue = dr("Score_MiniMiranda_Accuracy")
                     End If
 
+                    If Not dr("Score_CallRecording_Accuracy") Is DBNull.Value Then
+                        ddlScore_CallRecording_Accuracy2.SelectedValue = dr("Score_CallRecording_Accuracy")
+                    End If
+
                     If Not dr("Score_Tone_Accuracy") Is DBNull.Value Then
                         ddlScore_Tone_Accuracy2.SelectedValue = dr("Score_Tone_Accuracy")
                     End If
@@ -656,8 +684,8 @@ Partial Class PCAReviews_ReviewDetail2
                         ddlScore_ExceededHoldTime_Accuracy2.SelectedValue = dr("Score_ExceededHoldTime_Accuracy").ToString()
                     End If
 
-                    If Not dr("Score_Rehab_Once_Accuracy") Is DBNull.Value Then
-                        ddlScore_Rehab_Once_Accuracy2.SelectedValue = dr("Score_Rehab_Once_Accuracy").ToString()
+                    If Not dr("Recording_Time_Bucket_Accuracy") Is DBNull.Value Then
+                        ddlRecording_Time_Bucket_Accuracy2.SelectedValue = dr("Recording_Time_Bucket_Accuracy").ToString()
                     End If
 
                     If Not dr("Score_Nine_Payments_Accuracy") Is DBNull.Value Then
@@ -724,42 +752,6 @@ Partial Class PCAReviews_ReviewDetail2
                         ddlScore_Electronic_Payments_Accuracy2.SelectedValue = dr("Score_Electronic_Payments_Accuracy").ToString()
                     End If
 
-                    If Not dr("Score_Delay_Tax_Reform_Accuracy") Is DBNull.Value Then
-                        ddlScore_Delay_Tax_Reform_Accuracy2.SelectedValue = dr("Score_Delay_Tax_Reform_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_More_Aid_Accuracy") Is DBNull.Value Then
-                        ddlScore_More_Aid_Accuracy2.SelectedValue = dr("Score_More_Aid_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Collection_Costs_Waived_Accuracy") Is DBNull.Value Then
-                        ddlScore_Collection_Costs_Waived_Accuracy2.SelectedValue = dr("Score_Collection_Costs_Waived_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_False_Requirements_Accuracy") Is DBNull.Value Then
-                        ddlScore_False_Requirements_Accuracy2.SelectedValue = dr("Score_False_Requirements_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Avoid_PIF_Accuracy") Is DBNull.Value Then
-                        ddlScore_Avoid_PIF_Accuracy2.SelectedValue = dr("Score_Avoid_PIF_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Avoid_PIF_Accuracy") Is DBNull.Value Then
-                        ddlScore_Avoid_PIF_Accuracy2.SelectedValue = dr("Score_Avoid_PIF_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Rehab_Then_TPD_Accuracy") Is DBNull.Value Then
-                        ddlScore_Rehab_Then_TPD_Accuracy2.SelectedValue = dr("Score_Rehab_Then_TPD_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Payments_Are_Final_Accuracy") Is DBNull.Value Then
-                        ddlScore_Payments_Are_Final_Accuracy2.SelectedValue = dr("Score_Payments_Are_Final_Accuracy").ToString()
-                    End If
-
-                    If Not dr("Score_Not_Factual_Accuracy") Is DBNull.Value Then
-                        ddlScore_Not_Factual_Accuracy2.SelectedValue = dr("Score_Not_Factual_Accuracy").ToString()
-                    End If
-
                     If Not dr("Score_Consol_New_Loan_Accuracy") Is DBNull.Value Then
                         ddlScore_Consol_New_Loan_Accuracy2.SelectedValue = dr("Score_Consol_New_Loan_Accuracy").ToString()
                     End If
@@ -802,6 +794,179 @@ Partial Class PCAReviews_ReviewDetail2
 
                     If Not dr("Comments") Is DBNull.Value Then
                         txtComments2.Text = dr("Comments").ToString()
+                    End If
+
+                End While
+            End Using
+
+            'Page.DataBind()
+
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Sub LoadQCTier3(ByVal ReviewID As Integer)
+
+        Dim con As SqlConnection
+        Dim cmd As SqlCommand
+        Dim dr As SqlDataReader
+
+        con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_ReviewIDQCTier3", con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = ReviewID
+
+        Try
+            cmd.Connection = con
+            Using con
+                con.Open()
+                dr = cmd.ExecuteReader()
+                While dr.Read()
+
+                    If Not dr("Score_CorrectID_Accuracy") Is DBNull.Value Then
+                        ddlScore_CorrectID_Accuracy3.SelectedValue = dr("Score_CorrectID_Accuracy")
+                    End If
+
+                    If Not dr("Score_ProperlyIdentified_Accuracy") Is DBNull.Value Then
+                        ddlScore_ProperlyIdentified_Accuracy3.SelectedValue = dr("Score_ProperlyIdentified_Accuracy")
+                    End If
+
+                    If Not dr("Score_MiniMiranda_Accuracy") Is DBNull.Value Then
+                        ddlScore_MiniMiranda_Accuracy3.SelectedValue = dr("Score_MiniMiranda_Accuracy")
+                    End If
+
+                    If Not dr("Score_CallRecording_Accuracy") Is DBNull.Value Then
+                        ddlScore_CallRecording_Accuracy3.SelectedValue = dr("Score_CallRecording_Accuracy")
+                    End If
+
+                    If Not dr("Score_Tone_Accuracy") Is DBNull.Value Then
+                        ddlScore_Tone_Accuracy3.SelectedValue = dr("Score_Tone_Accuracy")
+                    End If
+
+                    If Not dr("Score_Accuracy_Accuracy") Is DBNull.Value Then
+                        ddlScore_Accuracy_Accuracy3.SelectedValue = dr("Score_Accuracy_Accuracy")
+                    End If
+
+                    If Not dr("Score_Notepad_Accuracy") Is DBNull.Value Then
+                        ddlScore_Notepad_Accuracy3.SelectedValue = dr("Score_Notepad_Accuracy")
+                    End If
+
+                    If Not dr("Score_PCAResponsive_Accuracy") Is DBNull.Value Then
+                        ddlScore_PCAResponsive_Accuracy3.SelectedValue = dr("Score_PCAResponsive_Accuracy")
+                    End If
+
+                    If Not dr("Score_AWGInfo_Accuracy") Is DBNull.Value Then
+                        ddlScore_AWGInfo_Accuracy3.SelectedValue = dr("Score_AWGInfo_Accuracy")
+                    End If
+
+                    If Not dr("Complaint_Accuracy") Is DBNull.Value Then
+                        ddlComplaint_Accuracy3.SelectedValue = dr("Complaint_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_ExceededHoldTime_Accuracy") Is DBNull.Value Then
+                        ddlScore_ExceededHoldTime_Accuracy3.SelectedValue = dr("Score_ExceededHoldTime_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Rehab_Once_Accuracy") Is DBNull.Value Then
+                        ddlScore_Rehab_Once_Accuracy3.SelectedValue = dr("Score_Rehab_Once_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Nine_Payments_Accuracy") Is DBNull.Value Then
+                        ddlScore_Nine_Payments_Accuracy3.SelectedValue = dr("Score_Nine_Payments_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_TitleIV_Accuracy") Is DBNull.Value Then
+                        ddlScore_TitleIV_Accuracy3.SelectedValue = dr("Score_TitleIV_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Credit_Reporting_Accuracy") Is DBNull.Value Then
+                        ddlScore_Credit_Reporting_Accuracy3.SelectedValue = dr("Score_Credit_Reporting_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_TOP_Accuracy") Is DBNull.Value Then
+                        ddlScore_TOP_Accuracy3.SelectedValue = dr("Score_TOP_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_AWG_Accuracy") Is DBNull.Value Then
+                        ddlScore_AWG_Accuracy3.SelectedValue = dr("Score_AWG_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Continue_Payments_Accuracy") Is DBNull.Value Then
+                        ddlScore_Continue_Payments_Accuracy3.SelectedValue = dr("Score_Continue_Payments_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Collection_Charges_Waived_Accuracy") Is DBNull.Value Then
+                        ddlScore_Collection_Charges_Waived_Accuracy3.SelectedValue = dr("Score_Collection_Charges_Waived_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Financial_Documents_Accuracy") Is DBNull.Value Then
+                        ddlScore_Financial_Documents_Accuracy3.SelectedValue = dr("Score_Financial_Documents_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Rehab_Agreement_Letter_Accuracy") Is DBNull.Value Then
+                        ddlScore_Rehab_Agreement_Letter_Accuracy3.SelectedValue = dr("Score_Rehab_Agreement_Letter_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Contact_Us_Accuracy") Is DBNull.Value Then
+                        ddlScore_Contact_Us_Accuracy3.SelectedValue = dr("Score_Contact_Us_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Eligible_Payment_Plans_Accuracy") Is DBNull.Value Then
+                        ddlScore_Eligible_Payment_Plans_Accuracy3.SelectedValue = dr("Score_Eligible_Payment_Plans_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Deferment_Forb_Accuracy") Is DBNull.Value Then
+                        ddlScore_Deferment_Forb_Accuracy3.SelectedValue = dr("Score_Deferment_Forb_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_New_Payment_Schedule_Accuracy") Is DBNull.Value Then
+                        ddlScore_New_Payment_Schedule_Accuracy3.SelectedValue = dr("Score_New_Payment_Schedule_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Reversed_Payments_Accuracy") Is DBNull.Value Then
+                        ddlScore_Reversed_Payments_Accuracy3.SelectedValue = dr("Score_Reversed_Payments_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Loans_Transferred_After_60_Days_Accuracy") Is DBNull.Value Then
+                        ddlScore_Loans_Transferred_After_60_Days_Accuracy3.SelectedValue = dr("Score_Loans_Transferred_After_60_Days_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Electronic_Payments_Accuracy") Is DBNull.Value Then
+                        ddlScore_Electronic_Payments_Accuracy3.SelectedValue = dr("Score_Electronic_Payments_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_New_Loan_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_New_Loan_Accuracy3.SelectedValue = dr("Score_Consol_New_Loan_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_Credit_Reporting_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_Credit_Reporting_Accuracy3.SelectedValue = dr("Score_Consol_Credit_Reporting_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_Interest_Rates_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_Interest_Rates_Accuracy3.SelectedValue = dr("Score_Consol_Interest_Rates_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_Capitalization_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_Capitalization_Accuracy3.SelectedValue = dr("Score_Consol_Capitalization_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_TitleIV_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_TitleIV_Accuracy3.SelectedValue = dr("Score_Consol_TitleIV_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_Repayment_Options_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_Repayment_Options_Accuracy3.SelectedValue = dr("Score_Consol_Repayment_Options_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Score_Consol_Default_Accuracy") Is DBNull.Value Then
+                        ddlScore_Consol_Default_Accuracy3.SelectedValue = dr("Score_Consol_Default_Accuracy").ToString()
+                    End If
+
+                    If Not dr("Comments") Is DBNull.Value Then
+                        txtComments3.Text = dr("Comments").ToString()
                     End If
 
                 End While
@@ -914,6 +1079,12 @@ Partial Class PCAReviews_ReviewDetail2
             cmd.Parameters.AddWithValue("@Score_MiniMiranda", ddlScore_MiniMiranda.SelectedValue)
         Else
             cmd.Parameters.AddWithValue("@Score_MiniMiranda", DBNull.Value)
+        End If
+
+        If ddlScore_CallRecording.SelectedValue <> "" Then
+            cmd.Parameters.AddWithValue("@Score_CallRecording", ddlScore_CallRecording.SelectedValue)
+        Else
+            cmd.Parameters.AddWithValue("@Score_CallRecording", DBNull.Value)
         End If
 
         If ddlScore_Tone.SelectedValue <> "" Then
@@ -1090,56 +1261,6 @@ Partial Class PCAReviews_ReviewDetail2
             cmd.Parameters.AddWithValue("@Score_Electronic_Payments", DBNull.Value)
         End If
 
-        'Supposed to be "Delay Tax Return"
-        If ddlScore_Delay_Tax_Reform.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Delay_Tax_Reform", ddlScore_Delay_Tax_Reform.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Delay_Tax_Reform", DBNull.Value)
-        End If
-
-        If ddlScore_More_Aid.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_More_Aid", ddlScore_More_Aid.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_More_Aid", DBNull.Value)
-        End If
-
-        If ddlScore_Collection_Costs_Waived.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Collection_Costs_Waived", ddlScore_Collection_Costs_Waived.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Collection_Costs_Waived", DBNull.Value)
-        End If
-
-        If ddlScore_False_Requirements.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_False_Requirements", ddlScore_False_Requirements.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_False_Requirements", DBNull.Value)
-        End If
-
-        If ddlScore_Avoid_PIF.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Avoid_PIF", ddlScore_Avoid_PIF.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Avoid_PIF", DBNull.Value)
-        End If
-
-        If ddlScore_Rehab_Then_TPD.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Rehab_Then_TPD", ddlScore_Rehab_Then_TPD.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Rehab_Then_TPD", DBNull.Value)
-        End If
-
-        If ddlScore_Payments_Are_Final.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Payments_Are_Final", ddlScore_Payments_Are_Final.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Payments_Are_Final", DBNull.Value)
-        End If
-
-        If ddlScore_Not_Factual.SelectedValue <> "" Then
-            cmd.Parameters.AddWithValue("@Score_Not_Factual", ddlScore_Not_Factual.SelectedValue)
-        Else
-            cmd.Parameters.AddWithValue("@Score_Not_Factual", DBNull.Value)
-        End If
-
-
         If ddlScore_Consol_New_Loan.SelectedValue <> "" Then
             cmd.Parameters.AddWithValue("@Score_Consol_New_Loan", ddlScore_Consol_New_Loan.SelectedValue)
         Else
@@ -1249,6 +1370,7 @@ Partial Class PCAReviews_ReviewDetail2
         cmd.Parameters.Add("@Score_CorrectID_Accuracy", SqlDbType.VarChar).Value = ddlScore_CorrectID_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_ProperlyIdentified_Accuracy", SqlDbType.VarChar).Value = ddlScore_ProperlyIdentified_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_MiniMiranda_Accuracy", SqlDbType.VarChar).Value = ddlScore_MiniMiranda_Accuracy.SelectedValue
+        cmd.Parameters.Add("@Score_CallRecording_Accuracy", SqlDbType.VarChar).Value = ddlScore_CallRecording_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Tone_Accuracy", SqlDbType.VarChar).Value = ddlScore_Tone_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Accuracy_Accuracy", SqlDbType.VarChar).Value = ddlScore_Accuracy_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Notepad_Accuracy", SqlDbType.VarChar).Value = ddlScore_Notepad_Accuracy.SelectedValue
@@ -1256,6 +1378,7 @@ Partial Class PCAReviews_ReviewDetail2
         cmd.Parameters.Add("@Score_AWGInfo_Accuracy", SqlDbType.VarChar).Value = ddlScore_AWGInfo_Accuracy.SelectedValue
         cmd.Parameters.Add("@Complaint_Accuracy", SqlDbType.VarChar).Value = ddlComplaint_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_ExceededHoldTime_Accuracy", SqlDbType.VarChar).Value = ddlScore_ExceededHoldTime_Accuracy.SelectedValue
+        cmd.Parameters.Add("@Recording_Time_Bucket_Accuracy", SqlDbType.VarChar).Value = ddlRecording_Time_Bucket_Accuracy.SelectedValue
 
         cmd.Parameters.Add("@Score_Rehab_Once_Accuracy", SqlDbType.VarChar).Value = ddlScore_Rehab_Once_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Nine_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Nine_Payments_Accuracy.SelectedValue
@@ -1274,15 +1397,6 @@ Partial Class PCAReviews_ReviewDetail2
         cmd.Parameters.Add("@Score_Reversed_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Reversed_Payments_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Loans_Transferred_After_60_Days_Accuracy", SqlDbType.VarChar).Value = ddlScore_Loans_Transferred_After_60_Days_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Electronic_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Electronic_Payments_Accuracy.SelectedValue
-
-        cmd.Parameters.Add("@Score_Delay_Tax_Reform_Accuracy", SqlDbType.VarChar).Value = ddlScore_Delay_Tax_Reform_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_More_Aid_Accuracy", SqlDbType.VarChar).Value = ddlScore_More_Aid_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_Collection_Costs_Waived_Accuracy", SqlDbType.VarChar).Value = ddlScore_Collection_Costs_Waived_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_False_Requirements_Accuracy", SqlDbType.VarChar).Value = ddlScore_False_Requirements_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_Avoid_PIF_Accuracy", SqlDbType.VarChar).Value = ddlScore_Avoid_PIF_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_Rehab_Then_TPD_Accuracy", SqlDbType.VarChar).Value = ddlScore_Rehab_Then_TPD_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_Payments_Are_Final_Accuracy", SqlDbType.VarChar).Value = ddlScore_Payments_Are_Final_Accuracy.SelectedValue
-        cmd.Parameters.Add("@Score_Not_Factual_Accuracy", SqlDbType.VarChar).Value = ddlScore_Not_Factual_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Consol_New_Loan_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_New_Loan_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Consol_Credit_Reporting_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Credit_Reporting_Accuracy.SelectedValue
         cmd.Parameters.Add("@Score_Consol_Interest_Rates_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Interest_Rates_Accuracy.SelectedValue
@@ -1317,6 +1431,7 @@ Partial Class PCAReviews_ReviewDetail2
         cmd.Parameters.Add("@Score_CorrectID_Accuracy", SqlDbType.VarChar).Value = ddlScore_CorrectID_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_ProperlyIdentified_Accuracy", SqlDbType.VarChar).Value = ddlScore_ProperlyIdentified_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_MiniMiranda_Accuracy", SqlDbType.VarChar).Value = ddlScore_MiniMiranda_Accuracy2.SelectedValue
+        cmd.Parameters.Add("@Score_CallRecording_Accuracy", SqlDbType.VarChar).Value = ddlScore_CallRecording_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Tone_Accuracy", SqlDbType.VarChar).Value = ddlScore_Tone_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Accuracy_Accuracy", SqlDbType.VarChar).Value = ddlScore_Accuracy_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Notepad_Accuracy", SqlDbType.VarChar).Value = ddlScore_Notepad_Accuracy2.SelectedValue
@@ -1324,6 +1439,7 @@ Partial Class PCAReviews_ReviewDetail2
         cmd.Parameters.Add("@Score_AWGInfo_Accuracy", SqlDbType.VarChar).Value = ddlScore_AWGInfo_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Complaint_Accuracy", SqlDbType.VarChar).Value = ddlComplaint_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_ExceededHoldTime_Accuracy", SqlDbType.VarChar).Value = ddlScore_ExceededHoldTime_Accuracy2.SelectedValue
+        cmd.Parameters.Add("@Recording_Time_Bucket_Accuracy", SqlDbType.VarChar).Value = ddlRecording_Time_Bucket_Accuracy2.SelectedValue
 
         cmd.Parameters.Add("@Score_Rehab_Once_Accuracy", SqlDbType.VarChar).Value = ddlScore_Rehab_Once_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Nine_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Nine_Payments_Accuracy2.SelectedValue
@@ -1342,15 +1458,6 @@ Partial Class PCAReviews_ReviewDetail2
         cmd.Parameters.Add("@Score_Reversed_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Reversed_Payments_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Loans_Transferred_After_60_Days_Accuracy", SqlDbType.VarChar).Value = ddlScore_Loans_Transferred_After_60_Days_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Electronic_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Electronic_Payments_Accuracy2.SelectedValue
-
-        cmd.Parameters.Add("@Score_Delay_Tax_Reform_Accuracy", SqlDbType.VarChar).Value = ddlScore_Delay_Tax_Reform_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_More_Aid_Accuracy", SqlDbType.VarChar).Value = ddlScore_More_Aid_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_Collection_Costs_Waived_Accuracy", SqlDbType.VarChar).Value = ddlScore_Collection_Costs_Waived_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_False_Requirements_Accuracy", SqlDbType.VarChar).Value = ddlScore_False_Requirements_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_Avoid_PIF_Accuracy", SqlDbType.VarChar).Value = ddlScore_Avoid_PIF_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_Rehab_Then_TPD_Accuracy", SqlDbType.VarChar).Value = ddlScore_Rehab_Then_TPD_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_Payments_Are_Final_Accuracy", SqlDbType.VarChar).Value = ddlScore_Payments_Are_Final_Accuracy2.SelectedValue
-        cmd.Parameters.Add("@Score_Not_Factual_Accuracy", SqlDbType.VarChar).Value = ddlScore_Not_Factual_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Consol_New_Loan_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_New_Loan_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Consol_Credit_Reporting_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Credit_Reporting_Accuracy2.SelectedValue
         cmd.Parameters.Add("@Score_Consol_Interest_Rates_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Interest_Rates_Accuracy2.SelectedValue
@@ -1370,6 +1477,67 @@ Partial Class PCAReviews_ReviewDetail2
 
             'Notify the user
             lblUpdateConfirmQCTier2.Text = "Your review was successfully QC'd In Tier2"
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Sub UpdateQCTier3_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Dim con As SqlConnection
+        Dim cmd As SqlCommand
+
+        con = New SqlConnection(ConfigurationManager.ConnectionStrings("PCAReviewsConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_UpdateReviewIDQCTier3", con)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = lblReviewID.Text
+        cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = HttpContext.Current.User.Identity.Name
+        cmd.Parameters.Add("@Score_CorrectID_Accuracy", SqlDbType.VarChar).Value = ddlScore_CorrectID_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_ProperlyIdentified_Accuracy", SqlDbType.VarChar).Value = ddlScore_ProperlyIdentified_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_MiniMiranda_Accuracy", SqlDbType.VarChar).Value = ddlScore_MiniMiranda_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_CallRecording_Accuracy", SqlDbType.VarChar).Value = ddlScore_CallRecording_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Tone_Accuracy", SqlDbType.VarChar).Value = ddlScore_Tone_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Accuracy_Accuracy", SqlDbType.VarChar).Value = ddlScore_Accuracy_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Notepad_Accuracy", SqlDbType.VarChar).Value = ddlScore_Notepad_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_PCAResponsive_Accuracy", SqlDbType.VarChar).Value = ddlScore_PCAResponsive_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_AWGInfo_Accuracy", SqlDbType.VarChar).Value = ddlScore_AWGInfo_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Complaint_Accuracy", SqlDbType.VarChar).Value = ddlComplaint_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_ExceededHoldTime_Accuracy", SqlDbType.VarChar).Value = ddlScore_ExceededHoldTime_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Recording_Time_Bucket_Accuracy", SqlDbType.VarChar).Value = ddlRecording_Time_Bucket_Accuracy.SelectedValue
+
+        cmd.Parameters.Add("@Score_Rehab_Once_Accuracy", SqlDbType.VarChar).Value = ddlScore_Rehab_Once_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Nine_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Nine_Payments_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_TitleIV_Accuracy", SqlDbType.VarChar).Value = ddlScore_TitleIV_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Credit_Reporting_Accuracy", SqlDbType.VarChar).Value = ddlScore_Credit_Reporting_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_TOP_Accuracy", SqlDbType.VarChar).Value = ddlScore_TOP_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_AWG_Accuracy", SqlDbType.VarChar).Value = ddlScore_AWG_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Continue_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Continue_Payments_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Collection_Charges_Waived_Accuracy", SqlDbType.VarChar).Value = ddlScore_Collection_Charges_Waived_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Financial_Documents_Accuracy", SqlDbType.VarChar).Value = ddlScore_Financial_Documents_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Rehab_Agreement_Letter_Accuracy", SqlDbType.VarChar).Value = ddlScore_Rehab_Agreement_Letter_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Contact_Us_Accuracy", SqlDbType.VarChar).Value = ddlScore_Contact_Us_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Eligible_Payment_Plans_Accuracy", SqlDbType.VarChar).Value = ddlScore_Eligible_Payment_Plans_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Deferment_Forb_Accuracy", SqlDbType.VarChar).Value = ddlScore_Deferment_Forb_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_New_Payment_Schedule_Accuracy", SqlDbType.VarChar).Value = ddlScore_New_Payment_Schedule_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Reversed_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Reversed_Payments_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Loans_Transferred_After_60_Days_Accuracy", SqlDbType.VarChar).Value = ddlScore_Loans_Transferred_After_60_Days_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Electronic_Payments_Accuracy", SqlDbType.VarChar).Value = ddlScore_Electronic_Payments_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_New_Loan_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_New_Loan_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_Credit_Reporting_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Credit_Reporting_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_Interest_Rates_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Interest_Rates_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_Capitalization_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Capitalization_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_TitleIV_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_TitleIV_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_Repayment_Options_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Repayment_Options_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Score_Consol_Default_Accuracy", SqlDbType.VarChar).Value = ddlScore_Consol_Default_Accuracy3.SelectedValue
+        cmd.Parameters.Add("@Comments", SqlDbType.VarChar).Value = txtComments3.Text
+
+        Try
+            cmd.Connection = con
+            con.Open()
+            cmd.ExecuteNonQuery()
+
+            'Notify the user
+            lblUpdateConfirmQCTier3.Text = "Your review was successfully QC'd In Tier3"
         Finally
             con.Close()
         End Try
@@ -1397,6 +1565,8 @@ Partial Class PCAReviews_ReviewDetail2
             con.Close()
         End Try
     End Sub
+
     
+
 
 End Class

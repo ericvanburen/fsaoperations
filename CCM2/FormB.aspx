@@ -132,11 +132,11 @@
                     $("#divResolution_Other").toggle();
                     alert("Please remember to add comments regarding the resolution of this call");
                 }
-            });
+            });            
         });
 </script>
 
-   <script type="text/javascript">
+    <script type="text/javascript">
         $(function () {
             $("#btnBeginTimeofReview").on('click', function () {
                 var d = new Date();
@@ -165,6 +165,16 @@
                 $("#MainContent_txtEndTimeofReview2").val(h + ':' + m);
             });
         });
+
+        $(function () {
+            $("#MainContent_btnAddCall").on('click', function (e) {
+                if($('#divResolution input:checked').length == 0) {
+                    alert("You must complete at least 1 method of resolution");
+                    e.preventDefault();
+                }               
+            });
+        });    
+
     </script>
 
 </asp:Content>
@@ -199,6 +209,8 @@
                                             <li><a href="admin/ReportIndividualProductivityCallCenter.aspx">Productivity-Call Center</a></li>
                                             <li><a href="admin/Search.aspx">Search</a></li>
                                             <li><a href="ChecksSearch.aspx">Servicer Check Report</a></li>
+                                            <li><a href="admin/QCReview_New.aspx">QC Review - Add</a></li>
+                                            <li><a href="admin/QCReview_Search.aspx">QC Review - Search</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Monitoring</a>
@@ -236,8 +248,7 @@
                                                 </td>
                                                 <td width="25%">
                                                     <strong>Date of Review:</strong><br />
-                                                    <asp:TextBox ID="txtDateofReview" runat="server" class="datepicker" 
-                                                        TabIndex="2" /><br />
+                                                    <asp:TextBox ID="txtDateofReview" runat="server" class="datepicker" TabIndex="2" /><br />
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" CssClass="warning" Display="Dynamic" 
                                                     ErrorMessage="* Please enter the Date of Review * " ControlToValidate="txtDateofReview" ValidationGroup="FormB" />
                                                 </td>
@@ -251,7 +262,7 @@
                                                 </td>
                                                 <td width="25%">
                                                     <strong>End Time of Review:</strong><br />
-                                                    <asp:TextBox ID="txtEndTimeofReview" runat="server" Width="175px" TabIndex="3"  />
+                                                    <asp:TextBox ID="txtEndTimeofReview" runat="server" Width="175px" TabIndex="4"  />
                                                     <button type="button" class="btn btn-default btn-sm" Height="20" Width="20" name="btnEndTimeofReview" id="btnEndTimeofReview"><span class="glyphicon glyphicon-time"></span></button>
                                                     <br />
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" CssClass="warning" Display="Dynamic" 
@@ -260,28 +271,48 @@
                                                 
                                             </tr>
                                             <tr>
+                                                <td width="25%" valign="top"><strong>Call Review Month:</strong> <br />
+                                                    <asp:DropDownList ID="ddlCallReviewMonth" runat="server" TabIndex="5" Height="25px">                                                        
+                                                        <asp:ListItem Text="" Value="" />
+                                                        <asp:ListItem Text="January" Value="01" />
+                                                        <asp:ListItem Text="February" Value="02" />
+                                                        <asp:ListItem Text="March" Value="03" />
+                                                        <asp:ListItem Text="April" Value="04" />
+                                                        <asp:ListItem Text="May" Value="05" />
+                                                        <asp:ListItem Text="June" Value="06" />
+                                                        <asp:ListItem Text="July" Value="07" />
+                                                        <asp:ListItem Text="August" Value="08" />
+                                                        <asp:ListItem Text="September" Value="09" />
+                                                        <asp:ListItem Text="October" Value="10" />
+                                                        <asp:ListItem Text="November" Value="11" />
+                                                        <asp:ListItem Text="December" Value="12" />
+                                                    </asp:DropDownList><br />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" CssClass="warning" Display="Dynamic" 
+                                                    ErrorMessage="* Please select the Call Review Month * " ControlToValidate="ddlCallReviewMonth" ValidationGroup="FormB" />
+                                                </td>
                                                 <td width="25%" valign="top"><strong>Agent ID:</strong> <br />
-                                                    <asp:TextBox ID="txtAgentID" runat="server" TabIndex="5" /><br />
+                                                    <asp:TextBox ID="txtAgentID" runat="server" TabIndex="6" /><br />
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" CssClass="warning" Display="Dynamic" 
                                                     ErrorMessage="* Please enter the Agent ID * " ControlToValidate="txtAgentID" ValidationGroup="FormB" /></td>
                                                 <td width="25%" valign="top"><strong><asp:Label ID="lblCallID" runat="server" Text="Call ID Number:" /></strong><br />
-                                                    <asp:TextBox ID="txtCallID" runat="server" TabIndex="6" /><br /><br />                                                    
+                                                    <asp:TextBox ID="txtCallID" runat="server" TabIndex="7" /><br /><br />                                                    
                                                 </td>  
                                                 <td width="25%" valign="top"><strong><asp:Label ID="lblAcctNSLDS" runat="server" Text="Account No:" /></strong><br />
-                                                    <asp:TextBox ID="txtBorrowerAccountNumber" runat="server" TabIndex="7" /><br />
+                                                    <asp:TextBox ID="txtBorrowerAccountNumber" runat="server" TabIndex="8" /><br />
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="warning" Display="Dynamic" 
                                                     ErrorMessage="* Please enter the borrower Account No or NSLDS ID  * " ControlToValidate="txtBorrowerAccountNumber" ValidationGroup="FormB" />
                                                 </td>
+                                                
+                                            </tr>
+                                            <tr>
                                                 <td width="25%" valign="top"><strong><asp:Label ID="lblInboundOutbound" runat="server" Text="Inbound/Outbound:" /></strong><br />
-                                                    <asp:DropDownList ID="ddlInboundOutbound" runat="server" Height="25px" TabIndex="4">
+                                                    <asp:DropDownList ID="ddlInboundOutbound" runat="server" Height="25px" TabIndex="9">
                                                         <asp:ListItem Selected="True" Text="Inbound" Value="Inbound" />
                                                         <asp:ListItem Text="Outbound" Value="Outbound" />
                                                     </asp:DropDownList>
                                                 </td>
-                                            </tr>
-                                            <tr>
                                                 <td width="25%" valign="top"><strong><asp:Label ID="lblSpecialtyLine" runat="server" Text="Specialty Line:" /></strong><br />
-                                                    <asp:DropDownList ID="ddlSpecialtyLine" runat="server" Height="25px">
+                                                    <asp:DropDownList ID="ddlSpecialtyLine" runat="server" Height="25px" TabIndex="10">
                                                         <asp:ListItem Text="" Value="" Selected="True" />
                                                         <asp:ListItem Text="Accessibility Requests" Value="Accessibility Requests" />
                                                         <asp:ListItem Text="Borrower Defense" Value="Borrower Defense" />
@@ -291,18 +322,20 @@
                                                         <asp:ListItem Text="Military" Value="Military" />
                                                         <asp:ListItem Text="PSLF" Value="PSLF" />
                                                         <asp:ListItem Text="School" Value="School" />
+                                                        <asp:ListItem Text="Subcontractor Calls" Value="Subcontractor Calls" />
                                                         <asp:ListItem Text="TEACH" Value="TEACH" />
+							                            <asp:ListItem Text="TPD" Value="TPD" />
                                                         <asp:ListItem Text="Visually Impaired" Value="Visually Impaired" />
                                                         <asp:ListItem Text="WC/Scheduled Callbacks" Value="WC/Scheduled Callbacks" />
                                                     </asp:DropDownList> </td> 
                                                 <td width="25%" valign="top"><strong><asp:Label ID="lblEscalated" runat="server" Text="Escalate This Call?" /></strong> <br />
-                                                    <asp:DropDownList ID="ddlEscalated" runat="server" Height="25px">
+                                                    <asp:DropDownList ID="ddlEscalated" runat="server" Height="25px" TabIndex="11">
                                                         <asp:ListItem Text="No" Value="No" Selected ="True" />
                                                         <asp:ListItem Text="Yes" Value="Yes" />
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td width="25%" valign="top"> </td>
-                                                <td width="25%" valign="top"> </td>                                                  
+                                                                                                  
                                             </tr>
                                             <tr>
                                                 <td colspan="4"><hr noshade="noshade" style="height: 1px; color: #000000" /></td>
@@ -357,8 +390,12 @@
                                                Select the method(s) of resolution the agent used to address the call
                                            </td>
                                         </tr>
+                                    </table>
+                                    
+                                     <div id="divResolution">
+                                     <table width="100%" cellpadding="2" cellspacing="2" border="0">
                                         <tr>
-                                            <td>
+                                            <td>                                            
                                             <%--<asp:CheckBox ID="chkResolution_Delinquency" CssClass="Resolution" Text="Delinquency" runat="server" />--%>
                                             <input type="checkbox" name="chkResolution_Delinquency" value="delinquency" class="resolution" /> Basic Counseling<br />
                                             <input type="checkbox" name="chkResolution_Military" value="military" class="resolution" /> Special Consideration for Members of the Military<br />
@@ -382,7 +419,8 @@
                                                 <hr noshade="noshade" style="height: 1px; color: #000000" />
                                             </td>
                                         </tr>                                       
-                                    </table>                          
+                                    </table> 
+                                    </div>                         
                                     
                                     <!--Delinquency-->
                                     <div id="divResolution_Delinquency" class="container, fieldTitle, resolutionBox">                                        

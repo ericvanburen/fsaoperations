@@ -67,6 +67,7 @@
                     <asp:ListItem Text="Approved" Value="Approved" />
                     <asp:ListItem Text="Denied" Value="Denied" />
                     <asp:ListItem Text="Pending" Value="Pending" />
+                    <asp:ListItem Text="Issue" Value="Issue" />
                     </asp:DropDownList></td>                         
                   </tr>                  
                   </table>                  
@@ -196,6 +197,7 @@
                         <asp:ListItem Text="Approved" Value="Approved" />
                         <asp:ListItem Text="Denied" Value="Denied" />
                         <asp:ListItem Text="Pending" Value="Pending" />
+                        <asp:ListItem Text="Issue" Value="Issue" />
                     </asp:DropDownList>
                 </td>
                 <td>
@@ -213,6 +215,7 @@
                         <asp:ListItem Text="Approved" Value="Approved" />
                         <asp:ListItem Text="Denied" Value="Denied" />
                         <asp:ListItem Text="Pending" Value="Pending" />
+                        <asp:ListItem Text="Issue" Value="Issue" />
                     </asp:DropDownList>
                 </td>
                 <td>

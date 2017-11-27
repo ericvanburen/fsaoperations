@@ -51,7 +51,7 @@ Partial Class PCAReviews_Report_Final
             lblReviewPeriod.Text = strMonth & ", " & strReviewPeriodYear
             lblReviewPeriod2.Text = strMonth & ", " & strReviewPeriodYear
 
-            lblPDFUrl.Text = "http://localhost:49542/PCAReviews/ReportFinal/Report_Final.aspx?ReviewPeriodMonth=" & strReviewPeriodMonth & "&ReviewPeriodYear=" & strReviewPeriodYear & "&PCA=" & strPCA & "&PCAID=" & strPCAID
+            lblPDFUrl.Text = "http://localhost:55389/PCAReviews/ReportFinal/Report_Final.aspx?ReviewPeriodMonth=" & strReviewPeriodMonth & "&ReviewPeriodYear=" & strReviewPeriodYear & "&PCA=" & strPCA & "&PCAID=" & strPCAID
             'ChartGeneralCallReview(strPCAID, strReviewPeriodMonth, strReviewPeriodYear)
             ErrorData(strPCAID, strReviewPeriodMonth, strReviewPeriodYear)
         End If
@@ -138,6 +138,17 @@ Partial Class PCAReviews_Report_Final
                     End If
                     If Not dr("Score_MiniMiranda_Percent") Is DBNull.Value Then
                         lblScore_MiniMiranda_Percent.Text = dr("Score_MiniMiranda_Percent").ToString() & "%"
+                    End If
+
+                    'CallRecording
+                    If Not dr("Score_CallRecording_Total") Is DBNull.Value Then
+                        lblScore_CallRecording_Total.Text = dr("Score_CallRecording_Total").ToString()
+                    End If
+                    If Not dr("Score_CallRecording_Incorrect") Is DBNull.Value Then
+                        lblScore_CallRecording_Incorrect.Text = dr("Score_CallRecording_Incorrect").ToString()
+                    End If
+                    If Not dr("Score_CallRecording_Percent") Is DBNull.Value Then
+                        lblScore_CallRecording_Percent.Text = dr("Score_CallRecording_Percent").ToString() & "%"
                     End If
 
                     'Score_Tone
@@ -414,94 +425,6 @@ Partial Class PCAReviews_Report_Final
                     End If
                     If Not dr("Score_Electronic_Payments_Percent") Is DBNull.Value Then
                         lblScore_Electronic_Payments_Percent.Text = dr("Score_Electronic_Payments_Percent").ToString() & "%"
-                    End If
-
-                    'Score_Delay_Tax_Reform
-                    If Not dr("Score_Delay_Tax_Reform_Total") Is DBNull.Value Then
-                        lblScore_Delay_Tax_Reform_Total.Text = dr("Score_Delay_Tax_Reform_Total").ToString()
-                    End If
-                    If Not dr("Score_Delay_Tax_Reform_Incorrect") Is DBNull.Value Then
-                        lblScore_Delay_Tax_Reform_Incorrect.Text = dr("Score_Delay_Tax_Reform_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_Delay_Tax_Reform_Percent") Is DBNull.Value Then
-                        lblScore_Delay_Tax_Reform_Percent.Text = dr("Score_Delay_Tax_Reform_Percent").ToString() & "%"
-                    End If
-
-                    'Score_More_Aid
-                    If Not dr("Score_More_Aid_Total") Is DBNull.Value Then
-                        lblScore_More_Aid_Total.Text = dr("Score_More_Aid_Total").ToString()
-                    End If
-                    If Not dr("Score_More_Aid_Incorrect") Is DBNull.Value Then
-                        lblScore_More_Aid_Incorrect.Text = dr("Score_More_Aid_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_More_Aid_Percent") Is DBNull.Value Then
-                        lblScore_More_Aid_Percent.Text = dr("Score_More_Aid_Percent").ToString() & "%"
-                    End If
-
-                    'Score_Collection_Costs_Waived
-                    If Not dr("Score_Collection_Costs_Waived_Total") Is DBNull.Value Then
-                        lblScore_Collection_Costs_Waived_Total.Text = dr("Score_Collection_Costs_Waived_Total").ToString()
-                    End If
-                    If Not dr("Score_Collection_Costs_Waived_Incorrect") Is DBNull.Value Then
-                        lblScore_Collection_Costs_Waived_Incorrect.Text = dr("Score_Collection_Costs_Waived_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_Collection_Costs_Waived_Percent") Is DBNull.Value Then
-                        lblScore_Collection_Costs_Waived_Percent.Text = dr("Score_Collection_Costs_Waived_Percent").ToString() & "%"
-                    End If
-
-                    'Score_False_Requirements
-                    If Not dr("Score_False_Requirements_Total") Is DBNull.Value Then
-                        lblScore_False_Requirements_Total.Text = dr("Score_False_Requirements_Total").ToString()
-                    End If
-                    If Not dr("Score_False_Requirements_Incorrect") Is DBNull.Value Then
-                        lblScore_False_Requirements_Incorrect.Text = dr("Score_False_Requirements_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_False_Requirements_Percent") Is DBNull.Value Then
-                        lblScore_False_Requirements_Percent.Text = dr("Score_False_Requirements_Percent").ToString() & "%"
-                    End If
-
-                    'Score_Avoid_PIF
-                    If Not dr("Score_Avoid_PIF_Total") Is DBNull.Value Then
-                        lblScore_Avoid_PIF_Total.Text = dr("Score_Avoid_PIF_Total").ToString()
-                    End If
-                    If Not dr("Score_Avoid_PIF_Incorrect") Is DBNull.Value Then
-                        lblScore_Avoid_PIF_Incorrect.Text = dr("Score_Avoid_PIF_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_Avoid_PIF_Percent") Is DBNull.Value Then
-                        lblScore_Avoid_PIF_Percent.Text = dr("Score_Avoid_PIF_Percent").ToString() & "%"
-                    End If
-
-                    'Score_Rehab_Then_TPD
-                    If Not dr("Score_Rehab_Then_TPD_Total") Is DBNull.Value Then
-                        lblScore_Rehab_Then_TPD_Total.Text = dr("Score_Rehab_Then_TPD_Total").ToString()
-                    End If
-                    If Not dr("Score_Rehab_Then_TPD_Incorrect") Is DBNull.Value Then
-                        lblScore_Rehab_Then_TPD_Incorrect.Text = dr("Score_Rehab_Then_TPD_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_Rehab_Then_TPD_Percent") Is DBNull.Value Then
-                        lblScore_Rehab_Then_TPD_Percent.Text = dr("Score_Rehab_Then_TPD_Percent").ToString() & "%"
-                    End If
-
-                    'Score_Payments_Are_Final
-                    If Not dr("Score_Payments_Are_Final_Total") Is DBNull.Value Then
-                        lblScore_Payments_Are_Final_Total.Text = dr("Score_Payments_Are_Final_Total").ToString()
-                    End If
-                    If Not dr("Score_Payments_Are_Final_Incorrect") Is DBNull.Value Then
-                        lblScore_Payments_Are_Final_Incorrect.Text = dr("Score_Payments_Are_Final_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_Payments_Are_Final_Percent") Is DBNull.Value Then
-                        lblScore_Payments_Are_Final_Percent.Text = dr("Score_Payments_Are_Final_Percent").ToString() & "%"
-                    End If
-
-                    'Score_Not_Factual
-                    If Not dr("Score_Not_Factual_Total") Is DBNull.Value Then
-                        lblScore_Not_Factual_Total.Text = dr("Score_Not_Factual_Total").ToString()
-                    End If
-                    If Not dr("Score_Not_Factual_Incorrect") Is DBNull.Value Then
-                        lblScore_Not_Factual_Incorrect.Text = dr("Score_Not_Factual_Incorrect").ToString()
-                    End If
-                    If Not dr("Score_Not_Factual_Percent") Is DBNull.Value Then
-                        lblScore_Not_Factual_Percent.Text = dr("Score_Not_Factual_Percent").ToString() & "%"
                     End If
 
                     'Score_Consol_New_Loan

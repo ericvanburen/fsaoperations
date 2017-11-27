@@ -28,6 +28,8 @@ Partial Class PCAReviews_Report_Errors
                     lblErrorType.Text = "General Review Section: PCA Properly Identified Itself"
                 Case "Score_MiniMiranda"
                     lblErrorType.Text = "General Review Section: Mini-Miranda Provided"
+                Case "Score_CallRecording"
+                    lblErrorType.Text = "General Review Section: Call Recording"
                 Case "Score_Tone"
                     lblErrorType.Text = "General Review Section: PCA Used Professional Tone"
                 Case "Score_Accuracy"

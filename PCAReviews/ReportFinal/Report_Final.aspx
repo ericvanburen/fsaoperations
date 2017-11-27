@@ -154,6 +154,12 @@
             <td class="text-right"><asp:Label ID="lblScore_MiniMiranda_Incorrect" runat="server" /></td>
             <td class="text-right"><asp:Label ID="lblScore_MiniMiranda_Percent" runat="server" /></td>
         </tr>
+            <tr>
+                <td>Call Recording</td>
+                <td class="text-right"><asp:Label ID="lblScore_CallRecording_Total" runat="server" /></td>
+                <td class="text-right"><asp:Label ID="lblScore_CallRecording_Incorrect" runat="server" /></td>
+                <td class="text-right"><asp:Label ID="lblScore_CallRecording_Percent" runat="server" /></td>
+            </tr>
         <tr>
             <td>PCA Used Professional Tone</td>
             <td class="text-right"><asp:Label ID="lblScore_Tone_Total" runat="server" /></td>
@@ -320,57 +326,7 @@
             <td class="text-right"><asp:Label ID="lblScore_Electronic_Payments_Incorrect" runat="server" /></td>
             <td class="text-right"><asp:Label ID="lblScore_Electronic_Payments_Percent" runat="server" /></td>    
         </tr>
-        <tr>
-           <th class="alert-danger" colspan="4">Rehab Ratings - Collector MUST NOT say these things</th> 
-        </tr>
-        <tr>
-            <td>Advise the borr to delay filing tax return</td>
-            <td class="text-right"><asp:Label ID="lblScore_Delay_Tax_Reform_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Delay_Tax_Reform_Incorrect" runat="server" /></td> 
-            <td class="text-right"><asp:Label ID="lblScore_Delay_Tax_Reform_Percent" runat="server" /></td>   
-        </tr>
-        <tr>
-            <td>Tell the borr that he/she will be eligible for TIV, defers, forbs</td>
-            <td class="text-right"><asp:Label ID="lblScore_More_Aid_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_More_Aid_Incorrect" runat="server" /></td> 
-            <td class="text-right"><asp:Label ID="lblScore_More_Aid_Percent" runat="server" /></td>   
-        </tr>
-        <tr>
-            <td>Quote an exact amt for the collection costs that will be waived</td>
-            <td class="text-right"><asp:Label ID="lblScore_Collection_Costs_Waived_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Collection_Costs_Waived_Incorrect" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Collection_Costs_Waived_Percent" runat="server" /></td>    
-        </tr>
-        <tr>
-            <td>Impose requirements that are not required</td>
-            <td class="text-right"><asp:Label ID="lblScore_False_Requirements_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_False_Requirements_Incorrect" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_False_Requirements_Percent" runat="server" /></td>    
-        </tr>
-        <tr>
-            <td>Talk them out of PIF or SIF if they are able and willing.  (Can see the credit benefit of rehab.)</td>
-            <td class="text-right"><asp:Label ID="lblScore_Avoid_PIF_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Avoid_PIF_Incorrect" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Avoid_PIF_Percent" runat="server" /></td>    
-        </tr>
-        <tr>
-            <td>Tell a disabled borr that he/she should rehab first then apply for TPD.</td>
-            <td class="text-right"><asp:Label ID="lblScore_Rehab_Then_TPD_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Rehab_Then_TPD_Incorrect" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Rehab_Then_TPD_Percent" runat="server" /></td>    
-        </tr>
-        <tr>
-            <td>Tell the borr that pymt amounts and dates are final and cannot be changed</td>
-            <td class="text-right"><asp:Label ID="lblScore_Payments_Are_Final_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Payments_Are_Final_Incorrect" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Payments_Are_Final_Percent" runat="server" /></td>    
-        </tr>
-        <tr>
-            <td>State anything that is not factual including attributing to ED things that are not ED policy</td>
-            <td class="text-right"><asp:Label ID="lblScore_Not_Factual_Total" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Not_Factual_Incorrect" runat="server" /></td>
-            <td class="text-right"><asp:Label ID="lblScore_Not_Factual_Percent" runat="server" /></td>    
-        </tr>
+               
         <!--Section Added-->
         <tr>
            <th class="alert-success" colspan="4">Consolidation Ratings - Collector MAY say these things</th> 

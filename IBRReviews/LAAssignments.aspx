@@ -102,7 +102,11 @@
          <asp:BoundField DataField="ReportQuarter" HeaderText="ReportQuarter" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
          <asp:BoundField DataField="ReportYear" HeaderText="ReportYear" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
          <asp:BoundField DataField="RecordingDeliveryDate" HeaderText="Recording Delivery Date" SortExpression="RecordingDeliveryDate"
-             DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ReadOnly="true" ItemStyle-HorizontalAlign="Center" />
+             DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ReadOnly="true" ItemStyle-HorizontalAlign="Center" />         
+         <asp:BoundField DataField="DateAssigned" HeaderText="Date Assigned" SortExpression="DateAssigned"
+             DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
+         <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate"
+             DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />                           
          <asp:BoundField DataField="NewAssignmentID" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" HeaderText="AssignmentID" />
          <asp:BoundField DataField="WorksheetPCADate" HeaderText="Date Worksheet Completed By LA" SortExpression="WorksheetPCADate"
              DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
@@ -162,6 +166,16 @@
                                         <td align="right"><label for="txtRecordingDeliveryDate">Recording Delivery Date</label></td>
                                         <td align="left"><asp:TextBox ID="txtRecordingDeliveryDate" runat="server" /></td>
                                     </tr>
+                                    
+                                    <tr>
+                                        <td align="right"><label for="txtDateAssigned">Date Assigned</label></td>
+                                        <td align="left"><asp:TextBox ID="txtDateAssigned" runat="server" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><label for="txtDueDate">Due Date</label></td>
+                                        <td align="left"><asp:TextBox ID="txtDueDate" runat="server" /></td>
+                                    </tr>
+                                    
                                     <tr>
                                         <td align="right"><label for="ddlReportQuarter">Review Quarter/Year</label></td>
                                         <td><asp:DropDownList ID="ddlReportQuarter" runat="server" CssClass="inputBox">
@@ -173,10 +187,11 @@
                                            </asp:DropDownList>
                                         <asp:DropDownList ID="ddlReportYear" runat="server" CssClass="inputBox">
                                                 <asp:ListItem Text="" Value="" />
-                                                <asp:ListItem Text="2014" Value="2014" />
+                                                <asp:ListItem Text="2018" Value="2018" />  
+                                                <asp:ListItem Text="2017" Value="2017" /> 
+                                                <asp:ListItem Text="2016" Value="2016" /> 
                                                 <asp:ListItem Text="2015" Value="2015" />
-                                                <asp:ListItem Text="2016" Value="2016" />
-                                                <asp:ListItem Text="2017" Value="2017" />
+                                                <asp:ListItem Text="2014" Value="2014" />
                                         </asp:DropDownList>
                                         </td>
                                     </tr>
@@ -260,9 +275,7 @@
             <asp:BoundField DataField="ReportYear" HeaderText="Year" SortExpression="ReportYear" HeaderStyle-HorizontalAlign="Center" />                              
         </Columns>
     </asp:GridView> 
-   
-    
-     </div>
-    </div>
+  </div>
+</div>
 </asp:Content>
 

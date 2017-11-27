@@ -8,6 +8,7 @@
     <script src="../bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="../bootstrap/js/tooltip.js" type="text/javascript"></script>
     <script src="../Scripts/jquery.checkAvailability.js" type="text/javascript"></script>
+    <script src="js/form_validation.js" type="text/javascript"></script>
     <link href="../bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../bootstrap/dist/css/datepicker.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -42,16 +43,19 @@
           });
     </script>--%>
 
+    
+ 
     <script type="text/javascript">
         //Score_Contact_Us in the rehab section is a required field if Rehab Talk-Off = Yes
         $(function () {
             $('select[id$=MainContent_ddlRehabTalkOff]').change(function () {
                 if (this.value == 'Yes') {
-                    $('#MainContent_ddlScore_Contact_Us').val('OK');                    
+                    $('#MainContent_ddlScore_Contact_Us').val('OK');                     
                 }
             })
         });
-</script>
+    </script>
+
 
     <script type="text/javascript">
         // If the Complaint? field = True/Yes, then the LA needs to indicate whether the complaint was timely by completing the
@@ -67,7 +71,8 @@
     </script>
 
     <script type="text/javascript">
-        function secondstotime() {
+        function secondstotimestated() {
+            //stated
             var secs = $('#MainContent_txtCallLength').val();;
             var t = new Date(1970, 0, 1);
             t.setSeconds(secs);
@@ -75,6 +80,16 @@
             if (secs > 86399)
                 s = Math.floor((t - Date.parse("1/1/70")) / 3600000) + s.substr(2);
             $('#MainContent_txtCallLength').val(s);
+        }
+
+        function secondstotimeactual() {
+            //actual
+            var secs = $('#MainContent_txtCallLengthActual').val();;
+            var t = new Date(1970, 0, 1);
+            t.setSeconds(secs);
+            var s = t.toTimeString().substr(0, 8);
+            if (secs > 86399)
+                s = Math.floor((t - Date.parse("1/1/70")) / 3600000) + s.substr(2);
             $('#MainContent_txtCallLengthActual').val(s);
         }
     </script>
@@ -113,6 +128,7 @@
         <li><a href="Reports_Incorrect_Actions_ByGroup.aspx">PCA Incorrect Actions Summary</a></li>
         <li><a href="Reports_Incorrect_Actions.aspx">PCA Incorrect Actions Detail</a></li>
         <li><a href="QCCalc.aspx">QC Calculator</a></li>
+        <li><a href="QCUserManager.aspx">QC User Manager</a></li>
     </ul>
   </li>
  </ul>
@@ -133,7 +149,7 @@
   <!--Borrower/Call Details--> 
   <table class="table" id="tblBorrowerDetails">
      <tr>        
-        <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Initial Rehab/Consolidation Talk-Off?" data-content="Is this review a rehab or consolidation talk=off?">Rehab/Consol Talk-Off?</a></th>
+        <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Initial Rehab/Consolidation Talk-Off?" data-content="Is this review a rehab or consolidation talk=off?">Initial Rehab/Consol Talk-Off?</a></th>
         <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Call Date" data-content="The date the call was placed">Call Date</a></th>
         <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="PCA" data-content="The PCA the review is for">PCA</a></th>     
         <th class="tableColumnHead" colspan="1"><a href="#" data-toggle="popover" title="Review Period" data-content="The date the review was performed">Review Period</a></th>
@@ -209,9 +225,9 @@
                     ControlToValidate="txtBorrowerLastName" Display="Dynamic" CssClass="alert-danger" />
             </td>  
           <td class="tableColumnCell">        
-                <asp:TextBox ID="txtCallLength" runat="server" CssClass="inputBox" TabIndex="7" /> (stated)<br />
-                <asp:TextBox ID="txtCallLengthActual" runat="server" CssClass="inputBox" TabIndex="7" /> (actual)<br />
-                <input id="btnConvertSeconds" type="button" value="Convert Seconds" class="btn btn-xs btn-primary" onclick="secondstotime()" />
+                <asp:TextBox ID="txtCallLength" runat="server" CssClass="inputBox" TabIndex="7" /> (stated) <input id="btnConvertSecondsStated" title="Convert seconds" type="button" value="C" class="btn btn-xs btn-primary" onclick="secondstotimestated()" /><br />
+                <asp:TextBox ID="txtCallLengthActual" runat="server" CssClass="inputBox" TabIndex="7" /> (actual) <input id="btnConvertSecondsActual" title="Convert seconds" type="button" value="C" class="btn btn-xs btn-primary" onclick="secondstotimeactual()" /><br />
+                
                 <asp:RegularExpressionValidator ID="rfdCallLength" runat="server" ControlToValidate="txtCallLength" Display="Dynamic" CssClass="alert-danger" ErrorMessage="Must be in the format hh:mm:ss" 
                     ValidationExpression="^(?:1[0-2]|0[0-9]):[0-5][0-9]:[0-5][0-9]$" /><br />
                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="* Call Length is a required field *"
@@ -248,8 +264,8 @@
             <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Correct ID?" data-content="Right party authentication: Name and SSN, Acct Number, DOB, Address (at least one)">Correct ID?</a></th>
             <th class="tableColumnHead"><a href="#" data-toggle="popover" title="PCA Identified Itself?" data-content="Rep stated company name and reason for call">PCA Identified Itself?</a></th>
             <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Mini-Miranda?" data-content="Did the collector mirandize the borrower when applicable?">Mini-Miranda?</a></th>
+            <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Call Recording?" data-content="Did the collector inform the borrower that the call was being recorded?">Call Recording?</a></th>
             <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Professional Tone Used?" data-content="Did the collector use a professional tone of voice with the borrower?">Professional Tone Used?</a></th>
-            <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Accurate Info?" data-content="Did the PCA provide accurate information to the caller?">Accurate Info Provided?</a></th>
       </tr>
       <tr>
           <td class="tableColumnCell">
@@ -271,29 +287,36 @@
                     <asp:ListItem Text="Yes" Value="True" />
                     <asp:ListItem Text="No" Value="False" />
                 </asp:DropDownList>
-            </td>          
+            </td> 
           <td class="tableColumnCell">
-                 <asp:DropDownList ID="ddlScore_Tone" runat="server" CssClass="inputBox" TabIndex="14">
+                  <asp:DropDownList ID="ddlScore_CallRecording" runat="server" CssClass="inputBox" TabIndex="14">
                     <asp:ListItem Text="" Value="" />
                     <asp:ListItem Text="Yes" Value="True" />
                     <asp:ListItem Text="No" Value="False" />
                 </asp:DropDownList>
-            </td> 
+            </td>         
           <td class="tableColumnCell">
-                    <asp:DropDownList ID="ddlScore_Accuracy" runat="server" CssClass="inputBox" TabIndex="15">
+                 <asp:DropDownList ID="ddlScore_Tone" runat="server" CssClass="inputBox" TabIndex="15">
                     <asp:ListItem Text="" Value="" />
                     <asp:ListItem Text="Yes" Value="True" />
                     <asp:ListItem Text="No" Value="False" />
-                </asp:DropDownList></td>           
+                </asp:DropDownList>
+            </td>                     
       </tr>
       <tr>
+          <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Accurate Info?" data-content="Did the PCA provide accurate information to the caller?">Accurate Info Provided?</a></th>
           <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Accurate Notepad?" data-content="Did the collector update the DMCS notepad screen accurately?">Accurate Notepad?</a></th>
           <th class="tableColumnHead"><a href="#" data-toggle="popover" title="PCA Responsive?" data-content="Was the PCA responsive toward the borrower?">PCA Responsive?</a></th>
           <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Accurate Info about AWG?" data-content="Did the collector provide accurate Info about AWG?">Accurate Info For AWG</a>?</th>
           <th class="tableColumnHead"><a href="#" data-toggle="popover" title="PCA Disconnect Borrower?" data-content="Did the PCA disconnect the borrower?">PCA Disconnect Borrower?</a></th>
-          <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Complaint?" data-content="Did the borrower raise a complaint during the call?">Complaint?</a></th>
       </tr>
-      <tr>            
+      <tr>     
+           <td class="tableColumnCell">
+                    <asp:DropDownList ID="ddlScore_Accuracy" runat="server" CssClass="inputBox" TabIndex="16">
+                    <asp:ListItem Text="" Value="" />
+                    <asp:ListItem Text="Yes" Value="True" />
+                    <asp:ListItem Text="No" Value="False" />
+                </asp:DropDownList></td>       
           <td class="tableColumnCell">                    
                     <asp:DropDownList ID="ddlScore_Notepad" runat="server" CssClass="inputBox" TabIndex="16">
                     <asp:ListItem Text="" Value="" />
@@ -320,16 +343,10 @@
                     <asp:ListItem Text="" Value="" />
                     <asp:ListItem Text="Yes" Value="True" />
             </asp:DropDownList>
-            </td>
-           <td class="tableColumnCell">
-            <asp:DropDownList ID="ddlComplaint" runat="server" CssClass="inputBox" TabIndex="20">
-                    <asp:ListItem Text="" Value="" />
-                    <asp:ListItem Text="Yes" Value="True" />
-                    <asp:ListItem Text="No" Value="False" />
-            </asp:DropDownList>
-         </td>
+            </td>           
       </tr>
-      <tr>        
+      <tr>
+        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Complaint?" data-content="Did the borrower raise a complaint during the call?">Complaint?</a></th>        
         <th class="tableColumnHead"><a href="#" data-toggle="popover" title="IMF Submission Date" data-content="If the review was submitted by eIMF, the date it was submitted">IMF Submission Date</a></th>
         <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Cmpt IMF Timely?" data-content="Was the IMF submitted timely?">Cmpt IMF Timely</a></th>
         <th class="tableColumnHead"><a href="#" data-toggle="popover" title="PCA Exceeded Hold Time" data-content="Did the PCA put the borrower on hold too long?">Exceeded Hold Time</a></th>
@@ -337,6 +354,13 @@
         <th class="tableColumnHead">&nbsp;</th>
       </tr>
       <tr>    
+          <td class="tableColumnCell">
+            <asp:DropDownList ID="ddlComplaint" runat="server" CssClass="inputBox" TabIndex="20">
+                    <asp:ListItem Text="" Value="" />
+                    <asp:ListItem Text="Yes" Value="True" />
+                    <asp:ListItem Text="No" Value="False" />
+            </asp:DropDownList>
+         </td>
           <td class="tableColumnCell">    
                <asp:TextBox ID="txtIMF_Submission_Date" runat="server" CssClass="datepicker" TabIndex="21" />
                 </td>
@@ -346,7 +370,7 @@
                     <asp:ListItem Text="Yes" Value="Yes" />
                     <asp:ListItem Text="No" Value="No" />
                 </asp:DropDownList></td>
-            <td class="tableColumnCell"><asp:DropDownList ID="ddlScore_ExceededHoldTime" runat="server" CssClass="inputBox" TabIndex="22">
+            <td class="tableColumnCell"><asp:DropDownList ID="ddlScore_ExceededHoldTime" runat="server" CssClass="inputBox" TabIndex="23">
                     <asp:ListItem Text="" Value="" />
                     <asp:ListItem Text="Yes" Value="True" />
                     <asp:ListItem Text="No" Value="False" Selected="True" />
@@ -372,7 +396,7 @@
     </tr>    
     <tr>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Rehab_Once" runat="server" TabIndex="23">
+        <asp:DropDownList ID="ddlScore_Rehab_Once" runat="server" TabIndex="24">
            <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -380,7 +404,7 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Nine_Payments" runat="server" TabIndex="24">
+        <asp:DropDownList ID="ddlScore_Nine_Payments" runat="server" TabIndex="25">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -388,7 +412,7 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_TitleIV" runat="server" TabIndex="25">
+        <asp:DropDownList ID="ddlScore_TitleIV" runat="server" TabIndex="26">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -396,7 +420,7 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Credit_Reporting" runat="server" TabIndex="26">
+        <asp:DropDownList ID="ddlScore_Credit_Reporting" runat="server" TabIndex="27">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -404,7 +428,7 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td> 
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_TOP" runat="server" TabIndex="27">
+        <asp:DropDownList ID="ddlScore_TOP" runat="server" TabIndex="28">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -421,7 +445,7 @@
     </tr>
     <tr>
        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_AWG" runat="server" TabIndex="28">
+        <asp:DropDownList ID="ddlScore_AWG" runat="server" TabIndex="29">
            <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -429,15 +453,14 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td> 
         <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Continue_Payments" runat="server" TabIndex="29">
+        <asp:DropDownList ID="ddlScore_Continue_Payments" runat="server" TabIndex="30">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-            <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Collection_Charges_Waived" runat="server" TabIndex="30">
+        <asp:DropDownList ID="ddlScore_Collection_Charges_Waived" runat="server" TabIndex="31">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -445,7 +468,7 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td>
            <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Financial_Documents" runat="server" TabIndex="31">
+        <asp:DropDownList ID="ddlScore_Financial_Documents" runat="server" TabIndex="32">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -453,7 +476,7 @@
             <asp:ListItem Text="Error-Omission & Misstatement" Value="Error-Omission and Misstatement" />
         </asp:DropDownList></td>
          <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Rehab_Agreement_Letter" runat="server" TabIndex="32">
+        <asp:DropDownList ID="ddlScore_Rehab_Agreement_Letter" runat="server" TabIndex="33">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -471,7 +494,7 @@
         </tr>
         <tr>
         <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Contact_Us" runat="server" TabIndex="33">
+        <asp:DropDownList ID="ddlScore_Contact_Us" runat="server" TabIndex="34">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Omission" Value="Error-Omission" />
@@ -497,32 +520,32 @@
     </tr>    
     <tr>
         <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Eligible_Payment_Plans" runat="server" TabIndex="34">
+        <asp:DropDownList ID="ddlScore_Eligible_Payment_Plans" runat="server" TabIndex="35">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Deferment_Forb" runat="server" TabIndex="35">
+        <asp:DropDownList ID="ddlScore_Deferment_Forb" runat="server" TabIndex="36">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td> 
          <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_New_Payment_Schedule" runat="server" TabIndex="36">
+        <asp:DropDownList ID="ddlScore_New_Payment_Schedule" runat="server" TabIndex="37">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>        
        
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Reversed_Payments" runat="server" TabIndex="37">
+        <asp:DropDownList ID="ddlScore_Reversed_Payments" runat="server" TabIndex="38">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>  
         <td class="tableColumnCell" colspan="1">
-            <asp:DropDownList ID="ddlScore_Loans_Transferred_After_60_Days" runat="server" TabIndex="38">
+            <asp:DropDownList ID="ddlScore_Loans_Transferred_After_60_Days" runat="server" TabIndex="39">
              <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
@@ -537,7 +560,7 @@
     </tr>
     <tr>
      <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Electronic_Payments" runat="server" TabIndex="39">
+        <asp:DropDownList ID="ddlScore_Electronic_Payments" runat="server" TabIndex="40">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
@@ -547,81 +570,7 @@
         <td class="tableColumnCell">&nbsp;</td>
         <td class="tableColumnCell">&nbsp;</td>        
     </tr>
-    <tr>
-        <th class="alert-danger" colspan="5">Rehab Review - Collector MUST NOT say these things</th> 
-    </tr>
-    <tr>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Delay Tax Return" data-content="Advise the borrower to delay filing tax return">Delay Tax Return</a></th>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="More Aid or Deferment" data-content="Tell the borrower that s/he will be eligible for Title IV, deferments forbearances">More Aid or Deferment</a></th>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Quote Collection Costs Waived" data-content="Quote an exact amount for collection costs that will be waived">Quote Collection Costs Waived</a></th>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="False Requirements" data-content="Impose requirements that are not required">False Requirements</a></th>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Avoid PIF" data-content="Talk them out of PIF or SIF if they are able and willing (can see the credit benefit of rehab)">Avoid PIF</a></th>
-    </tr>
-    
-    <tr>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Delay_Tax_Reform" runat="server" TabIndex="41">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_More_Aid" runat="server" TabIndex="42">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Collection_Costs_Waived" runat="server" TabIndex="43">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_False_Requirements" runat="server" TabIndex="44">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Avoid_PIF" runat="server" TabIndex="45">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>           
-    </tr> 
-    
-    <tr>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Rehab Then TPD" data-content="Tell a disabled borrower that s/he should rehab first then apply for TPD">Rehab Then TPD</a></th>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Payments Are Final" data-content="Tell the borrower that payment amounts and dates are final and cannot be changed">Payments Are Final</a></th>
-        <th class="tableColumnHead"><a href="#" data-toggle="popover" title="Not Factual" data-content="State anything that is not factual including attributing to ED things that are not ED policy">Not Factual</a></th>
-        <th class="tableColumnHead"></th>
-        <th class="tableColumnHead"></th>
-    </tr>
-    <tr>     
-        
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Rehab_Then_TPD" runat="server" TabIndex="46">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Payments_Are_Final" runat="server" TabIndex="47">
-           <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">
-        <asp:DropDownList ID="ddlScore_Not_Factual" runat="server" TabIndex="48">
-            <asp:ListItem Text="" Value="" />
-            <asp:ListItem Text="OK" Value="OK" />
-            <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
-        </asp:DropDownList></td>
-        <td class="tableColumnCell">&nbsp;</td>
-        <td class="tableColumnCell">&nbsp;</td>  
-    </tr> 
-    </table>
+  </table>
 </div>
         
   
@@ -639,25 +588,25 @@
       </tr>
       <tr>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_New_Loan" runat="server" TabIndex="49">
+        <asp:DropDownList ID="ddlScore_Consol_New_Loan" runat="server" TabIndex="41">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_Credit_Reporting" runat="server" TabIndex="50">
+        <asp:DropDownList ID="ddlScore_Consol_Credit_Reporting" runat="server" TabIndex="42">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_Interest_Rates" runat="server" TabIndex="51">
+        <asp:DropDownList ID="ddlScore_Consol_Interest_Rates" runat="server" TabIndex="43">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_Capitalization" runat="server" TabIndex="52">
+        <asp:DropDownList ID="ddlScore_Consol_Capitalization" runat="server" TabIndex="44">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
@@ -671,19 +620,19 @@
      </tr> 
       <tr>
          <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_TitleIV" runat="server" TabIndex="53">
+        <asp:DropDownList ID="ddlScore_Consol_TitleIV" runat="server" TabIndex="45">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>
           <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_Repayment_Options" runat="server" TabIndex="54">
+        <asp:DropDownList ID="ddlScore_Consol_Repayment_Options" runat="server" TabIndex="46">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
         </asp:DropDownList></td>
         <td class="tableColumnCell" colspan="1">
-        <asp:DropDownList ID="ddlScore_Consol_Default" runat="server" TabIndex="55">
+        <asp:DropDownList ID="ddlScore_Consol_Default" runat="server" TabIndex="47">
             <asp:ListItem Text="" Value="" />
             <asp:ListItem Text="OK" Value="OK" />
             <asp:ListItem Text="Error-Misstatement" Value="Error-Misstatement" />
@@ -702,14 +651,14 @@
             <td valign="top"  colspan="2">
             <!--FSA Comments-->           
             <label class="tableColumnHead"><a href="#" data-toggle="popover" title="FSA Loan Analyst Comments" data-content="Comments provided by the FSA Loan Analyst">FSA Loan Analyst Comments</a></label><br />            
-                <ASPNetSpell:SpellTextBox ID="txtFSA_Comments" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="56" />                
+                <ASPNetSpell:SpellTextBox ID="txtFSA_Comments" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="48" />                
                 <ASPNetSpell:SpellButton ID="SpellButton1" runat="server" CheckGrammar="true" FieldsToSpellCheck="txtFSA_Comments" />                        
            </td>
           
             <td valign="top" colspan="2">
             <!--FSA Supervisor Comments-->           
             <label class="tableColumnHead"><a href="#" data-toggle="popover" title="FSA Supervisor Comments" data-content="Comments provided by a FSA supervisor">FSA Supervisor Comments</a></label><br />            
-                <ASPNetSpell:SpellTextBox ID="txtFSASupervisor_Comments" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="57" />                
+                <ASPNetSpell:SpellTextBox ID="txtFSASupervisor_Comments" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="49" />                
                 <ASPNetSpell:SpellButton ID="SpellButton4" runat="server" CheckGrammar="true" FieldsToSpellCheck="txtFSASupervisor_Comments" />                      
            <br /></td>
            </tr>
@@ -717,18 +666,18 @@
             <td valign="top"  colspan="2"> 
             <!--PCA Comments-->          
             <label class="tableColumnHead"><a href="#" data-toggle="popover" title="PCA Comments" data-content="Comments provided the PCA">PCA Comments</a></label><br />            
-                <ASPNetSpell:SpellTextBox ID="txtPCA_Comments" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="58" />
+                <ASPNetSpell:SpellTextBox ID="txtPCA_Comments" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="50" />
                 <ASPNetSpell:SpellButton ID="SpellButton2" runat="server" CheckGrammar="true" FieldsToSpellCheck="txtPCA_Comments" />              
           </td>
            <td valign="top" colspan="2"> <!--FSA_Conclusions-->          
             <label class="tableColumnHead"><a href="#" data-toggle="popover" title="FSA Conclusions" data-content="Conclusions reached by FSA">FSA Conclusions</a></label><br />           
-                <ASPNetSpell:SpellTextBox ID="txtFSA_Conclusions" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="59" />                     
+                <ASPNetSpell:SpellTextBox ID="txtFSA_Conclusions" runat="server" CssClass="inputBox" Columns="60" Rows="6" TextMode="MultiLine" TabIndex="51" />                     
                  <ASPNetSpell:SpellButton ID="SpellButton3" runat="server" CheckGrammar="true" FieldsToSpellCheck="txtFSA_Conclusions" />             
            <br /></td>
         </tr>
         <tr>
             <td colspan="4" align="center"><br />
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-lg btn-primary" OnClick="btnSubmit_Click" TabIndex="60" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-lg btn-primary" OnClick="btnSubmit_Click" TabIndex="52" />
             <asp:Button ID="btnUpdateAgain" runat="server" CssClass="btn btn-lg btn-success" Text="Enter Another Review" OnClick="btnSubmitAgain_Click" Visible="false" />
             <br /><asp:Label ID="lblUpdateConfirm" runat="server" CssClass="alert-success" />
             </td>

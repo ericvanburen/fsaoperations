@@ -298,6 +298,7 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
             <asp:ListItem Text="" Value="" Selected="True" /> 
             <asp:ListItem Text="AES/PHEAA" Value="AES/PHEAA" />
             <asp:ListItem Text="Cornerstone" Value="Conerstone" />
+            <asp:ListItem Text="EdFinancial-HESC" Value="EdFinancial-HESC" />
             <asp:ListItem Text="ESA" Value="ESA" /> 
             <asp:ListItem Text="FedLoan" Value="FedLoan" /> 
             <asp:ListItem Text="FSA-Bus Ops" Value="FSA-Bus Ops" />
@@ -386,11 +387,42 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
     </tr>
     <tr>
            <td align="right"><a href="#" data-toggle="popover" title="Affects FFEL Accounts?" data-content="Does this issue affect FFEL serviced accounts?">Affects FFEL Accounts?</a></td>
-           <td align="left" colspan="3"><asp:DropDownList ID="ddlAffectFFEL" runat="server">
+           <td align="left"><asp:DropDownList ID="ddlAffectFFEL" runat="server">
                 <asp:ListItem Text="" Value="" />
                 <asp:ListItem Text="Yes" Value="Yes" />
                 <asp:ListItem Text="No" Value="No" />
             </asp:DropDownList></td>
+           <td align="right"><a href="#" data-toggle="popover" title="SME Topic" data-content="The SME for this topic">SME Topic</a></td>
+           <td align="left"><asp:DropDownList ID="ddlSMETopic" runat="server">
+               <asp:ListItem Text="" Value="" />
+               <asp:ListItem Text="Accessibility - FSA Systems & 504/508 Compliance " Value="Accessibility - FSA Systems & 504/508 Compliance " />
+               <asp:ListItem Text="Adjustment Processing (COD/R2T4, etc.) " Value="Adjustment Processing (COD/R2T4, etc.) " />
+               <asp:ListItem Text="Administrative Wage Garnishment & Treasury Offset Program" Value="Administrative Wage Garnishment & Treasury Offset Program" />
+               <asp:ListItem Text="Borrower Benefits & Subsidies (Loan Processes)" Value="Borrower Benefits & Subsidies (Loan Processes)" />
+               <asp:ListItem Text="Claim Processing & Discharges - Bankruptcy, Closed School, False Certification, Unpaid Refund, Fraud, & Death" Value="Claim Processing & Discharges - Bankruptcy, Closed School, False Certification, Unpaid Refund, Fraud, & Death" />
+               <asp:ListItem Text="Conversion to Repayment – COD, Transfers, and Manual Loan Add" Value="Conversion to Repayment – COD, Transfers, and Manual Loan Add" />
+               <asp:ListItem Text="Credit Reporting & Credit Dispute Processing" Value="Credit Reporting & Credit Dispute Processing" />
+               <asp:ListItem Text="Default – DMCS Transfers, Rehabilitation, & Recalls &   Cohort Default Rates" Value="Default – DMCS Transfers, Rehabilitation, & Recalls &   Cohort Default Rates" />
+               <asp:ListItem Text="Deferments" Value="Deferments" />
+               <asp:ListItem Text="Due Diligence - Phone Calls/Skip/Correspondence" Value="Due Diligence - Phone Calls/Skip/Correspondence" />
+               <asp:ListItem Text="Enrollment Processing" Value="Enrollment Processing" />
+               <asp:ListItem Text="Forbearances (Mandatory, Administrative, Discretionary,  Disaster)" Value="Forbearances (Mandatory, Administrative, Discretionary,  Disaster)" />
+               <asp:ListItem Text="Higgins vs. Spellings Compliance" Value="Higgins vs. Spellings Compliance" />
+               <asp:ListItem Text="Income Driven Repayment Forgiveness" Value="Income Driven Repayment Forgiveness" />
+               <asp:ListItem Text="Interest - Accrual & Capitalization" Value="Interest - Accrual & Capitalization" />
+               <asp:ListItem Text="Loan Consolidation  " Value="Loan Consolidation  " />
+               <asp:ListItem Text="Military Borrowers (all topics)" Value="Military Borrowers (all topics)" />
+               <asp:ListItem Text="NSLDS" Value="NSLDS" />
+               <asp:ListItem Text="Payment Processing" Value="Payment Processing" />
+               <asp:ListItem Text="Perkins (Program)" Value="Perkins (Program)" />
+               <asp:ListItem Text="Public Service Loan Forgiveness (PSLF)" Value="Public Service Loan Forgiveness (PSLF)" />
+               <asp:ListItem Text="Repayment Plans - Standard, Graduated, Extended, Alternative, and Income Driven" Value="Repayment Plans - Standard, Graduated, Extended, Alternative, and Income Driven" />
+               <asp:ListItem Text="TEACH Grants " Value="TEACH Grants " />
+               <asp:ListItem Text="Teacher Loan Forgiveness" Value="Teacher Loan Forgiveness" />
+               <asp:ListItem Text="Total and Permanent Disability" Value="Total and Permanent Disability" />
+               <asp:ListItem Text="Other" Value="Other" />
+            </asp:DropDownList>
+            </td>
        </tr>
     </table>
   </div>

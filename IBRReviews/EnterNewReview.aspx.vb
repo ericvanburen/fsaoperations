@@ -16,6 +16,11 @@ Partial Class IBRReviews_EnterNewReview
                 Dim strPCAID As String = Request.QueryString("PCAID")
                 ddlPCAID.SelectedValue = strPCAID
             End If
+
+            If Not Request.QueryString("ReportMonth") Is Nothing Then
+                Dim strReportMonth As String = Request.QueryString("ReportMonth")
+                ddlReportMonth.SelectedValue = strReportMonth
+            End If
            
             If Not Request.QueryString("ReportQuarter") Is Nothing Then
                 Dim strReportQuarter As String = Request.QueryString("ReportQuarter")
@@ -42,6 +47,7 @@ Partial Class IBRReviews_EnterNewReview
         cmd.Parameters.AddWithValue("@DateSubmitted", Date.Now())
         cmd.Parameters.AddWithValue("@BorrowerNumber", txtBorrowerNumber.Text)
         cmd.Parameters.AddWithValue("@PCAID", ddlPCAID.SelectedValue)
+        cmd.Parameters.AddWithValue("@ReportMonth", ddlReportMonth.SelectedValue)
         cmd.Parameters.AddWithValue("@ReportQuarter", ddlReportQuarter.SelectedValue)
         cmd.Parameters.AddWithValue("@ReportYear", ddlReportYear.SelectedValue)
 

@@ -33,6 +33,19 @@ Partial Class Unconsolidation_AddRequest
         cmd.Parameters.AddWithValue("@SubmittedBy", lblSubmittedBy.Text)
         cmd.Parameters.AddWithValue("@Borrower_Name", txtBorrower_Name.Text)
         cmd.Parameters.AddWithValue("@Account", txtAccount.Text)
+
+        If txtAwardID.Text <> "" Then
+            cmd.Parameters.AddWithValue("@AwardID", SqlDbType.VarChar).Value = txtAwardID.Text
+        Else
+            cmd.Parameters.Add("@AwardID", SqlDbType.VarChar).Value = DBNull.Value
+        End If
+
+        If txtSequenceNumber.Text <> "" Then
+            cmd.Parameters.AddWithValue("@SequenceNumber", SqlDbType.VarChar).Value = txtSequenceNumber.Text
+        Else
+            cmd.Parameters.Add("@SequenceNumber", SqlDbType.VarChar).Value = DBNull.Value
+        End If
+
         cmd.Parameters.AddWithValue("@ServicerID", ddlServicerID.SelectedValue)
         cmd.Parameters.AddWithValue("@Date_Received", txtDate_Received.Text)
 

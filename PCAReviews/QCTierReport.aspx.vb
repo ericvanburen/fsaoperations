@@ -11,9 +11,9 @@ Partial Class PCAReviews_QCTierReport
     Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
         If Not Page.IsPostBack Then
             'Make sure only admins can access this page
-            If Roles.IsUserInRole("PCAReviews_Admins") = False Then
-                Response.Redirect("/Account/Login.aspx")
-            End If
+            'If Roles.IsUserInRole("PCAReviews_Admins") = False Then
+            '    Response.Redirect("/Account/Login.aspx")
+            'End If
         End If
     End Sub
 
@@ -65,6 +65,13 @@ Partial Class PCAReviews_QCTierReport
 
             GridView1.DataSource = ds.Tables("Reviews").DefaultView
             GridView1.DataBind()
+
+            If Roles.IsUserInRole("PCAReviews_QCTier2") = False And Roles.IsUserInRole("PCAReviews_QCTier3") = False Then
+                GridView1.Columns(8).Visible = False
+                GridView1.Columns(9).Visible = False
+                GridView1.Columns(10).Visible = False
+            End If
+
 
             'Make search again button visible
             btnSearchAgain.Visible = True

@@ -310,6 +310,13 @@ Partial Class Issues_Issue_Add
             cmd.Parameters.Add("@AffectFFEL", SqlDbType.VarChar).Value = DBNull.Value
         End If
 
+        'SMETopic
+        If ddlSMETopic.SelectedValue <> "" Then
+            cmd.Parameters.Add("@SMETopic", SqlDbType.VarChar).Value = ddlSMETopic.SelectedValue
+        Else
+            cmd.Parameters.Add("@SMETopic", SqlDbType.VarChar).Value = DBNull.Value
+        End If
+
         'Attachment 1
         Dim strFileNameOnly As String = ImageUpload1.PostedFile.FileName
         If strFileNameOnly.Length > 0 Then
@@ -323,10 +330,10 @@ Partial Class Issues_Issue_Add
                 Response.Redirect("InvalidFiletype.aspx")
             End If
 
-            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly
+            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly
             'strSaveLocation = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly
             ImageUpload1.PostedFile.SaveAs(strSaveLocation)
-            cmd.Parameters.Add("@Attachment1", SqlDbType.VarChar).Value = rndNumber & "_" & strFileNameOnly
+            cmd.Parameters.Add("@Attachment1", SqlDbType.VarChar).Value = strFileNameOnly
             lblAttachment1.Text = "Your file was uploaded"
         Else
             cmd.Parameters.Add("@Attachment1", SqlDbType.VarChar).Value = DBNull.Value
@@ -345,10 +352,10 @@ Partial Class Issues_Issue_Add
                 Response.Redirect("InvalidFiletype.aspx")
             End If
 
-            'strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly2
-            strSaveLocation = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly2
+            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly2
+            'strSaveLocation = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly2
             ImageUpload2.PostedFile.SaveAs(strSaveLocation)
-            cmd.Parameters.Add("@Attachment2", SqlDbType.VarChar).Value = rndNumber & "_" & strFileNameOnly2
+            cmd.Parameters.Add("@Attachment2", SqlDbType.VarChar).Value = strFileNameOnly2
             lblAttachment2.Text = "Your file was uploaded"
         Else
             cmd.Parameters.Add("@Attachment2", SqlDbType.VarChar).Value = DBNull.Value
@@ -367,10 +374,10 @@ Partial Class Issues_Issue_Add
                 Response.Redirect("InvalidFiletype.aspx")
             End If
 
-            'strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly3
+            strSaveLocation = "C:\Users\ericv_000\Dropbox\fsaoperations\fsaoperations\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly3
             strSaveLocation = "D:\DCS\fsaoperations\internal\Issues\Attachments\" & rndNumber & "_" & strFileNameOnly3
             ImageUpload3.PostedFile.SaveAs(strSaveLocation)
-            cmd.Parameters.Add("@Attachment3", SqlDbType.VarChar).Value = rndNumber & "_" & strFileNameOnly3
+            cmd.Parameters.Add("@Attachment3", SqlDbType.VarChar).Value = strFileNameOnly3
             lblAttachment3.Text = "Your file was uploaded"
         Else
             cmd.Parameters.Add("@Attachment3", SqlDbType.VarChar).Value = DBNull.Value

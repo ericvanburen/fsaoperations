@@ -58,6 +58,7 @@
         <li><a href="Reports.aspx">Servicer Files</a></li>
         <li><a href="ProductivityReport.aspx">LA Productivity</a></li>
         <li><a href="ServicerReceipts.aspx">Received By FSA</a></li>  
+        <li><a href="ServicerReceiptsCountByMonth.aspx">Received By FSA By Month</a></li>
         <li><a href="AgingClaims.aspx">Aging Claims - Servicer</a></li> 
         <li><a href="AgingClaims_ClaimType.aspx">Aging Claims - Claim Type</a></li>        
     </ul>
@@ -178,6 +179,7 @@
                     <asp:ListItem Text="UNP Appeal" Value="unp appeal" />
                     <asp:ListItem Text="UNS" Value="uns" />
                     <asp:ListItem Text="UNS Appeal" Value="uns appeal" />
+                    <asp:ListItem Text="9-11" Value="9-11" />
                 </asp:DropDownList> <br />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="* Claim Type is a required field *"
                 ControlToValidate="ddlDischargeType" Display="Dynamic" CssClass="alert-danger" ValidationGroup="2" />

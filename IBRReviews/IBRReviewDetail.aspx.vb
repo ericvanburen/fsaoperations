@@ -62,6 +62,10 @@ Partial Class IBRReviews_IBRReviewDetail
                         ddlPCAID.SelectedValue = dr("PCAID")
                     End If
 
+                    If Not dr("ReportMonth") Is DBNull.Value Then
+                        ddlReportMonth.SelectedValue = dr("ReportMonth").ToString()
+                    End If
+
                     If Not dr("ReportQuarter") Is DBNull.Value Then
                         ddlReportQuarter.SelectedValue = dr("ReportQuarter").ToString()
                     End If
@@ -132,6 +136,7 @@ Partial Class IBRReviews_IBRReviewDetail
         cmd.Parameters.AddWithValue("@IBRReviewID", lblIBRReviewID.Text)
         cmd.Parameters.AddWithValue("@BorrowerNumber", txtBorrowerNumber.Text)
         cmd.Parameters.AddWithValue("@PCAID", ddlPCAID.SelectedValue)
+        cmd.Parameters.AddWithValue("@ReportMonth", ddlReportMonth.SelectedValue)
         cmd.Parameters.AddWithValue("@ReportQuarter", ddlReportQuarter.SelectedValue)
         cmd.Parameters.AddWithValue("@ReportYear", ddlReportYear.SelectedValue)
 

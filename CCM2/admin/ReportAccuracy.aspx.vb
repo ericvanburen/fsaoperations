@@ -14,13 +14,17 @@ Partial Class CCM_New_ReportAccuracy
         If Not Page.IsPostBack Then
             'First check for a valid, logged in user
             lblUserID.Text = HttpContext.Current.User.Identity.Name
-            txtDateofReviewEnd.Text = Now.ToShortDateString()
+            'txtDateofReviewEnd.Text = Now.ToShortDateString()
         End If
 
     End Sub
 
     Sub btnAccuracyReport_Click(ByVal sender As Object, ByVal e As EventArgs)
         CallCount()
+    End Sub
+
+    Sub btnAccuracyReport2_Click(ByVal sender As Object, ByVal e As EventArgs)
+        CallCount2()
     End Sub
 
 
@@ -36,6 +40,7 @@ Partial Class CCM_New_ReportAccuracy
         cmd.Parameters.Add("@CallCenterID", SqlDbType.Int).Value = ddlCallCenterID.SelectedValue
         cmd.Parameters.Add("@BeginDateofReview", SqlDbType.VarChar).Value = txtDateofReviewBegin.Text
         cmd.Parameters.Add("@EndDateofReview", SqlDbType.VarChar).Value = txtDateofReviewEnd.Text
+        
         da = New SqlDataAdapter(cmd)
         Try
             strSQLConn.Open()
@@ -47,6 +52,34 @@ Partial Class CCM_New_ReportAccuracy
 
             'Create all centers accuracy report
             BindGridView()
+        Finally
+            strSQLConn.Close()
+        End Try
+    End Sub
+
+    Sub CallCount2()
+        Dim strSQLConn As SqlConnection
+        Dim cmd As SqlCommand
+        Dim da As SqlDataAdapter
+        Dim ds As DataSet
+
+        strSQLConn = New SqlConnection(ConfigurationManager.ConnectionStrings("CCM2ConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_ReportCallCount2", strSQLConn)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add("@CallCenterID", SqlDbType.Int).Value = ddlCallCenterID.SelectedValue
+        cmd.Parameters.Add("@CallReviewMonth", SqlDbType.VarChar).Value = ddlCallReviewMonth.SelectedValue
+        cmd.Parameters.Add("@CallReviewYear", SqlDbType.VarChar).Value = ddlCallReviewYear.SelectedValue
+        da = New SqlDataAdapter(cmd)
+        Try
+            strSQLConn.Open()
+            ds = New DataSet()
+            da.Fill(ds)
+
+            rptCenterProfile.DataSource = ds
+            rptCenterProfile.DataBind()
+
+            'Create all centers accuracy report
+            BindGridView2()
         Finally
             strSQLConn.Close()
         End Try
@@ -82,6 +115,38 @@ Partial Class CCM_New_ReportAccuracy
             strSQLConn.Close()
         End Try
     End Sub
+
+    Sub BindGridView2()
+        Dim strSQLConn As SqlConnection
+        Dim cmd As SqlCommand
+        Dim ds As DataSet
+
+        strSQLConn = New SqlConnection(ConfigurationManager.ConnectionStrings("CCM2ConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_AccuracyReport_Scores2", strSQLConn)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@CallCenterID", ddlCallCenterID.SelectedValue)
+        cmd.Parameters.Add("@CallReviewMonth", SqlDbType.VarChar).Value = ddlCallReviewMonth.SelectedValue
+        cmd.Parameters.Add("@CallReviewYear", SqlDbType.VarChar).Value = ddlCallReviewYear.SelectedValue
+
+        Try
+            strSQLConn.Open()
+            Dim MyAdapter As New SqlDataAdapter(cmd)
+
+            ds = New DataSet()
+            MyAdapter.Fill(ds, "Requests")
+
+            grdVariablePeriod.DataSource = ds.Tables("Requests").DefaultView
+            grdVariablePeriod.DataBind()
+
+            grdVariablePeriod.Visible = True
+
+            BindGridView_FailedCalls2()
+        Finally
+            strSQLConn.Close()
+        End Try
+    End Sub
+
+   
 
 
     'Sub BindGridView_FailedCalls()
@@ -132,6 +197,35 @@ Partial Class CCM_New_ReportAccuracy
         cmd.Parameters.AddWithValue("@CallCenterID", ddlCallCenterID.SelectedValue)
         cmd.Parameters.Add("@DateofReviewBegin", SqlDbType.VarChar).Value = txtDateofReviewBegin.Text
         cmd.Parameters.Add("@DateofReviewEnd", SqlDbType.VarChar).Value = txtDateofReviewEnd.Text
+
+        Try
+            strSQLConn.Open()
+            Dim MyAdapter As New SqlDataAdapter(cmd)
+
+            ds = New DataSet()
+            MyAdapter.Fill(ds, "Requests")
+            rptFailedCalls.DataSource = ds
+            rptFailedCalls.DataBind()
+
+            'Make the Excel export button visible
+            btnExportWordAccuracy.Visible = True
+            btnExportWordNotes.Visible = True
+        Finally
+            strSQLConn.Close()
+        End Try
+    End Sub
+
+    Sub BindGridView_FailedCalls2()
+        Dim strSQLConn As SqlConnection
+        Dim cmd As SqlCommand
+        Dim ds As DataSet
+
+        strSQLConn = New SqlConnection(ConfigurationManager.ConnectionStrings("CCM2ConnectionString").ConnectionString)
+        cmd = New SqlCommand("p_Report_NotesErrors2", strSQLConn)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@CallCenterID", ddlCallCenterID.SelectedValue)
+        cmd.Parameters.Add("@CallReviewMonth", SqlDbType.VarChar).Value = ddlCallReviewMonth.SelectedValue
+        cmd.Parameters.Add("@CallReviewYear", SqlDbType.VarChar).Value = ddlCallReviewYear.SelectedValue
 
         Try
             strSQLConn.Open()

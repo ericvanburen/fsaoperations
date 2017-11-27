@@ -229,6 +229,12 @@
 
                                                         <asp:BoundField DataField="Account" HeaderText="Account" SortExpression="Account" 
                                                             HeaderStyle-HorizontalAlign="Center" />
+
+                                                        <asp:BoundField DataField="AwardID" HeaderText="Award ID" SortExpression="AwardID" 
+                                                        HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
+
+                                                        <asp:BoundField DataField="SequenceNumber" HeaderText="Sequence Number" SortExpression="SequenceNumber" 
+                                                        HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" />
                                                                                                                 
                                                         <asp:BoundField DataField="Servicer" HeaderText="Servicer" SortExpression="Servicer" 
                                                             HeaderStyle-HorizontalAlign="Center" />

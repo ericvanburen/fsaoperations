@@ -10,6 +10,13 @@ Partial Class _Default
             If strBrowserType = "InternetExplorer" Then
                 Response.Redirect("InvalidBrowser.aspx")
             End If
+
+            'If Request.ServerVariables("HTTPS") = "off" Then
+            '    Response.Redirect("https://" & Request.ServerVariables("HTTP_HOST") & Request.ServerVariables("UNENCODED_URL"))
+            'ElseIf Request.ServerVariables("HTTPS") = "on" Then
+            '    Response.Redirect("https://" & Request.ServerVariables("HTTP_HOST") & Request.ServerVariables("UNENCODED_URL"))
+            'End If
+
         End If
     End Sub
 End Class

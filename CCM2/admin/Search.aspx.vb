@@ -112,6 +112,10 @@ Partial Class CCM_New_Search
             cmd.Parameters.AddWithValue("@UserID", SqlDbType.VarChar).Value = strSearchValue
         End If
 
+        If ddlOverallScore.SelectedValue <> "" Then
+            cmd.Parameters.Add("@OverallScore", SqlDbType.VarChar).Value = ddlOverallScore.SelectedValue
+        End If
+
        
 
         Try

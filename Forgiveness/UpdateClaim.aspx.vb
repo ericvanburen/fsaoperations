@@ -58,6 +58,14 @@ Partial Class Unconsolidation_AddRequest
                         txtAccount.Text = dr("Account").ToString()
                     End If
 
+                    If Not dr("AwardID") Is DBNull.Value Then
+                        txtAwardID.Text = dr("AwardID").ToString()
+                    End If
+
+                    If Not dr("SequenceNumber") Is DBNull.Value Then
+                        txtSequenceNumber.Text = dr("SequenceNumber").ToString()
+                    End If
+
                     If Not dr("ServicerID") Is DBNull.Value Then
                         ddlServicerID.SelectedValue = dr("ServicerID").ToString()
                     End If
@@ -150,6 +158,19 @@ Partial Class Unconsolidation_AddRequest
         cmd.Parameters.AddWithValue("@ClaimID", lblClaimID.Text)
         cmd.Parameters.AddWithValue("@Borrower_Name", txtBorrower_Name.Text)
         cmd.Parameters.AddWithValue("@Account", txtAccount.Text)
+
+        'If txtAwardID.Text <> "" Then
+        '    cmd.Parameters.AddWithValue("@AwardID", SqlDbType.VarChar).Value = txtAwardID.Text
+        'Else
+        '    cmd.Parameters.Add("@AwardID", SqlDbType.VarChar).Value = DBNull.Value
+        'End If
+
+        If txtSequenceNumber.Text <> "" Then
+            cmd.Parameters.AddWithValue("@SequenceNumber", SqlDbType.VarChar).Value = txtSequenceNumber.Text
+        Else
+            cmd.Parameters.Add("@SequenceNumber", SqlDbType.VarChar).Value = DBNull.Value
+        End If
+
         cmd.Parameters.AddWithValue("@ServicerID", ddlServicerID.SelectedValue)
         cmd.Parameters.AddWithValue("@Date_Received", txtDate_Received.Text)
 

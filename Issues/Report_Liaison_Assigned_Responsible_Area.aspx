@@ -40,21 +40,33 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:Issu
     <tr>   
         <td align="right">Responsible Area</td>
         <td align="left" colspan="3"><asp:DropDownList ID="ddlResponsibleArea" runat="server" CssClass="inputBox" AutoPostBack="true">
-            <asp:ListItem Text="" Value="" Selected="True" /> 
-            <asp:ListItem Text="AES/PHEAA" Value="AES/PHEAA" /> 
+            <asp:ListItem Text="" Value="" Selected="True" />             
+            <asp:ListItem Text="AES/PHEAA" Value="AES/PHEAA" />
+            <asp:ListItem Text="Cornerstone" Value="Conerstone" />
+            <asp:ListItem Text="EdFinancial-HESC" Value="EdFinancial-HESC" />
+            <asp:ListItem Text="ESA" Value="ESA" /> 
             <asp:ListItem Text="FedLoan" Value="FedLoan" /> 
+            <asp:ListItem Text="FSA-Bus Ops" Value="FSA-Bus Ops" />
             <asp:ListItem Text="FSA-CFO" Value="FSA-CFO" /> 
-            <asp:ListItem Text="FSA-CIO" Value="FSA-CIO" /> 
+            <asp:ListItem Text="FSA-CIO" Value="FSA-CIO" />
+            <asp:ListItem Text="FSA-IC" Value="FSA-IC" /> 
             <asp:ListItem Text="FSA-Ombuds" Value="FSA-Ombuds" /> 
-            <asp:ListItem Text="FSA-OpServ" Value="FSA-OpServ" /> 
-            <asp:ListItem Text="FSA-ProgMgt" Value="FSA-ProgMgt" /> 
+            <asp:ListItem Text="FSA-OpServ" Value="FSA-OpServ" />
+            <asp:ListItem Text="FSA-PLI" Value="FSA-PLI" /> 
+            <asp:ListItem Text="FSA-ProgMgt" Value="FSA-ProgMgt" />
             <asp:ListItem Text="FSA-Servicer Liaison" Value="FSA-Servicer Liaison" />
+            <asp:ListItem Text="Granite State" Value="Granite State" />
+            <asp:ListItem Text="Great Lakes" Value="Great Lakes" />
             <asp:ListItem Text="MOHELA" Value="MOHELA" /> 
             <asp:ListItem Text="N/A" Value="N/A" />
-            <asp:ListItem Text="NNI" Value="NNI" /> 
+            <asp:ListItem Text="Navient" Value="Navient" />
+            <asp:ListItem Text="Nelnet" Value="Nelnet" />
+            <asp:ListItem Text="NNI" Value="NNI" />             
             <asp:ListItem Text="NSLDS" Value="NSLDS" /> 
             <asp:ListItem Text="Other" Value="Other" />
+            <asp:ListItem Text="OSLA" Value="OSLA" />
             <asp:ListItem Text="SLMA" Value="SLMA" />
+            <asp:ListItem Text="VSAC" Value="VSAC" />
             <asp:ListItem Text="Xerox" Value="Xerox" />           
         </asp:DropDownList></td>                 
     </tr>

@@ -105,6 +105,20 @@ Partial Class IBRReviews_Search
             cmd.Parameters.AddWithValue("@ReportYear", SqlDbType.VarChar).Value = strSearchValue
         End If
 
+        'This one passes a comma-delimited string for @ReportMonth which is used in the split function
+        If ddlReportMonth.SelectedValue <> "" Then
+            Dim strSearchValue As String = ""
+            Dim li As ListItem
+            For Each li In ddlReportMonth.Items
+                If li.Selected = True Then
+                    strSearchValue = strSearchValue & li.Value & ","
+                End If
+            Next
+            strSearchValue = Left(strSearchValue, (Len(strSearchValue) - 1))
+            strSearchValue = Replace(strSearchValue, ",", ",")
+            cmd.Parameters.AddWithValue("@ReportMonth", SqlDbType.VarChar).Value = strSearchValue
+        End If
+
         Try
             strSQLConn.Open()
             Dim MyAdapter As New SqlDataAdapter(cmd)

@@ -34,10 +34,11 @@
 <div>
  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
   <li class="dropdown">
-    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Reviews <b class="caret"></b></a>
+    <a href="#" id="A2" class="dropdown-toggle" data-toggle="dropdown">My Work <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
         <li><a href="MyReviews.aspx">My Reviews</a></li>
-        <li><a href="MyNewAssignments.aspx">My Assignments</a></li>
+        <li><a href="MyNewAssignments.aspx">My Review Assignments</a></li>
+        <li><a href="MyQCAssignments.aspx">My QC Assignments</a></li>
     </ul>
   </li>
 
@@ -51,18 +52,17 @@
   <li class="dropdown active">
     <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop4">
-        <li><a href="Reports.aspx">Save New PCA Review Old</a></li>
-        <li><a href="Reports2.aspx">Save New PCA Review</a></li>
-        <li><a href="Reports_SavedReports.aspx">Search PCA Reviews</a></li>       
+        <li><a href="Reports2.aspx">Save New PCA Review</a></li>  
         <li><a href="LAAssignments.aspx">LA Assignments</a></li>
         <li><a href="MakeAssignments.aspx">Make New LA Assignments</a></li>
         <li><a href="DataRequests.aspx">Data Requests</a></li>
         <li><a href="ReportsPCACallErrors.aspx">PCA Reviews - LA Errors</a></li>
         <li><a href="LetterReviews.aspx">Final Review Letter</a></li>
+        <li><a href="ReportCompletionCount.aspx">Completion Count</a></li>
         <li><a href="Reports_PCA_Performance.aspx">PCA Performance</a></li>
-        <li><a href="Reports_Incorrect_Actions_ByGroup.aspx">PCA Incorrect Actions Summary</a></li>
-        <li><a href="Reports_Incorrect_Actions.aspx">PCA Incorrect Actions Detail</a></li>
         <li><a href="QCCalc.aspx">QC Calculator</a></li>
+        <li><a href="QCTierReport.aspx">QC Tier Report</a></li>
+        <li><a href="QCUserManager.aspx">QC User Manager</a></li>
     </ul>
   </li>
  </ul>
@@ -100,10 +100,14 @@ SelectCommandType="StoredProcedure" ConnectionString="<%$ ConnectionStrings:PCAR
         <td><asp:TextBox ID="txtRecordingDeliveryDate" runat="server" CssClass="datepicker" Height="25px" TabIndex="3" /><br />
         <asp:RequiredFieldValidator ID="rfd3" runat="server" ControlToValidate="txtRecordingDeliveryDate" CssClass="alert-danger" Display="Dynamic" ErrorMessage="* please enter a phone recording delivery date *" /></td>
       </tr>
-       
+    <tr>
+        <td align="right"><label class="tableColumnHead"><a href="#" data-toggle="popover" title="Call Review Due Date" data-content="The date the call review is due">4) Call Review Due Date</a></label></td>
+        <td><asp:TextBox ID="txtCallReviewDueDate" runat="server" CssClass="datepicker" Height="25px" TabIndex="4" /><br />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCallReviewDueDate" CssClass="alert-danger" Display="Dynamic" ErrorMessage="* please enter the call review due date *" /></td>
+    </tr>
     <tr>
         <td align="right"><label class="tableColumnHead"><a href="#" data-toggle="popover" title="Review Period Month/Year" data-content="The month and year that the review was performed">5) Review Period Month/Year</a></label></td>
-        <td><asp:DropDownList ID="ddlReviewPeriodMonth" runat="server" TabIndex="4" CssClass="inputBox">
+        <td><asp:DropDownList ID="ddlReviewPeriodMonth" runat="server" TabIndex="5" CssClass="inputBox">
                             <asp:ListItem Text="" Value="" />        
                             <asp:ListItem Text="01" Value="01" />
                             <asp:ListItem Text="02" Value="02" />

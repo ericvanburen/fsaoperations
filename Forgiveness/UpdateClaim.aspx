@@ -101,8 +101,18 @@
                                                     ErrorMessage="* Please enter the last 4 digits of the account number * " ControlToValidate="txtAccount" />
                                                 </td>
                                                 <td width="25%">
+                                                    <strong>Award ID:</strong><br />
+                                                    <asp:TextBox ID="txtAwardID" runat="server" TabIndex="3" MaxLength="21" Enabled="false" />
+                                                </td>
+                                                <td width="25%">
+                                                    <strong>Sequence Number:</strong><br />
+                                                    <asp:TextBox ID="txtSequenceNumber" runat="server" TabIndex="4" MaxLength="2" />
+                                                </td>                                                 
+                                            </tr>
+                                            <tr>
+                                                 <td width="25%">
                                                     <strong>Loan Servicer:</strong><br />
-                                                    <asp:DropdownList ID="ddlServicerID" runat="server" TabIndex="3" DataSourceID="dsServicers" Height="25px"
+                                                    <asp:DropdownList ID="ddlServicerID" runat="server" TabIndex="5" DataSourceID="dsServicers" Height="25px"
                                                         AppendDataBoundItems="true" DataTextField="Servicer" 
                                                         DataValueField="ServicerID">
                                                         <asp:ListItem Text="" Value="" />
@@ -112,14 +122,12 @@
                                                 </td>
                                                 <td width="25%">
                                                     <strong>Date Received By FSA:</strong><br />
-                                                    <asp:TextBox ID="txtDate_Received" runat="server" TabIndex="4"  /><br />                                                                                                       
+                                                    <asp:TextBox ID="txtDate_Received" runat="server" TabIndex="6"  /><br />                                                                                                       
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" CssClass="warning" Display="Dynamic" 
                                                     ErrorMessage="* Please enter the date received  * " ControlToValidate="txtDate_Received" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                 <td width="25%" valign="top"><strong>Claim Type:</strong><br />
-                                                    <asp:DropDownList ID="ddlClaim_Type" runat="server" Height="25px" TabIndex="8">
+                                                </td> 
+                                                <td width="25%" valign="top"><strong>Claim Type:</strong><br />
+                                                    <asp:DropDownList ID="ddlClaim_Type" runat="server" Height="25px" TabIndex="7">
                                                         <asp:ListItem Text="" Value="" />
                                                         <asp:ListItem Text="IDR" Value="IDR" />
                                                         <asp:ListItem Text="PSLF" Value="PSLF" />                                                        
@@ -129,7 +137,7 @@
                                                     ErrorMessage="* Please select the claim type  * " ControlToValidate="ddlClaim_Type" />
                                                 </td>  
                                                 <td width="25%" valign="top"><strong>Status:</strong> <br />
-                                                    <asp:DropDownList ID="ddlFSA_Approved" runat="server" Height="25px" TabIndex="5">
+                                                    <asp:DropDownList ID="ddlFSA_Approved" runat="server" Height="25px" TabIndex="8">
                                                         <asp:ListItem Text="" Value="" />
                                                         <asp:ListItem Text="Approved" Value="Approved" />
                                                         <asp:ListItem Text="Denied" Value="Denied" />
@@ -137,16 +145,17 @@
                                                         <asp:ListItem Text="Pre-Forgiveness Reporting" Value="Pre-Forgiveness Reporting" Selected="True" />
                                                     </asp:DropDownList>
                                                 </td>
-                                                <td width="25%" valign="top"><strong>Decision Date:</strong><br />
-                                                    <asp:TextBox ID="txtDecision_Date" runat="server" TabIndex="6" placeholder="mm/dd/yyyy" />
-                                                </td>
-                                               <td width="25%" valign="top"><strong>Qualifying Payments/Number of Servicer Credits:</strong><br /> 
-                                                    <asp:TextBox ID="txtQualifying_Payments" runat="server" TabIndex="7" placeholder="#" />
-                                                </td>                                                  
+                                                                                                 
                                             </tr>
                                             <tr>
-                                              <td width="25%" valign="top"><strong>PSLF/TEACH Decision Type:</strong><br />
-                                                    <asp:DropDownList ID="ddlApproval_Type" runat="server" Height="25px" TabIndex="9">
+                                               <td width="25%" valign="top"><strong>Decision Date:</strong><br />
+                                                    <asp:TextBox ID="txtDecision_Date" runat="server" TabIndex="9" placeholder="mm/dd/yyyy" />
+                                                </td>
+                                               <td width="25%" valign="top"><strong>Qualifying Payments/Number of Servicer Credits:</strong><br /> 
+                                                    <asp:TextBox ID="txtQualifying_Payments" runat="server" TabIndex="10" placeholder="#" />
+                                                </td>
+                                                <td width="25%" valign="top"><strong>PSLF/TEACH Decision Type:</strong><br />
+                                                    <asp:DropDownList ID="ddlApproval_Type" runat="server" Height="25px" TabIndex="11">
                                                         <asp:ListItem Text="" Value="" />
                                                         <asp:ListItem Text="PSLF - Forgiveness" Value="PSLF - Forgiveness" />
                                                         <asp:ListItem Text="PSLF - Qualifying Payment Counts" Value="PSLF - Qualifying Payment Counts" />
@@ -156,46 +165,45 @@
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td width="25%" valign="top"><strong>Category Type For IDR:</strong><br />
-                                                    <asp:DropDownList ID="ddlCategory_Program_Type_IDR" runat="server" Height="25px" TabIndex="10">
+                                                    <asp:DropDownList ID="ddlCategory_Program_Type_IDR" runat="server" Height="25px" TabIndex="12">
                                                         <asp:ListItem Text="" Value="" />
                                                         <asp:ListItem Text="IBR" Value="IBR" />  
                                                         <asp:ListItem Text="IDR" Value="IDR" />                                                                                                              
                                                         <asp:ListItem Text="PAYE" Value="PAYE" />
                                                         <asp:ListItem Text="REPAYE" Value="REPAYE" />
                                                     </asp:DropDownList>
-                                                </td>
-                                                <td width="25%" valign="top"><strong>Outstanding Principal:</strong><br /> 
-                                                    <asp:TextBox ID="txtOutstanding_Principal" runat="server" TabIndex="11" placeholder="###.##" />
-                                                 <td width="25%" valign="top"><strong>Outstanding Interest:</strong><br /> 
-                                                    <asp:TextBox ID="txtOutstanding_Interest" runat="server" TabIndex="12" placeholder="###.##" />
+                                                </td>                                                
                                              </tr>
                                             <tr>
+                                                <td width="25%" valign="top"><strong>Outstanding Principal:</strong><br /> 
+                                                    <asp:TextBox ID="txtOutstanding_Principal" runat="server" TabIndex="13" placeholder="###.##" /></td>
+                                                 <td width="25%" valign="top"><strong>Outstanding Interest:</strong><br /> 
+                                                    <asp:TextBox ID="txtOutstanding_Interest" runat="server" TabIndex="14" placeholder="###.##" /></td>
                                                 <td width="25%" valign="top"><strong>Select For QA?</strong><br />
-                                                    <asp:CheckBox ID="chkQA_Account" runat="server" TabIndex="13" />
+                                                    <asp:CheckBox ID="chkQA_Account" runat="server" TabIndex="15" /></td>
                                                 <td width="25%" valign="top"><strong>QA Analyst</strong><br />
-                                                    <asp:DropDownList ID="ddlQA_Analyst" runat="server" Height="25px" TabIndex="14" AppendDataBoundItems="true">  
-                                                        <asp:ListItem Text="" Value="" />                                                     
-                                                    </asp:DropDownList>
-                                                <td width="25%" valign="top"><strong>Escalated?</strong><br />
-                                                    <asp:CheckBox ID="chkEscalated" runat="server" TabIndex="15" />
-                                                <td width="25%" valign="top"><strong>Assigned To</strong><br />
-                                                    <asp:DropDownList ID="ddlUserID" runat="server" TabIndex="16" Height="25px" AppendDataBoundItems="true">  
+                                                    <asp:DropDownList ID="ddlQA_Analyst" runat="server" Height="25px" TabIndex="16" AppendDataBoundItems="true">  
                                                         <asp:ListItem Text="" Value="" />                                                     
                                                     </asp:DropDownList></td>
-                                            </tr>
+                                             </tr>
                                             <tr>
-                                                    <td colspan="4" valign="top"><strong>IDR/PSLF Estimated Forgiveness Date:</strong><br />
-                                                    <asp:TextBox ID="txtIDR_Forgiveness_Date" runat="server" TabIndex="17" placeholder="mm/dd/yyyy" /></td>
+                                                <td valign="top"><strong>Escalated?</strong><br />
+                                                    <asp:CheckBox ID="chkEscalated" runat="server" TabIndex="17" /></td>
+                                                
+                                                <td valign="top"><strong>Assigned To</strong><br />
+                                                    <asp:DropDownList ID="ddlUserID" runat="server" TabIndex="18" Height="25px" AppendDataBoundItems="true">  
+                                                        <asp:ListItem Text="" Value="" />                                                     
+                                                    </asp:DropDownList></td>    
+                                                <td colspan="2" valign="top"><strong>IDR/PSLF Estimated Forgiveness Date:</strong><br />
+                                                    <asp:TextBox ID="txtIDR_Forgiveness_Date" runat="server" TabIndex="19" placeholder="mm/dd/yyyy" /></td>
                                             </tr>
                                             <tr>                                              
                                                 <td width="100%" valign="top" colspan="4"><strong>Resolution:</strong><br />
-                                                    <asp:Textbox id="txtResolution" runat="server" Height="60px" Width="818px" TabIndex="18" />
-                                            </tr>                                               
-                                            <tr>
-                                              
+                                                    <asp:Textbox id="txtResolution" runat="server" Height="60px" Width="818px" TabIndex="20" /></td>
+                                            </tr>
+                                            <tr>                                              
                                                 <td width="100%" valign="top" colspan="4"><strong>Comments:</strong><br />
-                                                    <asp:Textbox id="txtComments" runat="server" Height="60px" Width="818px" TabIndex="19" />
-
+                                                    <asp:Textbox id="txtComments" runat="server" Height="60px" Width="818px" TabIndex="21" /></td>
                                             </tr>
                                             <tr>
                                                     <td colspan="4" align="center">

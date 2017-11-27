@@ -140,6 +140,8 @@
                                             <li><a href="admin/ReportIndividualProductivityCallCenter.aspx">Productivity-Call Center</a></li>
                                             <li><a href="admin/Search.aspx">Search</a></li>
                                             <li><a href="ChecksSearch.aspx">Servicer Check Report</a></li>
+                                            <li><a href="admin/QCReview_New.aspx">QC Review - Add</a></li>
+                                            <li><a href="admin/QCReview_Search.aspx">QC Review - Search</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Monitoring</a>
@@ -261,7 +263,9 @@
                                                         <asp:ListItem Text="Military" Value="Military" />
                                                         <asp:ListItem Text="PSLF" Value="PSLF" />
                                                         <asp:ListItem Text="School" Value="School" />
+                                                        <asp:ListItem Text="Subcontractor Calls" Value="Subcontractor Calls" />
                                                         <asp:ListItem Text="TEACH" Value="TEACH" />
+							                            <asp:ListItem Text="TPD" Value="TPD" />
                                                         <asp:ListItem Text="Visually Impaired" Value="Visually Impaired" />
                                                         <asp:ListItem Text="WC/Scheduled Callbacks" Value="WC/Scheduled Callbacks" />
                                                     </asp:DropDownList> </td>
@@ -271,7 +275,30 @@
                                                         <asp:ListItem Text="Yes" Value="Yes" />
                                                     </asp:DropDownList>
                                                 </td>                                                     
-                                            </tr>                                            
+                                            </tr> 
+                                            <tr>
+                                                <td width="33%" valign="top"><strong>Call Review Month:</strong> <br />
+                                                    <asp:DropDownList ID="ddlCallReviewMonth" runat="server" TabIndex="5" Height="25px" SelectedValue='<%#Eval("CallReviewMonth") %>'>                                                        
+                                                        <asp:ListItem Text="" Value="" />
+                                                        <asp:ListItem Text="January" Value="01" />
+                                                        <asp:ListItem Text="February" Value="02" />
+                                                        <asp:ListItem Text="March" Value="03" />
+                                                        <asp:ListItem Text="April" Value="04" />
+                                                        <asp:ListItem Text="May" Value="05" />
+                                                        <asp:ListItem Text="June" Value="06" />
+                                                        <asp:ListItem Text="July" Value="07" />
+                                                        <asp:ListItem Text="August" Value="08" />
+                                                        <asp:ListItem Text="September" Value="09" />
+                                                        <asp:ListItem Text="October" Value="10" />
+                                                        <asp:ListItem Text="November" Value="11" />
+                                                        <asp:ListItem Text="December" Value="12" />
+                                                    </asp:DropDownList><br />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" CssClass="warning" Display="Dynamic" 
+                                                    ErrorMessage="* Please select the Call Review Month * " ControlToValidate="ddlCallReviewMonth" ValidationGroup="FormB" />
+                                                </td>
+                                                <td width="33%" valign="top"> </td>
+                                                <td width="33%" valign="top"> </td>
+                                            </tr>                                           
                                             <tr>
                                                 <td colspan="3"><hr noshade="noshade" style="height: 1px; color: #000000" /></td>
                                             </tr>

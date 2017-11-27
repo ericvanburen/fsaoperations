@@ -128,6 +128,7 @@ UpdateCommand="p_RefundID_Update" UpdateCommandType="StoredProcedure" Connection
                   <asp:ListItem Text="Approved" Value="Approved" />
                   <asp:ListItem Text="Denied" Value="Denied" />
                   <asp:ListItem Text="Pending" Value="Pending" />
+                  <asp:ListItem Text="Issue" Value="Issue" />
               </asp:DropDownList>
           </td>
           <td><span class="formLabel">First Line Date Approved</span><br />          
@@ -141,6 +142,7 @@ UpdateCommand="p_RefundID_Update" UpdateCommandType="StoredProcedure" Connection
                   <asp:ListItem Text="Approved" Value="Approved" />
                   <asp:ListItem Text="Denied" Value="Denied" />
                   <asp:ListItem Text="Pending" Value="Pending" />
+                  <asp:ListItem Text="Issue" Value="Issue" />
               </asp:DropDownList>
           </td>
           <td><span class="formLabel">Second Line Approved By</span><br />

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Upload New TOP Log" Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Upload.aspx.vb" Inherits="TOPLog_Upload" %>
+﻿<%@ Page Title="Upload New TOP Log" Language="VB" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Upload.aspx.vb" Inherits="TOPLog_Upload" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <script src="../Scripts/jquery-1.10.2.js" type="text/javascript"></script>
@@ -54,20 +54,21 @@
   <li class="dropdown active">
     <a href="#" id="A4" class="dropdown-toggle" data-toggle="dropdown">Administrator <b class="caret"></b></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop4">
-        <li><a href="Upload.aspx">Upload New PIC Log</a></li>
+        <li><a href="Upload.aspx">Upload New TOP Log</a></li>
+        <li><a href="Reassign.aspx">Reassign Logs</a></li>
     </ul>
   </li>  
  </ul>
  </div><br />
 <!--End Navigation Menu-->
 
-    <asp:SqlDataSource ID="dsTOPLog" runat="server" ConnectionString="<%$ ConnectionStrings:TOPLogConnectionString %>"
-        SelectCommand="p_RefundQueue" SelectCommandType="StoredProcedure" UpdateCommand="p_RefundAssign"
+    <%--<asp:SqlDataSource ID="dsTOPLog" runat="server" ConnectionString="<%$ ConnectionStrings:TOPLogConnectionString %>"
+        SelectCommand="p_TOPLogQueue" SelectCommandType="StoredProcedure" UpdateCommand="p_RefundAssign"
         UpdateCommandType="StoredProcedure">
         <UpdateParameters>
             <asp:Parameter Name="RefundID" />
         </UpdateParameters>
-    </asp:SqlDataSource>
+    </asp:SqlDataSource>--%>
 
     <div class="panel panel-primary">
     <div class="panel-heading">
@@ -90,11 +91,65 @@
         </tr>
         <tr>
             <td align="left">
-                <asp:Label ID="lblMessage" runat="Server" EnableViewState="False" ForeColor="Blue"> 
-                </asp:Label>
+                <asp:Label ID="lblMessage" runat="Server" EnableViewState="False" ForeColor="Blue" />
             </td>
         </tr>
     </table>
+
+   <hr />
+
+   <!--User Manager Portion-->
+   
+<asp:SqlDataSource ID="dsUsers" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:TOPLogConnectionString %>"
+        SelectCommand="p_TOPLogUsers" SelectCommandType="StoredProcedure"
+        UpdateCommand="p_TopLogUsersUpdate" UpdateCommandType="StoredProcedure">
+        <UpdateParameters>
+            <asp:Parameter Name="Active" Type="Boolean" />
+            <asp:Parameter Name="UserID" Type="String" />
+        </UpdateParameters>
+        </asp:SqlDataSource>
+
+ <div class="panel panel-primary">
+  <div class="panel-heading">
+    <span class="panel-title">TOP Log User Manager</span>
+  </div>
+        <div class="panel-body">
+    
+    <table>
+        <tr>
+            <td>
+                <p>This form allows administrators to enable or disable users from receiving new TOP Log assignments</p>
+            </td>
+        </tr>        
+     </table>
+    <p />
+    <asp:Label ID="Label1" runat="server" CssClass="text-info" />
+    <asp:GridView ID="grdUserManager" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="UserID" HorizontalAlign="Center" AllowSorting="True" Width="95%"
+        DataSourceID="dsUsers" CssClass="table table-hover table-striped table-bordered table-condensed GridView">        
+        <Columns>
+            <asp:CommandField ShowEditButton="True" HeaderStyle-Width="50px" />
+            <asp:TemplateField HeaderText="Active?" HeaderStyle-Width="50px" SortExpression="Active">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chkSelect" runat="server" Checked='<%# Bind("Active")%>' />                    
+                </ItemTemplate>
+            <HeaderStyle Width="75px"></HeaderStyle>
+            </asp:TemplateField>
+            <asp:BoundField DataField="UserID" HeaderText="Loan Analyst" SortExpression="UserID" HeaderStyle-HorizontalAlign="Left" ItemStyle-HorizontalAlign="Left" ReadOnly="true">
+                <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+                <ItemStyle HorizontalAlign="Left"></ItemStyle>
+            </asp:BoundField>
+            <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" ReadOnly="true" />
+            <asp:BoundField DataField="TOPLog_Pending" HeaderText="TOP Log Pending" SortExpression="TOPLog_Pending" ReadOnly="true" />
+            <asp:BoundField DataField="TOPLog_Approved_30Days" HeaderText="TOP Log Completed Last 30 days" SortExpression="TOPLog_Approved_30Days" ReadOnly="true" />
+            <asp:BoundField DataField="TOPLog_Approved_Total" HeaderText="TOP Log Completed Total" SortExpression="TOPLog_Approved_Total" ReadOnly="true" DataFormatString="{0:N0}" />
+        </Columns>
+    </asp:GridView>
+
+ </div>
+
+ </div>
 
   <hr />
 
@@ -103,6 +158,7 @@
        DataKeyNames="TOPLogID" HorizontalAlign="Center" AllowSorting="false" AllowPaging="false" Width="95%">        
         <Columns>
             <asp:BoundField DataField="TOPLogID" HeaderText="TOP Log ID" SortExpression="TOPLogID" />
+            <asp:BoundField DataField="UserD" HeaderText="Assigned To" SortExpression="UserID" />
             <asp:BoundField DataField="RowID" HeaderText="Row ID" SortExpression="RowID" />
             <asp:BoundField DataField="LogDate" HeaderText="Log Date" SortExpression="LogDate" DataFormatString="{0:d}" />
             <asp:BoundField DataField="BorrowerNumber" HeaderText="Borrower #" SortExpression="BorrowerNumber" />

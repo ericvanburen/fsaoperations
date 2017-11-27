@@ -171,6 +171,7 @@
                     <asp:ListItem Text="Unenforceable" Value="unenforceable" />
                     <asp:ListItem Text="UNP" Value="unp" />
                     <asp:ListItem Text="UNS" Value="uns" />
+                    <asp:ListItem Text="9-11" Value="9-11" />
                 </asp:DropDownList> <br />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="* Claim Type is a required field *"
                 ControlToValidate="ddlDischargeType" Display="Dynamic" CssClass="alert-danger" ValidationGroup="2" />

@@ -92,10 +92,15 @@
                             <asp:BoundField DataField="PCA" HeaderText="PCA" 
                                 HeaderStyle-HorizontalAlign="Center" SortExpression="PCA" ReadOnly="true" />
                             <asp:BoundField DataField="PCAID" HeaderText="PCA" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
+                            <asp:BoundField DataField="ReportMonth" HeaderText="Month" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
                             <asp:BoundField DataField="ReportQuarter" HeaderText="ReportQuarter" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
                             <asp:BoundField DataField="ReportYear" HeaderText="ReportYear" HeaderStyle-HorizontalAlign="Center" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />
                             <asp:BoundField DataField="RecordingDeliveryDate" HeaderText="Recording Delivery Date" SortExpression="RecordingDeliveryDate"
                                  DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ReadOnly="true"  ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="DateAssigned" HeaderText="Date Assigned" SortExpression="DateAssigned"
+                                DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate"
+                                DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="NewAssignmentID" HeaderText="" ItemStyle-CssClass="hide" HeaderStyle-CssClass="hide" ReadOnly="true" />  
                             <asp:BoundField DataField="WorksheetPCADate" HeaderText="Date Worksheet Completed By LA" SortExpression="WorksheetPCADate"
                                  DataFormatString="{0:d}" HeaderStyle-HorizontalAlign="Center" HtmlEncode="false"  ItemStyle-HorizontalAlign="Center" />

@@ -68,7 +68,7 @@ Partial Class PCAReviews_LAAssignments
 
             'This is for the Review Calls link - Hyperlink1
             Dim link = DirectCast(e.Row.FindControl("HyperLink1"), HyperLink)
-            Dim strNewAssignmentID As String = e.Row.Cells(7).Text
+            Dim strNewAssignmentID As String = e.Row.Cells(8).Text
             Dim strUserID As String = e.Row.Cells(2).Text
             Dim strReviewPeriod As String = e.Row.Cells(3).Text
             Dim strPCA As String = e.Row.Cells(4).Text
@@ -114,6 +114,7 @@ Partial Class PCAReviews_LAAssignments
         txtReviewPeriod.Text = ""
         lblPCA2.Text = ""
         txtRecordingDeliveryDate.Text = ""
+        txtCallReviewDueDate.Text = ""
         txtWorksheetPCADate.Text = ""
         txtQCWorksheetDate.Text = ""
         txtFinalPCADate.Text = ""
@@ -146,28 +147,33 @@ Partial Class PCAReviews_LAAssignments
                         txtRecordingDeliveryDate.Text = dr("RecordingDeliveryDate").ToString()
                     End If
 
-                    'WorksheetPCADate is ordinal 4 in p_PCAAssignment
+                    'CallReviewDueDate is ordinal 4 in p_PCAAssignment
                     If Not dr.IsDBNull(4) Then
+                        txtCallReviewDueDate.Text = dr("CallReviewDueDate").ToString()
+                    End If
+
+                    'WorksheetPCADate is ordinal 5 in p_PCAAssignment
+                    If Not dr.IsDBNull(5) Then
                         txtWorksheetPCADate.Text = dr("WorksheetPCADate").ToString()
                     End If
 
-                    'QCWorksheetDate is ordinal 6 in p_PCAAssignment
-                    If Not dr.IsDBNull(6) Then
+                    'QCWorksheetDate is ordinal 7 in p_PCAAssignment
+                    If Not dr.IsDBNull(7) Then
                         txtQCWorksheetDate.Text = dr("QCWorksheetDate").ToString()
                     End If
 
-                    'FinalPCADate is ordinal 5 in p_PCAAssignment
-                    If Not dr.IsDBNull(5) Then
+                    'FinalPCADate is ordinal 6 in p_PCAAssignment
+                    If Not dr.IsDBNull(6) Then
                         txtFinalPCADate.Text = dr("FinalPCADate").ToString()
                     End If
 
-                    'QCFinalDate is ordinal 7 in p_PCAAssignment
-                    If Not dr.IsDBNull(7) Then
+                    'QCFinalDate is ordinal 8 in p_PCAAssignment
+                    If Not dr.IsDBNull(8) Then
                         txtQCFinalDate.Text = dr("QCFinalDate").ToString()
                     End If
 
-                    'Comments is ordinal 9 in p_PCAAssignment
-                    If Not dr.IsDBNull(9) Then
+                    'Comments is ordinal 10 in p_PCAAssignment
+                    If Not dr.IsDBNull(10) Then
                         txtComments.Text = dr("Comments").ToString()
                     End If
 
@@ -202,6 +208,12 @@ Partial Class PCAReviews_LAAssignments
             cmd.Parameters.Add("@RecordingDeliveryDate", SqlDbType.SmallDateTime).Value = txtRecordingDeliveryDate.Text
         Else
             cmd.Parameters.Add("@RecordingDeliveryDate", SqlDbType.SmallDateTime).Value = DBNull.Value
+        End If
+
+        If Len(txtCallReviewDueDate.Text) > 0 Then
+            cmd.Parameters.Add("@CallReviewDueDate", SqlDbType.SmallDateTime).Value = txtCallReviewDueDate.Text
+        Else
+            cmd.Parameters.Add("@CallReviewDueDate", SqlDbType.SmallDateTime).Value = DBNull.Value
         End If
 
         If Len(txtWorksheetPCADate.Text) > 0 Then

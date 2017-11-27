@@ -61,15 +61,11 @@
                                                 </td>
                                                 <td width="25%">
                                                     <strong>Award ID:</strong><br />
-                                                    <asp:TextBox ID="txtAwardID" runat="server" TabIndex="3" MaxLength="21" /><br />
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" CssClass="warning" Display="Dynamic" 
-                                                    ErrorMessage="* Please enter the Award ID number * " ControlToValidate="txtAwardID" />
+                                                    <asp:TextBox ID="txtAwardID" runat="server" TabIndex="3" MaxLength="21" />
                                                 </td>
                                                 <td width="25%">
                                                     <strong>Sequence Number:</strong><br />
-                                                    <asp:TextBox ID="txtSequenceNumber" runat="server" TabIndex="4" /><br />
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" CssClass="warning" Display="Dynamic" 
-                                                    ErrorMessage="* Please enter the sequence number * " ControlToValidate="txtSequenceNumber" />
+                                                    <asp:TextBox ID="txtSequenceNumber" runat="server" TabIndex="4" MaxLength="2" />
                                                 </td>                                              
                                                 
                                             </tr>
@@ -142,11 +138,11 @@
                                             </tr>
                                             <tr>
                                                 <td width="25%" valign="top"><strong>Outstanding Principal:</strong><br /> 
-                                                    <asp:TextBox ID="txtOutstanding_Principal" runat="server" TabIndex="13" placeholder="###.##" />
+                                                    <asp:TextBox ID="txtOutstanding_Principal" runat="server" TabIndex="13" placeholder="###.##" /></td>
                                                  <td width="25%" valign="top"><strong>Outstanding Interest:</strong><br /> 
-                                                    <asp:TextBox ID="txtOutstanding_Interest" runat="server" TabIndex="14" placeholder="###.##" />
+                                                    <asp:TextBox ID="txtOutstanding_Interest" runat="server" TabIndex="14" placeholder="###.##" /></td>
                                                 <td width="25%" valign="top"><strong>Select For QA?</strong><br />
-                                                    <asp:CheckBox ID="chkQA_Account" runat="server" TabIndex="15" />
+                                                    <asp:CheckBox ID="chkQA_Account" runat="server" TabIndex="15" /></td>
                                                 <td width="25%" valign="top"><strong>QA Analyst</strong><br />
                                                     <asp:DropDownList ID="ddlQA_Analyst" runat="server" Height="25px" TabIndex="16" AppendDataBoundItems="true">  
                                                         <asp:ListItem Text="" Value="" />                                                     
@@ -154,22 +150,22 @@
                                             </tr>
                                             <tr>
                                                 <td valign="top"><strong>Escalated?</strong><br />
-                                                    <asp:CheckBox ID="chkEscalated" runat="server" TabIndex="16" /></td>
+                                                    <asp:CheckBox ID="chkEscalated" runat="server" TabIndex="17" /></td>
                                                 
                                                 <td valign="top"><strong>Assigned To</strong><br />
-                                                    <asp:DropDownList ID="ddlUserID" runat="server" TabIndex="17" Height="25px" AppendDataBoundItems="true">  
+                                                    <asp:DropDownList ID="ddlUserID" runat="server" TabIndex="18" Height="25px" AppendDataBoundItems="true">  
                                                         <asp:ListItem Text="" Value="" />                                                     
                                                     </asp:DropDownList></td>    
                                                 <td colspan="2" valign="top"><strong>IDR/PSLF Estimated Forgiveness Date:</strong><br />
-                                                    <asp:TextBox ID="txtIDR_Forgiveness_Date" runat="server" TabIndex="18" placeholder="mm/dd/yyyy" /></td>
+                                                    <asp:TextBox ID="txtIDR_Forgiveness_Date" runat="server" TabIndex="19" placeholder="mm/dd/yyyy" /></td>
                                             </tr>
                                             <tr>                                              
                                                 <td width="100%" valign="top" colspan="4"><strong>Resolution:</strong><br />
-                                                    <asp:Textbox id="txtResolution" runat="server" Height="60px" Width="818px" TabIndex="19" />
+                                                    <asp:Textbox id="txtResolution" runat="server" Height="60px" Width="818px" TabIndex="20" /></td>
                                             </tr>
                                             <tr>                                              
                                                 <td width="100%" valign="top" colspan="4"><strong>Comments:</strong><br />
-                                                    <asp:Textbox id="txtComments" runat="server" Height="60px" Width="818px" TabIndex="20" />
+                                                    <asp:Textbox id="txtComments" runat="server" Height="60px" Width="818px" TabIndex="21" /></td>
                                             </tr>
                                             <tr>
                                                     <td colspan="4" align="center">
